@@ -4,9 +4,9 @@
 // ===========================
 module.exports = {
   // MongoDB connection options
-  mongo: {
-    uri: 'mongodb://localhost/mtabus-test'
-  },
+  // mongo: {
+  //   uri: 'mongodb://localhost/mtabus-test'
+  // },
   sequelize: {
     uri: 'sqlite://',
     options: {
