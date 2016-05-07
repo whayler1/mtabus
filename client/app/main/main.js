@@ -5,6 +5,6 @@ angular.module('mtabusApp')
     $stateProvider
       .state('main', {
         url: '/',
-        template: '<map></map>'
+        template: '<user-location-marker></user-location-marker><map></map>'
       });
   });

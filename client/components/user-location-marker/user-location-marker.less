@@ -1,0 +1,23 @@
+.user-location-marker {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background: rgba(17,130,254,0.5);
+  // background: #1182FE;
+  // border: solid 2px white;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    border: 2px solid white;
+    background: #1182FE;
+  }
+}

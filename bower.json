@@ -8,8 +8,7 @@
     "angular-resource": "~1.5.0",
     "angular-cookies": "~1.5.0",
     "angular-sanitize": "~1.5.0",
-    "font-awesome": ">=4.1.0",
-    "lodash": "~2.4.1",
+    "lodash": "4.11.*",
     "angular-ui-router": "~0.2.15"
   },
   "devDependencies": {
