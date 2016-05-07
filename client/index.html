@@ -8,7 +8,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <base href="/">
     <title></title>
-    <meta name="description" content="">
+    <meta name="description" content="Find MTA Bus real time location and arrival times">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
@@ -20,6 +20,7 @@
       <!-- injector:css -->
       <!-- endinjector -->
     <!-- endbuild -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdw4fSnONgMlXe_9cuur5HrCG24znV2Zk"></script>
   </head>
   <body ng-app="mtabusApp">
     <!--[if lt IE 7]>
@@ -27,12 +28,13 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <navbar></navbar>
+    <!-- <navbar></navbar>
     <div ui-view=""></div>
-    <footer></footer>
+    <footer></footer> -->
+    <ui-view></ui-view>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-    <script>
+    <!-- <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -40,7 +42,7 @@
 
       ga('create', 'UA-XXXXX-X');
       ga('send', 'pageview');
-    </script>
+    </script> -->
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -60,12 +62,15 @@
       <script src="app/app.js"></script>
       <!-- injector:js -->
       <script src="components/util/util.module.js"></script>
-      <script src="app/app.constant.js"></script>
-      <script src="app/main/main.controller.js"></script>
+      <script src="components/map/map.directive.js"></script>
       <script src="app/main/main.js"></script>
       <script src="components/footer/footer.directive.js"></script>
+      <script src="components/map/map.controller.js"></script>
+      <script src="app/main/main.controller.js"></script>
+      <script src="components/map/map.service.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>
       <script src="components/navbar/navbar.directive.js"></script>
+      <script src="app/app.constant.js"></script>
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->
