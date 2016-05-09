@@ -4,25 +4,52 @@ angular.module('mtabusApp')
   .controller('BusStopsCtrl', function (
     $scope,
     $log,
-    $http
+    $http,
+    $timeout,
+    map
   ) {
 
-    $log.log('bus stops here');
+    const busStops = [];
 
-    // $http.get('http://bustime.mta.info/api/where/stops-for-location.json?lat=40.748433&lon=-73.985656&latSpan=0.005&lonSpan=0.005&key=71f7d3b8-d9d5-4791-aeec-f95564ff0bb4').then(
-    //   res => {
-    //     $log.log('got it', res);
-    //   },
-    //   res => {
-    //     $log.log('failure!', res)
-    //   }
-    // );
-    $http.get('/api/bus-stops').then(
+    const getBusStops = (lat, lng) => $http.get(`/api/bus-stops?lat=${lat}&lng=${lng}`).then(
       res => {
-        $log.log('WOOHOO', res);
+        const newBusStops = res.data.data.stops;
+
+        // busStops.forEach((stop, index) => {
+        //   if(!_.find(newBusStops, {code: stop.code})) {
+        //     busStops.splice(index, 1);
+        //   }
+        // });
+        //
+        // newBusStops.forEach(stop => {
+        //   if(!_.find(busStops, {code: stop.code})) {
+        //     busStops.push(stop);
+        //   }
+        // });
+
+        angular.copy(newBusStops, busStops);
+        $log.log('busStops:', busStops);
       },
       res => {
-        $log.error('NOPE', res);
+        $log.error('error retrieving bus stops', res);
       }
     );
+
+    $log.log('bus stops');
+
+    let mapCenterTimeout;
+
+    let mapCenterChangedListener = map.gmap.addListener('center_changed', () => {
+      const center = map.gmap.getCenter();
+      $timeout.cancel(mapCenterTimeout);
+      // $log.log('center_changed', map.gmap.getCenter());
+      mapCenterTimeout = $timeout(() => getBusStops(center.lat(), center.lng()), 250);
+    });
+
+    $scope.busStops = busStops;
+
+    $scope.$on('$destroy', () => {
+      $timeout.cancel(mapCenterTimeout);
+      google.maps.event.removeListener(mapCenterChangedListener);
+    });
   });

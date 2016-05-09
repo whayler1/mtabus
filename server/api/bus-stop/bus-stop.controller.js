@@ -62,25 +62,20 @@ function handleError(res, statusCode) {
 
 // Gets a list of BusStops
 export function index(req, res) {
-  console.log('process.emnv', process.env)
+  console.log('query -x-->', req.query);
+  console.log('env:', process.env);
+  return http.get('http://bustime.mta.info/api/where/stops-for-location.json?lat=' + req.query.lat +
+      '&lon=' + req.query.lng +
+      '&latSpan=0.01&lonSpan=0.01&key=' + process.env.MTABUS_APIKEY,
 
-  return http.get('http://bustime.mta.info/api/where/stops-for-location.json?lat=40.748433&lon=-73.985656&latSpan=0.005&lonSpan=0.005&key=' + process.env.MTABUS_APIKEY,
-    // console.log('hitting bus stop endpoint');xz
     function(response) {
-      // console.log('response:', response);
-      // Continuously update stream with data
       var body = '';
       response.on('data', function(d) {
           body += d;
       });
       response.on('end', function() {
 
-          // Data reception is done, do whatever with it!
           var parsed = JSON.parse(body);
-          // callback({
-          //     email: parsed.email,
-          //     password: parsed.pass
-          // });
           res.status(200).json(parsed);
       });
     }
