@@ -66,7 +66,7 @@ export function index(req, res) {
   console.log('env:', process.env);
   return http.get('http://bustime.mta.info/api/where/stops-for-location.json?lat=' + req.query.lat +
       '&lon=' + req.query.lng +
-      '&latSpan=0.01&lonSpan=0.01&key=' + process.env.MTABUS_APIKEY,
+      '&latSpan=0.02&lonSpan=0.02&key=' + process.env.MTABUS_APIKEY,
 
     function(response) {
       var body = '';

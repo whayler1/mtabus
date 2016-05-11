@@ -4,11 +4,12 @@ angular.module('mtabusApp')
   .controller('BusStopMarkerCtrl', function (
     $scope,
     $element,
+    $log,
     map,
     mapMarkerConstructor
   ) {
 
-    // console.log('bus stop!', $scope.stop);
+    // $log.log('%cbus stop marker!', 'background:orange', $scope.stop);
 
     const stop = $scope.stop;
 
