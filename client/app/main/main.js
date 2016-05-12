@@ -16,7 +16,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
         }
       },
       abstract: true,
-      template: '<map></map><user-location-marker></user-location-marker><ui-view></ui-view>'
+      template: '<navbar></navbar><map></map><user-location-marker></user-location-marker><ui-view></ui-view>'
     })
     .state('main.bus-stops', {
       url: '',
@@ -43,6 +43,8 @@ angular.module('mtabusApp').config(function ($stateProvider) {
       controller: ($scope, $rootScope, $timeout, $state, $log, $window, busStops, map) => {
 
         $scope.busStops = busStops;
+
+        $log.log('%cbus stops:', 'background:yellow', busStops);
 
         let mapCenterTimeout;
 
@@ -77,6 +79,6 @@ angular.module('mtabusApp').config(function ($stateProvider) {
           $window.google.maps.event.removeListener(mapCenterListener);
         });
       },
-      template: '<bus-stop-marker ng-repeat="stop in busStops" stop="stop"></bus-stop-marker>'
+      template: '<bus-stop-list stops="busStops"></bus-stop-list><bus-stop-marker ng-repeat="stop in busStops track by stop.id" stop="stop"></bus-stop-marker>'
     });
 });

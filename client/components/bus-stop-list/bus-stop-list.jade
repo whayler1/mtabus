@@ -1,0 +1,9 @@
+.left-col
+  section.card.bus-stop-list-card
+    header.card-header
+      h1.card-header-title Bus Stops
+    .card-body.card-body-scroll
+      ul.card-body-stacked-list
+        li(ng-repeat="stop in stops track by stop.id")
+          a
+            h3.bus-stop-name(ng-bind="stop.name | lowercase")

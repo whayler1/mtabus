@@ -1,0 +1,84 @@
+@card-border: mix(lighten(grey, 30%), @body-background);
+@card-border-top: mix(lighten(grey, 40%), @body-background);
+
+@card-header-height: 49px;
+
+.card {
+  border-radius: 3px;
+  border-top: 1px solid @card-border-top;
+  border-left: 1px solid @card-border;
+  border-right: 1px solid @card-border;
+  border-bottom: 2px solid @card-border;
+  background: white;
+
+  .left-col & {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    right: 15px;
+    bottom: 0;
+  }
+}
+
+.card-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  background: white;
+  border-bottom: 1px solid lighten(grey, 45%);
+}
+
+.card-header-title {
+  margin: 0;
+  color: @font-color;
+  font-size: @font-m;
+  font-weight: 400;
+}
+
+.card-body {
+  &.card-body-scroll {
+    position: absolute;
+    top: @card-header-height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: scroll;
+  }
+}
+
+.card-body-stacked-list {
+  margin: 0;
+  padding: 0;
+  >li {
+    border-top: 1px dotted lighten(@font-color, 30%);
+    &:first-child {
+      border-top: none;
+    }
+    >a {
+      display: block;
+      padding: 15px;
+      list-style: none;
+
+      &:hover,
+      &:focus {
+        background: lighten(@font-color, 40%);
+        h3 {
+          color: @font-color-hover;
+        }
+      }
+      &:active {
+        h3 {
+          color: @font-color-active;
+        }
+      }
+    }
+    h3 {
+      font-size: @font-s;
+      color: @font-color;
+      font-weight: 400;
+      margin: 0;
+    }
+  }
+}

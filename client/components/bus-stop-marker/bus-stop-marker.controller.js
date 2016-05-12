@@ -23,18 +23,15 @@ angular.module('mtabusApp')
     overlayView.setMap(map.gmap);
 
     $scope.onFocus = () => {
-      // $log.log('focus');
       $timeout.cancel(focusTimeout);
-      $scope.isFocus = true;
+      stop.isFocus = true;
     };
     $scope.onBlur = () => {
-      // $log.log('blur');
       $timeout.cancel(focusTimeout);
-      focusTimeout = $timeout(() => $scope.isFocus = false);
+      focusTimeout = $timeout(() => stop.isFocus = false);
     }
 
     $scope.$on('$destroy', () => {
-      console.log('$destroy');
       $timeout.cancel(focusTimeout);
       overlayView.setMap(null);
     });
