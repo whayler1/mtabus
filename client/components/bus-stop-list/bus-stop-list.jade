@@ -6,7 +6,8 @@
       ul.card-body-stacked-list
         li(ng-repeat="stop in stops track by stop.id")
           a(
-            ng-mouseover="stop.isFocus=true"
-            ng-mouseout="stop.isFocus=false"
+            ng-mouseover="stop.isHover=true"
+            ng-mouseout="stop.isHover=false"
+            ng-class="{'hover':stop.isHover,'focus':stop.isFocus}"
           )
             h3.bus-stop-name(ng-bind="stop.name | lowercase")

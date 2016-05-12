@@ -29,7 +29,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
           if(lat && lng) return busTime.getBusStops(lat, lng).then(
             res => {
               $log.log('%cbus stops success', 'background:lightgreen');
-              return $q.when(res.data.data.stops);
+              return $q.when(_.orderBy(res.data.data.stops, ['name']));
             },
             res => {
               $log.error('error loading bus stops:', res);

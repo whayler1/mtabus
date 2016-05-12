@@ -24,11 +24,11 @@ angular.module('mtabusApp')
 
     $scope.onFocus = () => {
       $timeout.cancel(focusTimeout);
-      stop.isFocus = true;
+      stop.isHover = true;
     };
     $scope.onBlur = () => {
       $timeout.cancel(focusTimeout);
-      focusTimeout = $timeout(() => stop.isFocus = false);
+      focusTimeout = $timeout(() => stop.isHover = false);
     }
 
     $scope.$on('$destroy', () => {

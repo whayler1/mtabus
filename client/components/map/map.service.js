@@ -15,7 +15,7 @@ angular.module('mtabusApp')
     // console.log('foo:', $element.find('gmap')[0]);
     const gmap = new $window.google.maps.Map(gmapEl, {
       center: {lat: 40.7128, lng: -74.0059},
-      zoom: 16
+      zoom: 18
     });
 
     const redraw = () => $window.google.maps.event.trigger(gmap, 'resize');

@@ -22,7 +22,8 @@ bus-stop-marker {
     padding-top: 3px;
   }
 
-  &.focus {
+  &.focus,
+  &.hover {
     background: saturate(lighten(@bus-stop-marker-background, 15%), 100%);
     transform: scale(1.1);
     z-index: 10;
