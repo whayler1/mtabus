@@ -9,5 +9,10 @@ angular.module('mtabusApp')
     map
   ) {
 
-    $log.log('busStops:', $scope.stops);
+    $log.log('%cbusStops:', 'background:yellow', $scope.stops);
+
+    $scope.$on('$destroy', () => {
+      $log.log('%cbus stops destroy', 'background:pink');
+      $scope.stops.length = 0;
+    });
   });

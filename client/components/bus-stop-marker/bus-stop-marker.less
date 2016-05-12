@@ -1,17 +1,30 @@
+@bus-stop-marker-background: #3148B1;
+
+bus-stop-marker {
+  display: block;
+  position: absolute;
+}
+
 .bus-stop-marker {
   display: block;
   position: absolute;
   height: 30px;
   width: 30px;
   border-radius: 3px;
-  background: #3148B1;
+  background: @bus-stop-marker-background;
   color: white;
   text-align: center;
   margin-top: -15px;
   margin-left: -15px;
-  
+  cursor: pointer;
+
   .fa {
     padding-top: 3px;
+  }
+
+  &.focus {
+    background: lighten(saturate(@bus-stop-marker-background, 20%), 10%);
+    transform: scale(1.1);
   }
 }
 

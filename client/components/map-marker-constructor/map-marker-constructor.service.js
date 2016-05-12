@@ -25,7 +25,10 @@ angular.module('mtabusApp')
         this.element.css('top', point.y + 'px');
       }
     };
-    GoogleOverlayView.prototype.onRemove = function() {};
+    GoogleOverlayView.prototype.onRemove = function() {
+      // console.log('onRemove', this);
+      // this.setMap(null);
+    };
 
     mapMarkerConstructor.GoogleOverlayView = GoogleOverlayView;
 

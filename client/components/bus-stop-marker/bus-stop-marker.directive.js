@@ -5,6 +5,7 @@ angular.module('mtabusApp')
     return {
       templateUrl: 'components/bus-stop-marker/bus-stop-marker.html',
       restrict: 'E',
+      // replace: true,
       scope: {
         stop: '='
       },
