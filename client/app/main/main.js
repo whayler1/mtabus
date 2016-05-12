@@ -40,7 +40,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
           return $q.when([]);
         }
       },
-      controller: ($scope, $timeout, $state, $log, $window, busStops, map) => {
+      controller: ($scope, $rootScope, $timeout, $state, $log, $window, busStops, map) => {
 
         $scope.busStops = busStops;
 
@@ -64,11 +64,19 @@ angular.module('mtabusApp').config(function ($stateProvider) {
             })}, 250);
         });
 
+        /**
+         * JW: This is a hacky way of being sure all the bus stops get cleared
+         * before state change. Should revisit and make smoother.
+         */
+        const stateChangeStartListener = $rootScope.$on('$stateChangeStart', () => busStops.length = 0);
+
         $scope.$on('$destroy', () => {
+
+          stateChangeStartListener();
           $timeout.cancel(mapCenterTimeout);
           $window.google.maps.event.removeListener(mapCenterListener);
         });
       },
-      template: '<bus-stops stops="busStops"></bus-stops>'
+      template: '<bus-stop-marker ng-repeat="stop in busStops" stop="stop"></bus-stop-marker>'
     });
 });
