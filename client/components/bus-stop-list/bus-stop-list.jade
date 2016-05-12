@@ -5,5 +5,8 @@
     .card-body.card-body-scroll
       ul.card-body-stacked-list
         li(ng-repeat="stop in stops track by stop.id")
-          a
+          a(
+            ng-mouseover="stop.isFocus=true"
+            ng-mouseout="stop.isFocus=false"
+          )
             h3.bus-stop-name(ng-bind="stop.name | lowercase")
