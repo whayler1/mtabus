@@ -10,7 +10,13 @@
             ng-mouseout="stop.isHover=false"
             ng-class="{'hover':stop.isHover,'focus':stop.isFocus}"
           )
-            h3.bus-stop-name(ng-bind="stop.name | lowercase")
+            ul.inline-list.bus-stop-route-list
+              h3.bus-stop-name(ng-bind="stop.name | lowercase")
+              li(
+                ng-repeat="route in stop.routes track by route.id"
+                ng-style="{background:'#'+route.color,color:'#'+route.textColor}"
+                ng-bind="route.shortName"
+              )
       .card-body-spinner(ng-if="!stops.length")
         span.fa.fa-circle-o-notch.fa-spin
         .card-body-spinner-copy Loading&nbsp;

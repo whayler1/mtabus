@@ -1,3 +1,20 @@
 .bus-stop-name {
   text-transform: capitalize;
 }
+
+.bus-stop-route-list {
+  &.inline-list {
+    >li {
+      min-width: 18px;
+      height: 18px;
+      line-height: 18px;
+      padding: 0 5px;
+      border-radius: 18px;
+      font-size: @font-s;
+      text-align: center;
+      margin-left: 0;
+      margin-right: 7px;
+      margin-top: 7px;
+    }
+  }
+}

@@ -62,8 +62,8 @@ function handleError(res, statusCode) {
 
 // Gets a list of BusStops
 export function index(req, res) {
-  console.log('query -x-->', req.query);
-  console.log('env:', process.env);
+  // console.log('query -x-->', req.query);
+  console.log('params:', req.query);
   return http.get('http://bustime.mta.info/api/where/stops-for-location.json?lat=' + req.query.lat +
       '&lon=' + req.query.lng +
       '&latSpan=0.01&lonSpan=0.01&key=' + process.env.MTABUS_APIKEY,
