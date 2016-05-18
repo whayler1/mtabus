@@ -1,0 +1,19 @@
+.left-col
+  section.card.single-bus-stop-card
+    header.card-header
+      h1.card-header-title
+        i.fa.fa-bus.card-header-title-icon
+        span.capitalize(ng-bind="busStop.name|lowercase")
+      a.card-header-close(ui-sref="main.bus-stops")
+        i.fa.fa-close
+    .card-body.card-body-scroll.card-body-padded
+      table.table-icon-details
+        tbody
+          tr
+            th(title="Direction")
+              i.fa.fa-compass
+            td(ng-bind="busStop.direction")
+          tr
+            th(title="wheelchair accessible")
+              i.fa.fa-wheelchair
+            td.capitalize(ng-bind="busStop.wheelchairBoarding|lowercase")

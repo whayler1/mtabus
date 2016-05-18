@@ -9,6 +9,7 @@
             ng-mouseover="stop.isHover=true"
             ng-mouseout="stop.isHover=false"
             ng-class="{'hover':stop.isHover,'focus':stop.isFocus}"
+            ui-sref="main.bus-stops.bus-stop({id:stop.id})"
           )
             ul.inline-list.bus-stop-route-list
               h3.bus-stop-name(ng-bind="stop.name | lowercase")

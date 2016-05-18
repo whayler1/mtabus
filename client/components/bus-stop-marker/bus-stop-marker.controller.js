@@ -3,6 +3,7 @@
 angular.module('mtabusApp')
   .controller('BusStopMarkerCtrl', function (
     $scope,
+    $state,
     $element,
     $log,
     $timeout,
@@ -30,6 +31,13 @@ angular.module('mtabusApp')
       $timeout.cancel(focusTimeout);
       focusTimeout = $timeout(() => stop.isHover = false);
     }
+    $scope.onClick = e => {
+      e.preventDefault();
+      $state.go('main.bus-stops.bus-stop', {
+        id: stop.id
+      });
+      return false;
+    };
 
     $scope.$on('$destroy', () => {
       $timeout.cancel(focusTimeout);

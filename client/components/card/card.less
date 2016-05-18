@@ -37,6 +37,25 @@
   font-weight: 400;
 }
 
+.card-header-title-icon {
+  margin-right: 7px;
+}
+
+.card-header-close {
+  position: absolute;
+  top: 7px;
+  right: 15px;
+  color: @link-color;
+
+  &:hover,
+  &:focus {
+    color: @link-color-hover;
+  }
+  &:active {
+    color: @link-color-active;
+  }
+}
+
 .card-body {
   &.card-body-scroll {
     position: absolute;
@@ -46,6 +65,10 @@
     bottom: 0;
     overflow: scroll;
   }
+}
+
+.card-body-padded {
+  padding: 15px;
 }
 
 .card-body-stacked-list {
@@ -63,7 +86,7 @@
 
       &.hover,
       &.focus {
-        background: lighten(@font-color, 40%);
+        background: lighten(@font-color, 38%);
         h3 {
           color: @font-color-hover;
         }

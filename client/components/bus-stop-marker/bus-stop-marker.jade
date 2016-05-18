@@ -1,6 +1,7 @@
 .bus-stop-marker(
   ng-mouseover="onFocus()"
   ng-mouseout="onBlur()"
+  ng-click="onClick($event)"
   ng-class="{'focus':stop.isFocus,'hover':stop.isHover}"
   )
   span.fa.fa-bus

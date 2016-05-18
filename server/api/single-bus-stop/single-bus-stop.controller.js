@@ -1,17 +1,17 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/bus-stops              ->  index
- * POST    /api/bus-stops              ->  create
- * GET     /api/bus-stops/:id          ->  show
- * PUT     /api/bus-stops/:id          ->  update
- * DELETE  /api/bus-stops/:id          ->  destroy
+ * GET     /api/single-bus-stops              ->  index
+ * POST    /api/single-bus-stops              ->  create
+ * GET     /api/single-bus-stops/:id          ->  show
+ * PUT     /api/single-bus-stops/:id          ->  update
+ * DELETE  /api/single-bus-stops/:id          ->  destroy
  */
 
 'use strict';
 
-import _ from 'lodash';
-// import BusStop from './bus-stop.model';
 var http = require('http');
+import _ from 'lodash';
+import SingleBusStop from './single-bus-stop.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -60,14 +60,13 @@ function handleError(res, statusCode) {
   };
 }
 
-// Gets a list of BusStops
+// Gets a list of SingleBusStops
 export function index(req, res) {
 
   console.log('query -x-->', req.query);
 
-  return http.get('http://bustime.mta.info/api/where/stops-for-location.json?lat=' + req.query.lat +
-      '&lon=' + req.query.lng +
-      '&latSpan=0.01&lonSpan=0.01&key=' + process.env.MTABUS_APIKEY,
+  return http.get('http://bustime.mta.info/api/where/stop/' + req.query.id +
+      '.json?key=' + process.env.MTABUS_APIKEY,
 
     function(response) {
       var body = '';
@@ -81,43 +80,39 @@ export function index(req, res) {
       });
     }
   );
-
-  // return BusStop.find().exec()
-  //   .then(respondWithResult(res))
-  //   .catch(handleError(res));
 }
 
-// Gets a single BusStop from the DB
+// Gets a single SingleBusStop from the DB
 export function show(req, res) {
-  // return BusStop.findById(req.params.id).exec()
-  //   .then(handleEntityNotFound(res))
-  //   .then(respondWithResult(res))
-  //   .catch(handleError(res));
+  return SingleBusStop.findById(req.params.id).exec()
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
 }
 
-// Creates a new BusStop in the DB
+// Creates a new SingleBusStop in the DB
 export function create(req, res) {
-  // return BusStop.create(req.body)
-  //   .then(respondWithResult(res, 201))
-  //   .catch(handleError(res));
+  return SingleBusStop.create(req.body)
+    .then(respondWithResult(res, 201))
+    .catch(handleError(res));
 }
 
-// Updates an existing BusStop in the DB
+// Updates an existing SingleBusStop in the DB
 export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  // return BusStop.findById(req.params.id).exec()
-  //   .then(handleEntityNotFound(res))
-  //   .then(saveUpdates(req.body))
-  //   .then(respondWithResult(res))
-  //   .catch(handleError(res));
+  return SingleBusStop.findById(req.params.id).exec()
+    .then(handleEntityNotFound(res))
+    .then(saveUpdates(req.body))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
 }
 
-// Deletes a BusStop from the DB
+// Deletes a SingleBusStop from the DB
 export function destroy(req, res) {
-  // return BusStop.findById(req.params.id).exec()
-  //   .then(handleEntityNotFound(res))
-  //   .then(removeEntity(res))
-  //   .catch(handleError(res));
+  return SingleBusStop.findById(req.params.id).exec()
+    .then(handleEntityNotFound(res))
+    .then(removeEntity(res))
+    .catch(handleError(res));
 }

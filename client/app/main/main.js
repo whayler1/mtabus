@@ -21,10 +21,31 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     .state('main.bus-stops', {
       url: '',
       resolve: {
-        busStops: ($stateParams, $q, $log, $http, busTime) => {
+        busStops: (
+          $stateParams,
+          $q,
+          $log,
+          $timeout,
+          $http,
+          busTime,
+          map
+        ) => {
 
           const lat = $stateParams.lat;
           const lng = $stateParams.lng;
+
+          let mapTilesListener = map.gmap.addListener('tilesloaded', () => {
+            google.maps.event.removeListener(mapTilesListener);
+            const bounds = map.gmap.getBounds();
+            const northEast = bounds.getNorthEast();
+            const southWest = bounds.getSouthWest();
+            const latDiff = northEast.lat() - southWest.lat();
+            const lngDiff = Math.abs(southWest.lng()) - Math.abs(northEast.lng());
+            const reqSpan = latDiff > lngDiff? latDiff : lngDiff;
+            console.log('bounds:', latDiff, lngDiff)
+            console.log('reqSpan:', reqSpan);
+          });
+
 
           if(lat && lng) return busTime.getBusStops(lat, lng).then(
             res => {
@@ -40,7 +61,16 @@ angular.module('mtabusApp').config(function ($stateProvider) {
           return $q.when([]);
         }
       },
-      controller: ($scope, $rootScope, $timeout, $state, $log, $window, busStops, map) => {
+      controller: (
+        $scope,
+        $rootScope,
+        $timeout,
+        $state,
+        $log,
+        $window,
+        busStops,
+        map
+      ) => {
 
         $scope.busStops = busStops;
 
@@ -56,13 +86,9 @@ angular.module('mtabusApp').config(function ($stateProvider) {
           $timeout.cancel(mapCenterTimeout);
           mapCenterTimeout = $timeout(() => {
             $log.log('%cmapCenterTimeout!', 'background:aqua')
-            $state.go('main.bus-stops', {
+            $state.go($state.current.name, {
               lat: String(center.lat()),
               lng: String(center.lng())
-            },{
-              reload: true,
-              notify: true,
-              inherit: false
             })}, 250);
         });
 
@@ -79,6 +105,25 @@ angular.module('mtabusApp').config(function ($stateProvider) {
           $window.google.maps.event.removeListener(mapCenterListener);
         });
       },
-      template: '<bus-stop-list stops="busStops"></bus-stop-list><bus-stop-marker ng-repeat="stop in busStops track by stop.id" stop="stop"></bus-stop-marker>'
+      template: '<bus-stop-list stops="busStops"></bus-stop-list><bus-stop-marker ng-repeat="stop in busStops track by stop.id" stop="stop"></bus-stop-marker><ui-view></ui-view>'
+    })
+    .state('main.bus-stops.bus-stop', {
+      url: ':id',
+      resolve: {
+        busStop: ($q, $log, $stateParams, busTime) => busTime.getBusStop($stateParams.id).then(
+          res => {
+            $log.log('%csingle bus stop!', 'background:magenta', res.data.data);
+            return $q.when(res.data.data);
+          },
+          res => {
+            $log.error('FAIL loading single bus stop :(', res);
+            return $q.when({error: true});
+          }
+        )
+      },
+      controller: ($scope, busStop) => {
+        $scope.busStop = busStop;
+      },
+      template: '<single-bus-stop bus-stop="busStop"></single-bus-stop>'
     });
 });
