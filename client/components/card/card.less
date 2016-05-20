@@ -71,10 +71,21 @@
   padding: 15px;
 }
 
+.card-body-title {
+  font-size: @font-s;
+  color: @font-color-strong;
+  margin: 15px 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
 .card-body-stacked-list {
   margin: 0;
   padding: 0;
   >li {
+    list-style: none;
     border-top: 1px dotted lighten(@font-color, 30%);
     &:first-child {
       border-top: none;
@@ -96,12 +107,6 @@
           color: @font-color-active;
         }
       }
-    }
-    h3 {
-      font-size: @font-s;
-      color: @font-color;
-      font-weight: 400;
-      margin: 0;
     }
   }
 }

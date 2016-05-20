@@ -1,0 +1,114 @@
+@bus-route-list-item-right-pad: 40px;
+
+.single-bus-stop-card {
+  .card-body-stacked-list {
+    margin-top: -15px;
+  }
+}
+
+.bus-stop-route-icon {
+  display: inline-block;
+  border-radius: 3px;
+  padding: 3px 7px;
+  font-size: @font-s;
+  margin: 4px 0;
+}
+
+.route-title {
+  // display: table;
+  position: absolute;
+  top: 15px;
+  left: 60px;
+  right: @bus-route-list-item-right-pad;
+  height: 30px;
+  font-size: @font-s;
+  font-weight: 400;
+  color: @font-color-strong;
+  margin: 0;
+
+  >span {
+    display: table;
+    height: 100%;
+    >span {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+
+  a:hover &,
+  a:focus & {
+    color: @font-color-strong-hover;
+  }
+  a:active & {
+    color: @font-color-strong-active;
+  }
+}
+
+.bus-stop-route-list {
+  &.inline-list {
+    >li {
+      min-width: 18px;
+      height: 18px;
+      line-height: 18px;
+      padding: 0 5px;
+      border-radius: 3px;
+      font-size: @font-s;
+      text-align: center;
+      margin-left: 0;
+      margin-right: 7px;
+      margin-top: 7px;
+    }
+  }
+}
+
+.bus-route-list-item {
+  margin-left: -15px;
+  margin-right: -15px;
+  position: relative;
+
+  >a {
+    display: block;
+    padding-top: 15px;
+    padding-right: @bus-route-list-item-right-pad !important;
+
+    &:hover,
+    &:focus {
+      background: lighten(grey, 49%);
+    }
+  }
+
+  // &:first-child {
+  //   .route-title {
+  //     top: 0;
+  //   }
+  // }
+}
+
+.bus-route-list-item-action-icon {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  font-size: @font-m;
+  margin-top: -(@font-m/2);
+  transition: right .25s;
+
+  a:hover &,
+  a:focus &,
+  a:active & {
+    right: 7px;
+  }
+}
+
+.route-description {
+  font-size: @font-s;
+  margin: 7px 0 0;
+
+  a:hover &,
+  a:focus & {
+    color: @font-color-hover;
+  }
+  a:active & {
+    color: @font-color-active;
+  }
+}

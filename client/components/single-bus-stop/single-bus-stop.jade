@@ -7,13 +7,34 @@
       a.card-header-close(ui-sref="main.bus-stops")
         i.fa.fa-close
     .card-body.card-body-scroll.card-body-padded
+      h3.card-body-title Details
       table.table-icon-details
         tbody
           tr
             th(title="Direction")
               i.fa.fa-compass
-            td(ng-bind="busStop.direction")
+            td(
+              ng-bind="busStop.direction"
+              title="Direction"
+            )
           tr
             th(title="wheelchair accessible")
               i.fa.fa-wheelchair
-            td.capitalize(ng-bind="busStop.wheelchairBoarding|lowercase")
+            td.capitalize(
+              ng-bind="busStop.wheelchairBoarding|lowercase"
+              title="wheelchair accessible"
+            )
+      h3.card-body-title Routes
+      ul.card-body-stacked-list
+        li(ng-repeat="route in busStop.routes").bus-route-list-item
+          a
+            .bus-stop-route-icon(
+              ng-style="{background:'#'+route.color,color:'#'+route.textColor}"
+              ng-bind="route.shortName"
+              )
+            h4.route-title
+              span
+                span(ng-bind="route.longName")
+            p.route-description(ng-bind="route.description")
+            i.bus-route-list-item-action-icon.fa.fa-chevron-right
+          
