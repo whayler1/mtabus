@@ -5,9 +5,6 @@ angular.module('mtabusApp')
     return {
       templateUrl: 'components/bus-stops/bus-stops.html',
       restrict: 'E',
-      scope: {
-        stops: '='
-      },
       controller: 'BusStopsCtrl'
     };
   });

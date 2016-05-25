@@ -20,9 +20,22 @@ angular.module('mtabusApp')
 
     const redraw = () => $window.google.maps.event.trigger(gmap, 'resize');
 
+    const getSpan = () => {
+      const bounds = gmap.getBounds();
+      const northEast = bounds.getNorthEast();
+      const southWest = bounds.getSouthWest();
+      const latDiff = northEast.lat() - southWest.lat();
+      const lngDiff = Math.abs(southWest.lng()) - Math.abs(northEast.lng());
+      const reqSpan = latDiff > lngDiff? latDiff : lngDiff;
+      console.log('bounds:', latDiff, lngDiff)
+      console.log('reqSpan:', reqSpan);
+      return reqSpan;
+    };
+
     map.gmap = gmap;
     map.gmapEl = gmapEl;
     map.redraw = redraw;
+    map.getSpan = getSpan;
 
     return map;
   });

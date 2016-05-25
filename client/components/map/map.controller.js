@@ -14,8 +14,6 @@ angular.module('mtabusApp')
 
     const gmap = map.gmap;
 
-    const addMap = () => $element.replaceWith(map.gmapEl);
-
-    addMap();
+    $element.replaceWith(map.gmapEl)
     map.redraw();
   });

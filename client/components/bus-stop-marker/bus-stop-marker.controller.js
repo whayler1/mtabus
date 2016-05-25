@@ -33,7 +33,7 @@ angular.module('mtabusApp')
     }
     $scope.onClick = e => {
       e.preventDefault();
-      $state.go('main.bus-stops.bus-stop', {
+      $state.go('main.bus-stop', {
         id: stop.id
       });
       return false;
