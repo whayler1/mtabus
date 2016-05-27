@@ -1,17 +1,17 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/bus-stops              ->  index
- * POST    /api/bus-stops              ->  create
- * GET     /api/bus-stops/:id          ->  show
- * PUT     /api/bus-stops/:id          ->  update
- * DELETE  /api/bus-stops/:id          ->  destroy
+ * GET     /api/vehicles-on-routes              ->  index
+ * POST    /api/vehicles-on-routes              ->  create
+ * GET     /api/vehicles-on-routes/:id          ->  show
+ * PUT     /api/vehicles-on-routes/:id          ->  update
+ * DELETE  /api/vehicles-on-routes/:id          ->  destroy
  */
 
 'use strict';
 
-import _ from 'lodash';
-// import BusStop from './bus-stop.model';
 var http = require('http');
+import _ from 'lodash';
+import VehiclesOnRoute from './vehicles-on-route.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -60,17 +60,14 @@ function handleError(res, statusCode) {
   };
 }
 
-// Gets a list of BusStops
+// Gets a list of VehiclesOnRoutes
 export function index(req, res) {
 
   console.log('query -x-->', req.query);
 
-  var span = req.query.span || 0.01;
-
-  return http.get('http://bustime.mta.info/api/where/stops-for-location.json?lat=' + req.query.lat +
-      '&lon=' + req.query.lng +
-      '&latSpan=' + span +
-      '&lonSpan=' + span +
+  return http.get('http://bustime.mta.info/api/siri/vehicle-monitoring.json' +
+      '?OperatorRef=' + req.query.operator +
+      '&LineRef=' + req.query.route +
       '&key=' + process.env.MTABUS_APIKEY,
 
     function(response) {
@@ -87,37 +84,37 @@ export function index(req, res) {
   );
 }
 
-// Gets a single BusStop from the DB
+// Gets a single VehiclesOnRoute from the DB
 export function show(req, res) {
-  // return BusStop.findById(req.params.id).exec()
-  //   .then(handleEntityNotFound(res))
-  //   .then(respondWithResult(res))
-  //   .catch(handleError(res));
+  return VehiclesOnRoute.findById(req.params.id).exec()
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
 }
 
-// Creates a new BusStop in the DB
+// Creates a new VehiclesOnRoute in the DB
 export function create(req, res) {
-  // return BusStop.create(req.body)
-  //   .then(respondWithResult(res, 201))
-  //   .catch(handleError(res));
+  return VehiclesOnRoute.create(req.body)
+    .then(respondWithResult(res, 201))
+    .catch(handleError(res));
 }
 
-// Updates an existing BusStop in the DB
+// Updates an existing VehiclesOnRoute in the DB
 export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  // return BusStop.findById(req.params.id).exec()
-  //   .then(handleEntityNotFound(res))
-  //   .then(saveUpdates(req.body))
-  //   .then(respondWithResult(res))
-  //   .catch(handleError(res));
+  return VehiclesOnRoute.findById(req.params.id).exec()
+    .then(handleEntityNotFound(res))
+    .then(saveUpdates(req.body))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
 }
 
-// Deletes a BusStop from the DB
+// Deletes a VehiclesOnRoute from the DB
 export function destroy(req, res) {
-  // return BusStop.findById(req.params.id).exec()
-  //   .then(handleEntityNotFound(res))
-  //   .then(removeEntity(res))
-  //   .catch(handleError(res));
+  return VehiclesOnRoute.findById(req.params.id).exec()
+    .then(handleEntityNotFound(res))
+    .then(removeEntity(res))
+    .catch(handleError(res));
 }

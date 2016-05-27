@@ -29,5 +29,25 @@ angular.module('mtabusApp').config(function ($stateProvider) {
         $scope.busStop = busStop;
       },
       template: '<single-bus-stop bus-stop="busStop"></single-bus-stop>'
+    })
+    .state('main.buses', {
+      url: 'buses/:operator/:route',
+      resolve: {
+        buses: ($q, $log, $stateParams, busTime) => busTime.getBuses($stateParams.operator, $stateParams.route).then(
+          res => {
+            $log.log('%crouteSucces!', 'background:lightblue', res.data.Siri.ServiceDelivery.VehicleMonitoringDelivery);
+            return $q.when(res.data.Siri.ServiceDelivery.VehicleMonitoringDelivery);
+          },
+          res => {
+            $log.error('route FAILURE', res)
+            return $q.when({error: true});
+          }
+        )
+      },
+      controller: ($scope, buses) => {
+        console.log('on buses!');
+        $scope.buses = buses;
+      },
+      template: '<bus-markers buses="buses"></bus-markers>'
     });
 });

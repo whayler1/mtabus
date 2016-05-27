@@ -3,6 +3,14 @@
 
 @card-header-height: 49px;
 
+@keyframes card-fade-in {
+  0% {
+    opacity: 0;
+  } 100% {
+    opacity: 1;
+  }
+}
+
 .card {
   border-radius: 3px;
   border-top: 1px solid @card-border-top;
@@ -84,7 +92,9 @@
 .card-body-stacked-list {
   margin: 0;
   padding: 0;
+
   >li {
+    animation: card-fade-in .5s;
     list-style: none;
     border-top: 1px dotted lighten(@font-color, 30%);
     &:first-child {

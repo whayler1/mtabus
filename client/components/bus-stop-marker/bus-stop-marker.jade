@@ -2,7 +2,7 @@
   ng-mouseover="onFocus()"
   ng-mouseout="onBlur()"
   ng-click="onClick($event)"
-  ng-class="{'focus':stop.isFocus,'hover':stop.isHover}"
+  ng-class="{'active':stop.id===stateParams.id,'hover':stop.isHover}"
   )
   span.fa.fa-bus
   br

@@ -4,14 +4,13 @@ angular.module('mtabusApp')
   .controller('BusStopMarkerCtrl', function (
     $scope,
     $state,
+    $stateParams,
     $element,
     $log,
     $timeout,
     map,
     mapMarkerConstructor
   ) {
-
-    // $log.log('%cbus stop marker!', 'background:orange', $scope.stop);
 
     let focusTimeout;
 
@@ -38,6 +37,7 @@ angular.module('mtabusApp')
       });
       return false;
     };
+    $scope.stateParams = $stateParams;
 
     $scope.$on('$destroy', () => {
       $timeout.cancel(focusTimeout);

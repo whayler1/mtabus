@@ -12,7 +12,7 @@ angular.module('mtabusApp')
 
     const gmapEl = document.createElement('div');
     gmapEl.className = 'gmap';
-    // console.log('foo:', $element.find('gmap')[0]);
+    
     const gmap = new $window.google.maps.Map(gmapEl, {
       center: {lat: 40.7128, lng: -74.0059},
       zoom: 18

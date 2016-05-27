@@ -27,7 +27,7 @@
       h3.card-body-title Routes
       ul.card-body-stacked-list
         li(ng-repeat="route in busStop.routes").bus-route-list-item
-          a
+          a(ui-sref="main.buses({operator:route.agency.id,route:route.shortName})")
             .bus-stop-route-icon(
               ng-style="{background:'#'+route.color,color:'#'+route.textColor}"
               ng-bind="route.shortName"
