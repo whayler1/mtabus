@@ -89,6 +89,11 @@
   }
 }
 
+.card-body-footer {
+  margin-top: 15px;
+  text-align: right;
+}
+
 .card-body-stacked-list {
   margin: 0;
   padding: 0;
@@ -104,15 +109,19 @@
       display: block;
       padding: 15px;
       list-style: none;
+      color: @font-color;
+      text-decoration: none;
 
       &.hover,
       &.focus {
         background: lighten(@font-color, 38%);
+        color: @font-color-hover;
         h3 {
           color: @font-color-hover;
         }
       }
       &.active {
+        color: @font-color-active;
         h3 {
           color: @font-color-active;
         }

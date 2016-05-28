@@ -28,15 +28,20 @@ angular.module('mtabusApp').config(function ($stateProvider) {
       controller: ($scope, busStop) => {
         $scope.busStop = busStop;
       },
-      template: '<single-bus-stop bus-stop="busStop"></single-bus-stop>'
+      template: '<single-bus-stop bus-stop="busStop"></single-bus-stop><ui-view></ui-view>'
     })
-    .state('main.buses', {
-      url: 'buses/:operator/:route',
+    .state('main.bus-stop.buses', {
+      url: '/:operator/:route',
       resolve: {
         buses: ($q, $log, $stateParams, busTime) => busTime.getBuses($stateParams.operator, $stateParams.route).then(
           res => {
-            $log.log('%crouteSucces!', 'background:lightblue', res.data.Siri.ServiceDelivery.VehicleMonitoringDelivery);
-            return $q.when(res.data.Siri.ServiceDelivery.VehicleMonitoringDelivery);
+            const vehicleMonitoringDelivery = res.data.Siri.ServiceDelivery.VehicleMonitoringDelivery;
+            const buses = vehicleMonitoringDelivery.length? vehicleMonitoringDelivery[0].VehicleActivity : [];
+            $log.log('%crouteSucces!', 'background:lightblue', buses);
+            if(vehicleMonitoringDelivery.length > 1) {
+              $log.warn('vehicleMonitoringDelivery has more then one item');
+            }
+            return $q.when(buses);
           },
           res => {
             $log.error('route FAILURE', res)

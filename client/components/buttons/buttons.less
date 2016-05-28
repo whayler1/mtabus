@@ -1,0 +1,27 @@
+.btn {
+  border-radius: 3px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  padding: 6px 12px;
+  cursor: pointer;
+  appearance: none;
+  outline: none;
+}
+
+.btn-primary {
+  background: @link-color;
+  color: white;
+  border-color: mix(lighten(grey, 10%), @link-color);
+
+  &:hover,
+  &:focus {
+    background: @link-color-hover;
+  }
+  &:active {
+    background: @link-color-active;
+    border-color: mix(grey, @link-color);
+  }
+}
