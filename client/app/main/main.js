@@ -36,6 +36,11 @@ angular.module('mtabusApp').config(function ($stateProvider) {
         buses: ($q, $log, $stateParams, busTime) => busTime.getBuses($stateParams.operator, $stateParams.route).then(
           res => {
             const vehicleMonitoringDelivery = res.data.Siri.ServiceDelivery.VehicleMonitoringDelivery;
+            if(vehicleMonitoringDelivery.length) {
+              $log.log('%cVehicleActivity:', 'background:yellow', vehicleMonitoringDelivery);
+            }else {
+              $log.warn('%cno vehicleMonitoringDelivery', 'background:pink');
+            }
             const buses = vehicleMonitoringDelivery.length? vehicleMonitoringDelivery[0].VehicleActivity : [];
             $log.log('%crouteSucces!', 'background:lightblue', buses);
             if(vehicleMonitoringDelivery.length > 1) {
@@ -53,6 +58,6 @@ angular.module('mtabusApp').config(function ($stateProvider) {
         console.log('on buses!');
         $scope.buses = buses;
       },
-      template: '<bus-markers buses="buses"></bus-markers>'
+      template: '<buses-list buses="buses"></buses-list><bus-markers buses="buses"></bus-markers>'
     });
 });

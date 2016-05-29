@@ -8,6 +8,7 @@ angular.module('mtabusApp')
       scope: {
         bus: '='
       },
+      replace: true,
       controller: 'BusMarkerCtrl'
     };
   });

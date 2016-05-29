@@ -4,6 +4,7 @@ angular.module('mtabusApp')
   .controller('BusMarkerCtrl', function (
     $scope,
     $element,
+    $window,
     map,
     mapMarkerConstructor
   ) {
@@ -16,12 +17,13 @@ angular.module('mtabusApp')
     const rotationStr = `rotate(${Math.round(bus.Bearing)}deg)`;
     $scope.style = {
       'transform': rotationStr,
-      '-webkit-transform': rotationStr
+      '-webkit-transform': rotationStr,
+      '-moz-transform': rotationStr
     };
 
     console.log('rotationStr:', rotationStr);
 
-    const overlayView = new mapMarkerConstructor.GoogleOverlayView($element, new google.maps.LatLng(
+    const overlayView = new mapMarkerConstructor.GoogleOverlayView($element, new $window.google.maps.LatLng(
       location.Latitude,
       location.Longitude
     ));
