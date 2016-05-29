@@ -54,10 +54,9 @@ angular.module('mtabusApp').config(function ($stateProvider) {
           }
         )
       },
-      controller: ($scope, buses) => {
-        console.log('on buses!');
+      controller: ($scope, buses, busStop) => {
         $scope.buses = buses;
       },
-      template: '<buses-list buses="buses"></buses-list><bus-markers buses="buses"></bus-markers>'
+      template: '<buses-list buses="buses" bus-stop="busStop"></buses-list><bus-markers buses="buses"></bus-markers>'
     });
 });
