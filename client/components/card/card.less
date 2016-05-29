@@ -98,7 +98,13 @@
   margin: 0;
   padding: 0;
 
+  .card-body-padded & {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
   >li {
+    position: relative;
     animation: card-fade-in .5s;
     list-style: none;
     border-top: 1px dotted lighten(@font-color, 30%);

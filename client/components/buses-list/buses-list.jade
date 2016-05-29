@@ -6,15 +6,17 @@
           ng-bind="route.shortName"
           ng-style="{background:'#'+route.color,color:'#'+route.textColor}"
         )
-        span(ng-bind="route.longName")
       a.card-header-close(ui-sref="^")
         i.fa.fa-close
     .card-body.card-body-scroll.card-body-padded
+      h2.buses-list-route-name(ng-bind="route.longName")
+      div.font-s(ng-bind="route.description")
       h3.card-body-title Buses en route
       ul.card-body-stacked-list
         li(ng-repeat="bus in buses track by bus.MonitoredVehicleJourney.VehicleRef")
           a(ng-click="goToLoc(bus.MonitoredVehicleJourney.VehicleLocation.Latitude,bus.MonitoredVehicleJourney.VehicleLocation.Longitude)")
-            h3.buses-list-item-title(ng-bind="bus.MonitoredVehicleJourney.VehicleRef") 
+            h3.buses-list-item-title(ng-bind="bus.MonitoredVehicleJourney.VehicleRef")
+            i.buses-list-item-location-icon.fa.fa-location-arrow
           
       footer.card-body-footer
         button.btn.btn-primary(
