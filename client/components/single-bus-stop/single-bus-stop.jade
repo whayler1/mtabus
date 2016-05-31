@@ -32,11 +32,8 @@
               ng-style="{background:'#'+route.color,color:'#'+route.textColor}"
               ng-bind="route.shortName"
             )
-            h4.route-title
-              span
-                span(ng-bind="route.longName")
+            h4.route-title(ng-bind="route.longName")
             p.route-description(ng-bind="route.description")
-            i.bus-route-list-item-action-icon.fa.fa-chevron-right
       footer.card-body-footer
         button.btn.btn-primary(
           type="button"

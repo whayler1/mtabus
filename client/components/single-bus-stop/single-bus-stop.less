@@ -1,5 +1,3 @@
-@bus-route-list-item-right-pad: 40px;
-
 .single-bus-stop-card {
   .card-body-stacked-list {
     margin-top: -15px;
@@ -11,29 +9,30 @@
   border-radius: 3px;
   padding: 3px 7px;
   font-size: @font-s;
-  margin: 4px 0;
+  // margin: 4px 0;
+  margin-bottom: 7px;
 }
 
 .route-title {
   // display: table;
-  position: absolute;
-  top: 15px;
-  left: 60px;
-  right: @bus-route-list-item-right-pad;
-  height: 30px;
+  // position: absolute;
+  // top: 15px;
+  // left: 80px;
+  // right: 15px;
+  // height: 30px;
   font-size: @font-s;
   font-weight: 400;
   color: @font-color-strong;
   margin: 0;
 
-  >span {
-    display: table;
-    height: 100%;
-    >span {
-      display: table-cell;
-      vertical-align: middle;
-    }
-  }
+  // >span {
+  //   // display: table;
+  //   // height: 100%;
+  //   >span {
+  //     // display: table-cell;
+  //     // vertical-align: middle;
+  //   }
+  // }
 
   a:hover &,
   a:focus & {
@@ -67,36 +66,29 @@
   >a {
     display: block;
     padding-top: 15px;
-    padding-right: @bus-route-list-item-right-pad !important;
 
     &:hover,
     &:focus {
       background: lighten(grey, 49%);
     }
   }
-
-  // &:first-child {
-  //   .route-title {
-  //     top: 0;
-  //   }
-  // }
 }
 
-.bus-route-list-item-action-icon {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  font-size: @font-m;
-  margin-top: -(@font-m/2);
-  transition: right .25s;
-
-  a:hover &,
-  a:focus &,
-  a:active & {
-    right: 7px;
-  }
-}
+// .bus-route-list-item-action-icon {
+//   display: block;
+//   position: absolute;
+//   top: 50%;
+//   right: 15px;
+//   font-size: @font-m;
+//   margin-top: -(@font-m/2);
+//   transition: right .25s;
+//
+//   a:hover &,
+//   a:focus &,
+//   a:active & {
+//     right: 7px;
+//   }
+// }
 
 .route-description {
   font-size: @font-s;

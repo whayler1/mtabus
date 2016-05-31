@@ -17,9 +17,9 @@ angular.module('mtabusApp')
 
     const getBusStop = id => $http.get(`/api/single-bus-stops?id=${id}`);
 
-    const getBuses = (operator, route) => {
-      console.log('callin dem busses:', operator, route);
-      return $http.get(`/api/vehicles-on-routes?operator=${operator}&route=${route}`);
+    const getBuses = (operator, route, stop) => {
+      // console.log('callin dem busses:', operator, route, stop);
+      return $http.get(`/api/vehicles-on-routes?operator=${operator}&route=${route}&stop=${stop}`);
     };
 
     busTime.getBusStops = getBusStops;

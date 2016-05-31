@@ -33,19 +33,28 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     .state('main.bus-stop.buses', {
       url: '/:operator/:route',
       resolve: {
-        buses: ($q, $log, $stateParams, busTime) => busTime.getBuses($stateParams.operator, $stateParams.route).then(
+        buses: ($q, $log, $stateParams, busTime) => busTime.getBuses(
+          $stateParams.operator,
+          $stateParams.route,
+          $stateParams.id
+        ).then(
           res => {
-            const vehicleMonitoringDelivery = res.data.Siri.ServiceDelivery.VehicleMonitoringDelivery;
-            if(vehicleMonitoringDelivery.length) {
-              $log.log('%cVehicleActivity:', 'background:yellow', vehicleMonitoringDelivery);
-            }else {
-              $log.warn('%cno vehicleMonitoringDelivery', 'background:pink');
-            }
-            const buses = vehicleMonitoringDelivery.length? vehicleMonitoringDelivery[0].VehicleActivity : [];
-            $log.log('%crouteSucces!', 'background:lightblue', buses);
-            if(vehicleMonitoringDelivery.length > 1) {
-              $log.warn('vehicleMonitoringDelivery has more then one item');
-            }
+            // const vehicleMonitoringDelivery = res.data.Siri.ServiceDelivery.VehicleMonitoringDelivery;
+            // if(vehicleMonitoringDelivery.length) {
+            //   $log.log('%cVehicleActivity:', 'background:yellow', vehicleMonitoringDelivery);
+            // }else {
+            //   $log.warn('%cno vehicleMonitoringDelivery', 'background:pink');
+            // }
+            // const buses = vehicleMonitoringDelivery.length? vehicleMonitoringDelivery[0].VehicleActivity : [];
+            // $log.log('%crouteSucces!', 'background:lightblue', buses);
+            // if(vehicleMonitoringDelivery.length > 1) {
+            //   $log.warn('vehicleMonitoringDelivery has more then one item');
+            // }
+            console.log('%cres:', 'background:aqua', res);
+            const stopMonitoringDelivery = res.data.Siri.ServiceDelivery.StopMonitoringDelivery;
+            console.log('%cstopMonitoringDelivery', 'background:aqua', stopMonitoringDelivery);
+            const buses = stopMonitoringDelivery.length? stopMonitoringDelivery[0].MonitoredStopVisit : [];
+            console.log('%cbuses:', 'background:lightblue', buses);
             return $q.when(buses);
           },
           res => {
