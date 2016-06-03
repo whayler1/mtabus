@@ -29,6 +29,8 @@ angular.module('mtabusApp')
     ));
     overlayView.setMap(map.gmap);
 
+    console.log('%cbus overlay view:', 'background:pink', overlayView);
+
     $scope.$on('$destroy', () => {
       console.log('%cdestroy bus marker!', 'background:red');
       overlayView.setMap(null);

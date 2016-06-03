@@ -33,39 +33,31 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     .state('main.bus-stop.buses', {
       url: '/:operator/:route',
       resolve: {
-        buses: ($q, $log, $stateParams, busTime) => busTime.getBuses(
+        buses: ($q, $log, $stateParams, busesList) => busesList.getBuses(
           $stateParams.operator,
           $stateParams.route,
           $stateParams.id
         ).then(
-          res => {
-            // const vehicleMonitoringDelivery = res.data.Siri.ServiceDelivery.VehicleMonitoringDelivery;
-            // if(vehicleMonitoringDelivery.length) {
-            //   $log.log('%cVehicleActivity:', 'background:yellow', vehicleMonitoringDelivery);
-            // }else {
-            //   $log.warn('%cno vehicleMonitoringDelivery', 'background:pink');
-            // }
-            // const buses = vehicleMonitoringDelivery.length? vehicleMonitoringDelivery[0].VehicleActivity : [];
-            // $log.log('%crouteSucces!', 'background:lightblue', buses);
-            // if(vehicleMonitoringDelivery.length > 1) {
-            //   $log.warn('vehicleMonitoringDelivery has more then one item');
-            // }
-            console.log('%cres:', 'background:aqua', res);
-            const stopMonitoringDelivery = res.data.Siri.ServiceDelivery.StopMonitoringDelivery;
-            console.log('%cstopMonitoringDelivery', 'background:aqua', stopMonitoringDelivery);
-            const buses = stopMonitoringDelivery.length? stopMonitoringDelivery[0].MonitoredStopVisit : [];
-            console.log('%cbuses:', 'background:lightblue', buses);
+          buses => {
+            busesList.watch(
+              $stateParams.operator,
+              $stateParams.route,
+              $stateParams.id
+            );
             return $q.when(buses);
-          },
-          res => {
-            $log.error('route FAILURE', res)
-            return $q.when({error: true});
           }
         )
       },
-      controller: ($scope, buses, busStop) => {
+      // onExit: (busesList) => busesList.unwatch(),
+      controller: ($scope, buses, busesList) => {
         $scope.buses = buses;
+
+        $scope.$on('$stateChangeStart', () => {
+          console.log('leaving buses list');
+          busesList.unwatch();
+          $scope.buses.length = 0;
+        });
       },
-      template: '<buses-list buses="buses" bus-stop="busStop"></buses-list><bus-markers buses="buses"></bus-markers>'
+      template: '<buses-list buses="buses" bus-stop="busStop"></buses-list><bus-marker ng-repeat="bus in buses" bus="bus"></bus-markers>'
     });
 });

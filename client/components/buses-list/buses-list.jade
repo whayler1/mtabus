@@ -12,7 +12,7 @@
       h2.buses-list-route-name(ng-bind="route.longName")
       div.font-s(ng-bind="route.description")
       h3.card-body-title Upcoming arrivals
-      ul.card-body-stacked-list
+      ul.card-body-stacked-list(ng-if="buses.length")
         li(ng-repeat="bus in buses track by bus.MonitoredVehicleJourney.VehicleRef")
           a(ng-click="goToLoc(bus.MonitoredVehicleJourney.VehicleLocation.Latitude,bus.MonitoredVehicleJourney.VehicleLocation.Longitude)")
             //- h3.buses-list-item-title(ng-bind="bus.MonitoredVehicleJourney.VehicleRef")
@@ -29,6 +29,9 @@
                   td
                     span(ng-bind="bus.MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.PresentableDistance")
             i.buses-list-item-location-icon.fa.fa-location-arrow
+      div.font-s(ng-if="!buses.length") There are no upcoming arrivals for the&nbsp;
+        b(ng-bind="route.shortName")
+        |&nbsp;bus at this time.
       footer.card-body-footer
         button.btn.btn-primary(
           type="button"
