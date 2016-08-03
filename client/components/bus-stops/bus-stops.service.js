@@ -3,6 +3,7 @@
 angular.module('mtabusApp')
   .factory('busStops', function (
     map,
+    mapMarkerConstructor,
     busTime
   ) {
 
@@ -31,16 +32,23 @@ angular.module('mtabusApp')
                 stopLat >= southWest.lat() &&
                 stopLng <= northEast.lng() &&
                 stopLng >= southWest.lng()) {
-                  stopsInView.push(stop);
-                }
+              stopsInView.push(stop);
+            }
           });
-          console.log('stopsInView:', stopsInView);
+          _.remove(stops, stop => {
+            const removeStop = !_.find(stopsInView, {id:stop.id});
+            return removeStop;
+          });
 
-          angular.copy(stopsInView, stops);
+          stopsInView.forEach(stop => {
+            if(!(_.find(stops, {id:stop.id}))) {
+              stops.push(stop);
+            }
+          });
         },
         res => console.log('FAIL!', res)
       );
-    }, 250);
+    }, 500);
 
     const mapBoundsChangeListener = gmap.addListener('bounds_changed', onBoundsChanged);
 

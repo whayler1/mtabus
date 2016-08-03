@@ -1,1 +1,3 @@
-bus-stop-marker(ng-repeat="stop in stops", stop="stop")
+div(ng-if="stops.length")
+  div(ng-repeat="stop in stops track by stop.id")
+    bus-stop-marker(stop="stop")

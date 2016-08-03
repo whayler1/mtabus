@@ -53,6 +53,7 @@ angular.module('mtabusApp')
     }
 
     $scope.$on('$destroy', () => {
+      console.log('%cdestroy user location marker', 'background:pink');
       $window.navigator.geolocation.clearWatch(locationWatcher);
       if(overlayView) overlayView.setMap(null);
     })

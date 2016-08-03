@@ -5,11 +5,13 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     .state('main', {
       url: '/',
       abstract: true,
-      template: '<navbar></navbar><map></map><user-location-marker></user-location-marker><bus-stops></bus-stops><ui-view></ui-view>'
+      // template: '<navbar></navbar><map></map><user-location-marker></user-location-marker><bus-stops></bus-stops><ui-view></ui-view>'
+      template: '<navbar></navbar><map></map><bus-stops></bus-stops><ui-view></ui-view>'
     })
     .state('main.bus-stops', {
       url: '',
       template: '<bus-stop-list></bus-stop-list><ui-view></ui-view>'
+      // template: '<ui-view></ui-view>'
     })
     .state('main.bus-stop', {
       url: ':id',
