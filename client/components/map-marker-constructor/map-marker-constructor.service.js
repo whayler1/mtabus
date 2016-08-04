@@ -11,7 +11,7 @@ angular.module('mtabusApp')
     if(!_.hasIn($window, 'google')) $log.error('no google object');
 
     const GoogleOverlayView = function(element, latlng) {
-      this.element = element[0];
+      this.element = element;
       this.latlng = latlng;
     };
 
@@ -27,7 +27,6 @@ angular.module('mtabusApp')
       panes.overlayImage.appendChild(element);
     };
     GoogleOverlayView.prototype.onRemove = function() {
-      console.log('onRemove', this);
       this.element.parentNode.removeChild(this.element);
       this.element = null;
       this.setMap(null);

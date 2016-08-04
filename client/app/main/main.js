@@ -5,8 +5,8 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     .state('main', {
       url: '/',
       abstract: true,
-      // template: '<navbar></navbar><map></map><user-location-marker></user-location-marker><bus-stops></bus-stops><ui-view></ui-view>'
-      template: '<navbar></navbar><map></map><bus-stops></bus-stops><ui-view></ui-view>'
+      template: '<navbar></navbar><map></map><user-location-marker></user-location-marker><bus-stops></bus-stops><user-location-button></user-location-button><ui-view></ui-view>'
+      // template: '<navbar></navbar><map></map><bus-stops></bus-stops><ui-view></ui-view>'
     })
     .state('main.bus-stops', {
       url: '',

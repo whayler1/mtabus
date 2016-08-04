@@ -1,0 +1,32 @@
+@btn-user-location-radius: 40px;
+@btn-user-location-bsackground: #EC407A;
+
+.btn-user-location {
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  width: @btn-user-location-radius;
+  height: @btn-user-location-radius;
+  border-radius: @btn-user-location-radius/2;
+  background: @btn-user-location-bsackground;
+  color: white;
+  border: none;
+  outline: none;
+  box-shadow: 0px 4px 5px 0px rgba(0,0,0,.4);
+  cursor: pointer;
+
+  i {
+    font-size: 1.6em;
+  }
+
+  &:hover,
+  &:focus {
+    background: darken(@btn-user-location-bsackground, 4%);
+    color: darken(white, 4%);
+    box-shadow: 0px 4px 7px 0px rgba(0,0,0,.4);
+  }
+  &:active {
+    background: mix(@btn-user-location-bsackground, black, 90%);
+    color: mix(white, black, 90%);
+  }
+}

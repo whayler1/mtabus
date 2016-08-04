@@ -48,7 +48,11 @@ angular.module('mtabusApp')
         },
         res => console.log('FAIL!', res)
       );
-    }, 500);
+    },
+    250,
+    {
+      maxWait: 1000
+    });
 
     const mapBoundsChangeListener = gmap.addListener('bounds_changed', onBoundsChanged);
 

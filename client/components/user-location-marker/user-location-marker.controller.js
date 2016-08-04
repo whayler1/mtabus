@@ -35,7 +35,7 @@ angular.module('mtabusApp')
 
           if(overlayView) overlayView.setMap(null);
 
-          overlayView = new mapMarkerConstructor.GoogleOverlayView($element, newLatLng);
+          overlayView = new mapMarkerConstructor.GoogleOverlayView($element[0], newLatLng);
           overlayView.setMap(gmap);
 
           if(!hasPositionBeenSetOnce) {
