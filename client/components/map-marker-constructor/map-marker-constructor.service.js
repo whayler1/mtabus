@@ -11,23 +11,26 @@ angular.module('mtabusApp')
     if(!_.hasIn($window, 'google')) $log.error('no google object');
 
     const GoogleOverlayView = function(element, latlng) {
-      this.element = element;
+      this.element = element[0];
       this.latlng = latlng;
     };
 
     GoogleOverlayView.prototype = new $window.google.maps.OverlayView();
     GoogleOverlayView.prototype.draw = function() {
-      let panes = this.getPanes();
-      let point = this.getProjection().fromLatLngToDivPixel(this.latlng);
-      panes.overlayImage.appendChild(this.element[0]);
+      const panes = this.getPanes();
+      const point = this.getProjection().fromLatLngToDivPixel(this.latlng);
+      const { element } = this;
       if (point) {
-        this.element.css('left', point.x + 'px');
-        this.element.css('top', point.y + 'px');
+        element.style.left = `${point.x}px`;
+        element.style.top = `${point.y}px`;
       }
+      panes.overlayImage.appendChild(element);
     };
     GoogleOverlayView.prototype.onRemove = function() {
-      // console.log('onRemove', this);
-      // this.setMap(null);
+      console.log('onRemove', this);
+      this.element.parentNode.removeChild(this.element);
+      this.element = null;
+      this.setMap(null);
     };
 
     mapMarkerConstructor.GoogleOverlayView = GoogleOverlayView;

@@ -40,6 +40,7 @@ angular.module('mtabusApp')
     $scope.stateParams = $stateParams;
 
     $scope.$on('$destroy', () => {
+      console.log('%c destroy:', 'background:yellow', stop.id);
       $timeout.cancel(focusTimeout);
       overlayView.setMap(null);
     });
