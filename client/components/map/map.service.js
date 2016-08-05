@@ -15,7 +15,11 @@ angular.module('mtabusApp')
 
     const gmap = new $window.google.maps.Map(gmapEl, {
       center: {lat: 40.7128, lng: -74.0059},
-      zoom: 18
+      zoom: 18,
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.TOP_RIGHT
+      },
+      streetViewControl: false
     });
 
     const redraw = () => $window.google.maps.event.trigger(gmap, 'resize');
@@ -27,8 +31,6 @@ angular.module('mtabusApp')
       const latDiff = northEast.lat() - southWest.lat();
       const lngDiff = Math.abs(southWest.lng()) - Math.abs(northEast.lng());
       const reqSpan = latDiff > lngDiff? latDiff : lngDiff;
-      console.log('bounds:', latDiff, lngDiff)
-      console.log('reqSpan:', reqSpan);
       return reqSpan;
     };
 

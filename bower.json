@@ -11,7 +11,8 @@
     "lodash": "4.11.*",
     "angular-ui-router": "~0.2.5",
     "font-awesome": "^4.6.2",
-    "angular-once": "^0.1.9"
+    "angular-once": "^0.1.9",
+    "js-rich-marker": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.0"

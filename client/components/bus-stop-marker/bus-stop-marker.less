@@ -1,4 +1,5 @@
 @bus-stop-marker-background: #3148B1;
+@bus-stop-marker-background-hover: saturate(lighten(@bus-stop-marker-background, 15%), 100%);
 
 bus-stop-marker {
   display: block;
@@ -17,25 +18,47 @@ bus-stop-marker {
   margin-top: -15px;
   margin-left: -15px;
   cursor: pointer;
+  z-index: 5;
 
   .fa {
     padding-top: 3px;
   }
 
   &.hover {
-    background: saturate(lighten(@bus-stop-marker-background, 15%), 100%);
+    background: @bus-stop-marker-background-hover;
     transform: scale(1.1);
     z-index: 10;
   }
   &.active {
-    background: green;
+    background: @bus-stop-marker-background-hover;
+    transform: translateY(-30px);
 
     &.hover {
-      background: green;
+      background: @bus-stop-marker-background-hover;
     }
   }
 }
 
 .bus-stop-marker-copy {
+  position: relative;
+  display: block;
   font-size: 10px;
+  z-index: 5;
+}
+
+.bus-stop-marker-point {
+  display: none;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  margin-left: -10px;
+  background: @bus-stop-marker-background-hover;
+  transform: rotate(45deg);
+  z-index: 0;
+
+  .active & {
+    display: block;
+  }
 }
