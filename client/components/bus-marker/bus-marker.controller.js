@@ -10,26 +10,17 @@ angular.module('mtabusApp')
   ) {
 
     const bus = $scope.bus.MonitoredVehicleJourney;
-    const location = bus.VehicleLocation;
+    const { VehicleLocation } = bus;
 
-    console.log('%cbus:', 'background:moccasin', bus);
+    console.log('%cbus:', 'background:moccasin', bus.FramedVehicleJourneyRef.DatedVehicleJourneyRef);
 
-    const rotationStr = `rotate(${Math.round(bus.Bearing)}deg)`;
-    $scope.style = {
-      'transform': rotationStr,
-      '-webkit-transform': rotationStr,
-      '-moz-transform': rotationStr
-    };
-
-    console.log('rotationStr:', rotationStr);
-
-    const overlayView = new mapMarkerConstructor.GoogleOverlayView($element, new $window.google.maps.LatLng(
-      location.Latitude,
-      location.Longitude
+    const overlayView = new mapMarkerConstructor.GoogleOverlayView($element[0], new $window.google.maps.LatLng(
+      VehicleLocation.Latitude,
+      VehicleLocation.Longitude
     ));
     overlayView.setMap(map.gmap);
 
-    console.log('%cbus overlay view:', 'background:pink', overlayView);
+    $scope.bus = bus;
 
     $scope.$on('$destroy', () => {
       console.log('%cdestroy bus marker!', 'background:red');

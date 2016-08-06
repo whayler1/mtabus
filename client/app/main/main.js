@@ -41,25 +41,29 @@ angular.module('mtabusApp').config(function ($stateProvider) {
           $stateParams.id
         ).then(
           buses => {
-            busesList.watch(
-              $stateParams.operator,
-              $stateParams.route,
-              $stateParams.id
-            );
+            // busesList.watch(
+            //   $stateParams.operator,
+            //   $stateParams.route,
+            //   $stateParams.id
+            // );
             return $q.when(buses);
           }
         )
       },
       // onExit: (busesList) => busesList.unwatch(),
-      controller: ($scope, buses, busesList) => {
+      controller: ($scope, $stateParams, buses, busesList, busStop) => {
         $scope.buses = buses;
+        console.log('buses:', buses);
+        console.log('busStop:', busStop);
+        $scope.route = _.find($scope.busStop.routes, {shortName:$stateParams.route})
+        console.log('route:', $scope.route);
 
-        $scope.$on('$stateChangeStart', () => {
-          console.log('leaving buses list');
-          busesList.unwatch();
-          $scope.buses.length = 0;
-        });
+        // $scope.$on('$stateChangeStart', () => {
+        //   console.log('leaving buses list');
+        //   busesList.unwatch();
+        //   $scope.buses.length = 0;
+        // });
       },
-      template: '<buses-list buses="buses" bus-stop="busStop"></buses-list><bus-marker ng-repeat="bus in buses" bus="bus"></bus-markers>'
+      template: '<buses-list buses="buses" bus-stop="busStop"></buses-list><bus-marker ng-repeat="bus in buses" bus="bus" route="route"></bus-marker>'
     });
 });

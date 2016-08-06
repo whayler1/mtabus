@@ -11,6 +11,7 @@ angular.module('mtabusApp')
 
     let locationWatcher;
     const coords = {};
+    const hasCoords = () => _.hasIn('latitude'. coords);
     let deferred = $q.defer();
 
     if(_.hasIn($window, 'navigator') && _.hasIn($window.navigator, 'geolocation')) {
@@ -37,6 +38,7 @@ angular.module('mtabusApp')
     }
 
     location.getCoords = deferred.promise;
+    location.hasCoords = hasCoords;
 
     return location;
   });

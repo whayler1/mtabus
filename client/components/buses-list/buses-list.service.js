@@ -18,7 +18,23 @@ angular.module('mtabusApp')
       res => {
         const stopMonitoringDelivery = res.data.Siri.ServiceDelivery.StopMonitoringDelivery;
         const newBuses = stopMonitoringDelivery.length? stopMonitoringDelivery[0].MonitoredStopVisit : [];
-        angular.copy(newBuses, buses);
+        _.remove(buses, bus => {
+          const { DatedVehicleJourneyRef } = bus.MonitoredVehicleJourney.FramedVehicleJourneyRef;
+          const shouldRemove = !_.find(newBuses, {MonitoredVehicleJourney:{FramedVehicleJourneyRef:{DatedVehicleJourneyRef:DatedVehicleJourneyRef}}});
+          console.log('%c shouldRemove:', 'background:yellow', shouldRemove);
+          return shouldRemove;
+        });
+        newBuses.forEach(bus => {
+          const { DatedVehicleJourneyRef } = bus.MonitoredVehicleJourney.FramedVehicleJourneyRef;
+          const existingBus = _.find(buses, {MonitoredVehicleJourney:{FramedVehicleJourneyRef:{DatedVehicleJourneyRef:DatedVehicleJourneyRef}}});
+          if(existingBus) {
+            angular.copy(bus, existingBus);
+          }else {
+            buses.push(bus);
+          }
+        });
+        console.log('%c buses updated:', 'background:orange', buses);
+        // angular.copy(newBuses, buses);
         return $q.when(buses);
       }
     );
