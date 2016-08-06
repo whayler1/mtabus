@@ -6,7 +6,8 @@ angular.module('mtabusApp')
       templateUrl: 'components/bus-marker/bus-marker.html',
       restrict: 'E',
       scope: {
-        bus: '='
+        bus: '=',
+        route: '='
       },
       replace: true,
       controller: 'BusMarkerCtrl'

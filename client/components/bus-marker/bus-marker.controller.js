@@ -10,29 +10,48 @@ angular.module('mtabusApp')
   ) {
 
     const bus = $scope.bus.MonitoredVehicleJourney;
-    const location = bus.VehicleLocation;
+    const { VehicleLocation } = bus;
 
-    console.log('%cbus:', 'background:moccasin', bus);
+    // console.log('%cbus:', 'background:moccasin', bus.FramedVehicleJourneyRef.DatedVehicleJourneyRef);
 
-    const rotationStr = `rotate(${Math.round(bus.Bearing)}deg)`;
-    $scope.style = {
-      'transform': rotationStr,
-      '-webkit-transform': rotationStr,
-      '-moz-transform': rotationStr
-    };
+    // const overlayView = new mapMarkerConstructor.GoogleOverlayView($element[0], new $window.google.maps.LatLng(
+    //   VehicleLocation.Latitude,
+    //   VehicleLocation.Longitude
+    // ));
+    // overlayView.setMap(map.gmap);
+    //
+    // const updateLatLng = latlng => {
+    //   const panes = overlayView.getPanes();
+    //   const point = overlayView.getProjection().fromLatLngToDivPixel(latlng);
+    //   const { element } = overlayView;
+    //   if (point) {
+    //     element.style.left = `${point.x}px`;
+    //     element.style.top = `${point.y}px`;
+    //   }
+    // };
 
-    console.log('rotationStr:', rotationStr);
+    $scope.bus = bus;
 
-    const overlayView = new mapMarkerConstructor.GoogleOverlayView($element, new $window.google.maps.LatLng(
-      location.Latitude,
-      location.Longitude
-    ));
-    overlayView.setMap(map.gmap);
+    const marker = new RichMarker({
+      map: map.gmap,
+      position: new google.maps.LatLng(VehicleLocation.Latitude, VehicleLocation.Longitude),
+      draggable: false,
+      flat: true,
+      anchor: RichMarkerPosition.MIDDLE,
+      content: $element[0]
+    });
 
-    console.log('%cbus overlay view:', 'background:pink', overlayView);
+    $scope.$watch('bus.VehicleLocation', () => {
+      const newVehicleLocation = bus.VehicleLocation;
+      // console.log('%c lat update', 'background:orange', newVehicleLocation.Latitude, newVehicleLocation.Longitude);
+      marker.setPosition(new google.maps.LatLng(
+        newVehicleLocation.Latitude,
+        newVehicleLocation.Longitude
+      ));
+    });
 
     $scope.$on('$destroy', () => {
-      console.log('%cdestroy bus marker!', 'background:red');
-      overlayView.setMap(null);
+      // console.log('%cdestroy bus marker!', 'background:red');
+      // overlayView.setMap(null);
     });
   });
