@@ -6,12 +6,25 @@ angular.module('mtabusApp').config(function ($stateProvider) {
       url: '/',
       abstract: true,
       template: '<navbar></navbar><map></map><user-location-marker></user-location-marker><bus-stops></bus-stops><user-location-button></user-location-button><ui-view></ui-view>'
-      // template: '<navbar></navbar><map></map><bus-stops></bus-stops><ui-view></ui-view>'
     })
     .state('main.bus-stops', {
       url: '',
+      controller: ($scope, $window, location, map) => {
+        const stateChangeSuccessListener = $scope.$on('$stateChangeSuccess', (event, toState, toParams, fromState) => {
+          if(!fromState.name) {
+            location.getCoords.then(
+              coords => {
+                map.gmap.setCenter(new $window.google.maps.LatLng(
+                  coords.latitude,
+                  coords.longitude
+                ));
+              }
+            );
+          }
+          stateChangeSuccessListener();
+        });
+      },
       template: '<bus-stop-list></bus-stop-list><ui-view></ui-view>'
-      // template: '<ui-view></ui-view>'
     })
     .state('main.bus-stop', {
       url: ':id',
