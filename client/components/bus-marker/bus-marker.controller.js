@@ -13,6 +13,12 @@ angular.module('mtabusApp')
     const { VehicleLocation } = bus;
 
     $scope.bus = bus;
+    console.log('bus:', bus.Bearing);
+    const rotationStr = `rotate(${bus.Bearing - 25}deg)`;
+    $scope.style = {
+      'transform': rotationStr,
+      'webkit-transform': rotationStr
+    };
 
     const marker = new RichMarker({
       map: map.gmap,
@@ -25,6 +31,11 @@ angular.module('mtabusApp')
 
     $scope.$watch('bus.VehicleLocation', () => {
       const newVehicleLocation = bus.VehicleLocation;
+      rotationStr = `rotate(${bus.Bearing - 25}deg)`;
+      angular.copy({
+        'transform': rotationStr,
+        'webkit-transform': rotationStr
+      }, style)
       marker.setPosition(new google.maps.LatLng(
         newVehicleLocation.Latitude,
         newVehicleLocation.Longitude
