@@ -14,7 +14,7 @@ angular.module('mtabusApp')
 
     $scope.bus = bus;
     console.log('bus:', bus.Bearing);
-    const rotationStr = `rotate(${bus.Bearing - 25}deg)`;
+    let rotationStr = `rotate(${bus.Bearing - 25}deg)`;
     $scope.style = {
       'transform': rotationStr,
       'webkit-transform': rotationStr
@@ -29,13 +29,13 @@ angular.module('mtabusApp')
       content: $element[0]
     });
 
-    $scope.$watch('bus.VehicleLocation', () => {
+    const vehicleLocationWatcher = $scope.$watch('bus.VehicleLocation', () => {
       const newVehicleLocation = bus.VehicleLocation;
       rotationStr = `rotate(${bus.Bearing - 25}deg)`;
       angular.copy({
         'transform': rotationStr,
         'webkit-transform': rotationStr
-      }, style)
+      }, $scope.style)
       marker.setPosition(new google.maps.LatLng(
         newVehicleLocation.Latitude,
         newVehicleLocation.Longitude
@@ -44,6 +44,7 @@ angular.module('mtabusApp')
 
     $scope.$on('$destroy', () => {
       // console.log('%cdestroy bus marker!', 'background:red');
+      vehicleLocationWatcher();
       marker.onRemove();
     });
   });
