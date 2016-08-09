@@ -17,7 +17,7 @@ angular.module('mtabusApp')
       center: {lat: 40.7128, lng: -74.0059},
       zoom: 18,
       zoomControlOptions: {
-        position: google.maps.ControlPosition.TOP_RIGHT
+        position: google.maps.ControlPosition.TOP_LEFT
       },
       streetViewControl: false
     });

@@ -77,6 +77,6 @@ angular.module('mtabusApp').config(function ($stateProvider) {
           $scope.buses.length = 0;
         });
       },
-      template: '<buses-list buses="buses" bus-stop="busStop"></buses-list><bus-marker ng-repeat="bus in buses" bus="bus" route="route"></bus-marker>'
+      template: '<buses-list buses="buses" bus-stop="busStop"></buses-list><div ng-if="buses.length"><bus-marker ng-repeat="bus in buses" bus="bus" route="route"></bus-marker></div>'
     });
 });

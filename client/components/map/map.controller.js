@@ -12,7 +12,7 @@ angular.module('mtabusApp')
     map
   ) {
 
-    $log.log('%cmap created', 'background:pink');
+    $log.log('%cmap created', 'background:pink', $element);
 
     $element.replaceWith(map.gmapEl)
     map.redraw();
