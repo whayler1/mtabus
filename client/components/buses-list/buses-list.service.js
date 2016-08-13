@@ -19,24 +19,27 @@ angular.module('mtabusApp')
         const stopMonitoringDelivery = res.data.Siri.ServiceDelivery.StopMonitoringDelivery;
         const newBuses = stopMonitoringDelivery.length? stopMonitoringDelivery[0].MonitoredStopVisit : [];
         _.remove(buses, bus => {
-          const { DatedVehicleJourneyRef } = bus.MonitoredVehicleJourney.FramedVehicleJourneyRef;
-          const shouldRemove = !_.find(newBuses, {MonitoredVehicleJourney:{FramedVehicleJourneyRef:{DatedVehicleJourneyRef:DatedVehicleJourneyRef}}});
-          // console.log('%c shouldRemove:', 'background:yellow', shouldRemove);
-          return shouldRemove;
-        });
-        newBuses.forEach(bus => {
-          const { DatedVehicleJourneyRef } = bus.MonitoredVehicleJourney.FramedVehicleJourneyRef;
-          const existingBus = _.find(buses, {MonitoredVehicleJourney:{FramedVehicleJourneyRef:{DatedVehicleJourneyRef:DatedVehicleJourneyRef}}});
-          if(existingBus) {
-            // console.log('%c existingBus', 'background:aqua');
-            angular.copy(bus.MonitoredVehicleJourney, existingBus.MonitoredVehicleJourney);
-          }else {
-            console.log('%c new bus', 'background:lightblue');
-            buses.push(bus);
+          if('MonitoredVehicleJourney' in bus) {
+            const { DatedVehicleJourneyRef } = bus.MonitoredVehicleJourney.FramedVehicleJourneyRef;
+            const shouldRemove = !_.find(newBuses, {MonitoredVehicleJourney:{FramedVehicleJourneyRef:{DatedVehicleJourneyRef:DatedVehicleJourneyRef}}});
+            // console.log('%c shouldRemove:', 'background:yellow', shouldRemove);
+            return shouldRemove;
           }
+          return true;
         });
-        console.log('%c buses updated:', 'background:orange', buses[0].MonitoredVehicleJourney.VehicleLocation.Latitude);
-        // angular.copy(newBuses, buses);
+        if(angular.isArray(newBuses)) {
+            newBuses.forEach(bus => {
+            const { DatedVehicleJourneyRef } = bus.MonitoredVehicleJourney.FramedVehicleJourneyRef;
+            const existingBus = _.find(buses, {MonitoredVehicleJourney:{FramedVehicleJourneyRef:{DatedVehicleJourneyRef:DatedVehicleJourneyRef}}});
+            if(existingBus) {
+              // console.log('%c existingBus', 'background:aqua');
+              angular.copy(bus.MonitoredVehicleJourney, existingBus.MonitoredVehicleJourney);
+            }else {
+              console.log('%c new bus', 'background:lightblue');
+              buses.push(bus);
+            }
+          });
+        }
         return $q.when(buses);
       }
     );

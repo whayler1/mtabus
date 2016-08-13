@@ -79,4 +79,10 @@ angular.module('mtabusApp').config(function ($stateProvider) {
       },
       template: '<buses-list buses="buses" bus-stop="busStop"></buses-list><div ng-if="buses.length"><bus-marker ng-repeat="bus in buses" bus="bus" route="route"></bus-marker></div>'
     });
+})
+
+.run(function($rootScope, $window) {
+  $rootScope.$on('$stateChangeSuccess', () => {
+    if('analytics' in $window) $window.analytics.page();
+  });
 });
