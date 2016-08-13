@@ -3,6 +3,7 @@
 angular.module('mtabusApp')
   .factory('busStops', function (
     $rootScope,
+    $log,
     map,
     mapMarkerConstructor,
     busTime
@@ -17,7 +18,7 @@ angular.module('mtabusApp')
     let isZoomValid = true;
 
     const onBoundsChanged = _.debounce(() => {
-      console.log('%c on bounds changed', 'background:yellow');
+      $log.log('%c on bounds changed', 'background:yellow');
       const center = gmap.getCenter();
       busTime.getBusStops(center.lat(), center.lng(), map.getSpan()).then(
         res => {
@@ -60,17 +61,17 @@ angular.module('mtabusApp')
     });
 
     const onZoomChanged = () => {
-      console.log('zoom:', gmap.getZoom());
+      $log.log('zoom:', gmap.getZoom());
       if(gmap.getZoom() < 17) {
         if(isZoomValid) {
           isZoomValid = false;
           google.maps.event.clearListeners(gmap, 'bounds_changed');
           stops.length = 0;
           $rootScope.$emit('bus-stop-zoom-invalid');
-          console.log('%c zoom invalid', 'background:lightblue', busStops.stops);
+          $log.log('%c zoom invalid', 'background:lightblue', busStops.stops);
         }
       }else if(!isZoomValid) {
-        console.log('%c zoom invalid', 'background:pink');
+        $log.log('%c zoom invalid', 'background:pink');
         isZoomValid = true;
         gmap.addListener('bounds_changed', onBoundsChanged);
         onBoundsChanged();
