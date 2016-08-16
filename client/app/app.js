@@ -5,6 +5,7 @@ angular.module('mtabusApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngPageTitle',
   'ui.router'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
