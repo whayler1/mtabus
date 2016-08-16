@@ -416,8 +416,10 @@ module.exports = function (grunt) {
       },
       heroku: {
         options: {
-          remote: 'heroku',
-          branch: 'master'
+          // remote: 'heroku',
+          remote: 'https://git.heroku.com/stormy-forest-62081.git',
+          branch: 'master',
+          remoteBranch: 'master'
         }
       },
       openshift: {
