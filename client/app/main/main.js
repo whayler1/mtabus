@@ -28,11 +28,18 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     })
     .state('main.bus-stop', {
       url: ':id',
+      data: {
+        pageTitle: '{{ busStop.nameTitlecase }} Bus Stop'
+      },
       resolve: {
-        busStop: ($q, $log, $stateParams, busTime) => busTime.getBusStop($stateParams.id).then(
+        busStop: ($q, $log, $filter, $stateParams, busTime) => busTime.getBusStop($stateParams.id).then(
           res => {
-            $log.log('%csingle bus stop!', 'background:magenta', res.data.data);
-            return $q.when(res.data.data);
+            const { data } = res.data;
+            if(_.hasIn(data, 'name')) {
+              data.nameTitlecase = $filter('titlecase')(data.name.replace('/', ' / '));
+            }
+            $log.log('%csingle bus stop!', 'background:magenta', data);
+            return $q.when(data);
           },
           res => {
             $log.error('FAIL loading single bus stop :(', res);
@@ -47,6 +54,9 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     })
     .state('main.bus-stop.buses', {
       url: '/:operator/:route',
+      data: {
+        pageTitle: '{{ route.shortName }} Bus at {{ busStop.nameTitlecase }}'
+      },
       resolve: {
         buses: ($q, $log, $stateParams, busesList) => busesList.getBuses(
           $stateParams.operator,
@@ -61,18 +71,18 @@ angular.module('mtabusApp').config(function ($stateProvider) {
             );
             return $q.when(buses);
           }
-        )
+        ),
+        route: ($q, $stateParams, busStop) => $q.when(_.find(busStop.routes, {shortName:$stateParams.route}))
       },
-      // onExit: (busesList) => busesList.unwatch(),
-      controller: ($scope, $stateParams, buses, busesList, busStop) => {
+      controller: ($scope, $stateParams, $log, buses, busesList, busStop, route) => {
         $scope.buses = buses;
-        console.log('buses:', buses);
-        console.log('busStop:', busStop);
-        $scope.route = _.find($scope.busStop.routes, {shortName:$stateParams.route})
-        console.log('route:', $scope.route);
+        $log.log('buses!:', buses);
+        $log.log('busStop:', busStop);
+        $scope.route = route;
+        $log.log('route:', $scope.route);
 
         $scope.$on('$stateChangeStart', () => {
-          console.log('leaving buses list');
+          $log.log('leaving buses list');
           busesList.unwatch();
           $scope.buses.length = 0;
         });
@@ -81,8 +91,26 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     });
 })
 
-.run(function($rootScope, $window) {
-  $rootScope.$on('$stateChangeSuccess', () => {
-    if('analytics' in $window) $window.analytics.page();
+.run(function($rootScope, $window, $location) {
+  $rootScope.$on('$stateChangeSuccess', (e, toState, toParams, fromState, fromParams) => {
+    const path = $location.path();
+    let search = '';
+    let referrer = '';
+    const searchIndex = path.indexOf('?');
+    if(searchIndex !== -1) {
+      search = path.substring(searchIndex, path.length);
+    }
+    if(fromState.name) {
+      referrer = `${$location.protocol()}://${$location.host()}${fromState.url}`;
+    }
+    if('analytics' in $window) {
+      $window.analytics.page({
+        path,
+        referrer,
+        search,
+        name: toState.name,
+        url: $location.absUrl()
+      });
+    }
   });
 });
