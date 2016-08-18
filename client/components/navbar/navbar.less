@@ -15,6 +15,29 @@
   @media(min-width: @bp-tablet) {
     padding: 15px 30px;
   }
+
+  a {
+    &:hover,
+    &:focus {
+      color: @font-color-hover;
+    }
+    &:active {
+      color: @font-color-active;
+    }
+  }
+}
+
+.header-map-ui {
+  display: none;
+}
+
+.show-left-col {
+  .header-map-ui {
+    display: block;
+  }
+  .header-list-ui {
+    display: none;
+  }
 }
 
 .header-title {

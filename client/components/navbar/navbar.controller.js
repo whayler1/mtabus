@@ -3,14 +3,9 @@
 angular.module('mtabusApp')
   .controller('NavbarController', function(
     $scope,
+    $rootScope,
     $document
   ) {
 
-    $scope.isLeftNavHidden = true;
-    $scope.toggleLeftNav = () => {
-      $scope.isLeftNavHidden = !$scope.isLeftNavHidden;
-      if(_.hasIn($document, 'body')) {
-        
-      }
-    }
+    $scope.onToggleListView = () => $rootScope.$emit('toggle-show-list-view');
   });

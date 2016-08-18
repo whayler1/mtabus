@@ -9,7 +9,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     })
     .state('main.bus-stops', {
       url: '',
-      controller: ($scope, $window, location, map) => {
+      controller: ($scope, $rootScope, $window, location, map) => {
         const stateChangeSuccessListener = $scope.$on('$stateChangeSuccess', (event, toState, toParams, fromState) => {
           if(!fromState.name) {
             location.getCoords.then(
@@ -23,6 +23,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
           }
           stateChangeSuccessListener();
         });
+        $rootScope.$emit('toggle-show-list-view', false);
       },
       template: '<bus-stop-list></bus-stop-list><ui-view></ui-view>'
     })
@@ -47,8 +48,9 @@ angular.module('mtabusApp').config(function ($stateProvider) {
           }
         )
       },
-      controller: ($scope, busStop) => {
+      controller: ($scope, $rootScope, busStop) => {
         $scope.busStop = busStop;
+        $rootScope.$emit('toggle-show-list-view', true);
       },
       template: '<single-bus-stop bus-stop="busStop"></single-bus-stop><ui-view></ui-view>'
     })

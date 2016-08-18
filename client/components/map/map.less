@@ -7,10 +7,13 @@
   right: 0;
 
   .show-left-col & {
-    left: @left-col-width;
+    transform: translateX(@left-col-width);
   }
 
   @media(min-width: @bp-tablet) {
     left: @left-col-width;
+    .show-left-col & {
+      transform: translateX(0);
+    }
   }
 }
