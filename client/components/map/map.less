@@ -3,6 +3,17 @@
   position: fixed !important;
   top: @header-height;
   bottom: 0;
-  left: @left-col-width;
+  left: 0;
   right: 0;
+
+  .show-left-col & {
+    transform: translateX(@left-col-width);
+  }
+
+  @media(min-width: @bp-tablet) {
+    left: @left-col-width;
+    .show-left-col & {
+      transform: translateX(0);
+    }
+  }
 }

@@ -65,7 +65,7 @@
 }
     </script>
   </head>
-  <body>
+  <body body-class ng-class="{'show-left-col': shouldShowListView}">
     <!--[if lt IE 7]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -108,8 +108,10 @@
       <script src="app/app.js"></script>
       <!-- injector:js -->
       <script src="components/util/util.module.js"></script>
-      <script src="components/buses-list/buses-list.service.js"></script>
+      <script src="components/buses-list/buses-list.directive.js"></script>
       <script src="app/main/main.js"></script>
+      <script src="components/body-class/body-class.controller.js"></script>
+      <script src="components/body-class/body-class.directive.js"></script>
       <script src="components/bus-marker/bus-marker.controller.js"></script>
       <script src="components/bus-marker/bus-marker.directive.js"></script>
       <script src="components/bus-markers/bus-markers.directive.js"></script>
@@ -122,8 +124,8 @@
       <script src="components/bus-stops/bus-stops.service.js"></script>
       <script src="components/bus-time/bus-time.service.js"></script>
       <script src="components/buses-list/buses-list.controller.js"></script>
-      <script src="components/buses-list/buses-list.directive.js"></script>
       <script src="app/main/main.controller.js"></script>
+      <script src="components/buses-list/buses-list.service.js"></script>
       <script src="components/location/location.service.js"></script>
       <script src="components/map-marker-constructor/map-marker-constructor.service.js"></script>
       <script src="components/map/map.controller.js"></script>

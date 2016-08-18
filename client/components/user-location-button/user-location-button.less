@@ -29,4 +29,12 @@
     background: mix(@btn-user-location-bsackground, black, 90%);
     color: mix(white, black, 90%);
   }
+
+  .show-left-col & {
+    display: none;
+
+    @media(min-width: @bp-tablet) {
+      display: block;
+    }
+  }
 }
