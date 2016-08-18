@@ -1,9 +1,16 @@
 'use strict';
 
-class NavbarController {
-
-  
-}
-
 angular.module('mtabusApp')
-  .controller('NavbarController', NavbarController);
+  .controller('NavbarController', function(
+    $scope,
+    $document
+  ) {
+
+    $scope.isLeftNavHidden = true;
+    $scope.toggleLeftNav = () => {
+      $scope.isLeftNavHidden = !$scope.isLeftNavHidden;
+      if(_.hasIn($document, 'body')) {
+        
+      }
+    }
+  });

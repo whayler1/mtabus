@@ -7,4 +7,13 @@
   bottom: 0;
   width: @left-col-width;
   border-right: 1px solid rgba(0,0,0,0.1);
+  transform: translateX(-@left-col-width);
+
+  .show-left-col {
+    transform: translateX(0);
+  }
+
+  @media(min-width: @bp-tablet) {
+    transform: translateX(0);
+  }
 }
