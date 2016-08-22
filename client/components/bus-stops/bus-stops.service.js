@@ -73,6 +73,7 @@ angular.module('mtabusApp')
       }else if(!isZoomValid) {
         $log.log('%c zoom invalid', 'background:pink');
         isZoomValid = true;
+        $rootScope.$emit('bus-stop-zoom-valid');
         gmap.addListener('bounds_changed', onBoundsChanged);
         onBoundsChanged();
       }

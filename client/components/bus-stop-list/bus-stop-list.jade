@@ -18,6 +18,5 @@
                 ng-style="{background:'#'+route.color,color:'#'+route.textColor}"
                 ng-bind="route.shortName"
               )
-      //- .card-body-spinner(ng-if="!stops.length")
-      //-   span.fa.fa-circle-o-notch.fa-spin
-      //-   .card-body-spinner-copy Loading&nbsp;
+      .card-body-padded(ng-if="!stops.length && isZoomValid") Use the map to find your bus stop.
+      .card-body-padded(ng-if="!isZoomValid") Zoom in closer to see bus stops.

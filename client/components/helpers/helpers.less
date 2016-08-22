@@ -20,6 +20,29 @@
 .table-icon-details {
   th, td {
     font-size: @font-s;
+    text-align: left;
+  }
+  th {
+    position: relative;
+    padding-right: 7px;
+    padding-left: 0;
+    span {
+      position: relative;
+      z-index: 3;
+      background: white;
+      padding-right: 3px;
+    }
+    &:after {
+      content: ' ';
+      position: absolute;
+      bottom: 3px;
+      left: 1px;
+      right: 0;
+      border: 1px dotted @font-color;
+    }
+  }
+  td {
+    padding-left: 3px;
   }
 }
 

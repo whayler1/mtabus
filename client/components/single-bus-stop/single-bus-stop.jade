@@ -11,19 +11,13 @@
       table.table-icon-details
         tbody
           tr
-            th(title="Direction")
-              i.fa.fa-compass
-            td(
-              ng-bind="busStop.direction"
-              title="Direction"
-            )
+            th
+              span Direction
+            td(ng-bind="busStop.direction | direction")
           tr
-            th(title="wheelchair access")
-              i.fa.fa-wheelchair
-            td.capitalize(
-              ng-bind="busStop.wheelchairBoarding|lowercase"
-              title="wheelchair access"
-            )
+            th
+              span Wheelchair access
+            td.capitalize(ng-bind="busStop.wheelchairBoarding|lowercase")
       h3.card-body-title Routes
       ul.card-body-stacked-list
         li(ng-repeat="route in busStop.routes").bus-route-list-item
