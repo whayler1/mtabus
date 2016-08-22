@@ -20,7 +20,15 @@ angular.module('mtabusApp')
         position: google.maps.ControlPosition.LEFT_BOTTOM
       },
       mapTypeControl: false,
-      streetViewControl: false
+      streetViewControl: false,
+      styles: [
+        {
+          featureType: "transit.station.bus",
+          stylers: [
+            { visibility: "off" }
+          ]
+        }
+      ]
     });
 
     const redraw = () => $window.google.maps.event.trigger(gmap, 'resize');

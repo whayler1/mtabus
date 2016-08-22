@@ -2,6 +2,27 @@
   .card-body-stacked-list {
     margin-top: -15px;
   }
+
+  .card-header {
+    background: @bus-stop-marker-background-hover;
+  }
+  .card-header,
+  .card-header-title,
+  .card-header-title-icon {
+    color: white;
+  }
+
+  .card-header-close {
+    color: mix(@bus-stop-marker-background-hover, white, 10%);
+
+    &:hover,
+    &:focus {
+      color: white;
+    }
+    &:active {
+      color: mix(@bus-stop-marker-background-hover, white, 20%);
+    }
+  }
 }
 
 .bus-stop-route-icon {
@@ -14,25 +35,10 @@
 }
 
 .route-title {
-  // display: table;
-  // position: absolute;
-  // top: 15px;
-  // left: 80px;
-  // right: 15px;
-  // height: 30px;
   font-size: @font-s;
   font-weight: 400;
   color: @font-color-strong;
   margin: 0;
-
-  // >span {
-  //   // display: table;
-  //   // height: 100%;
-  //   >span {
-  //     // display: table-cell;
-  //     // vertical-align: middle;
-  //   }
-  // }
 
   a:hover &,
   a:focus & {
