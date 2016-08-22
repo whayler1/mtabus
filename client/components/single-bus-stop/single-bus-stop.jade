@@ -3,7 +3,7 @@
     header.card-header
       h1.card-header-title
         i.fa.fa-bus.card-header-title-icon
-        span.capitalize(ng-bind="busStop.name|lowercase")
+        span.capitalize(ng-bind="busStop.nameTitlecase")
       a.card-header-close(ui-sref="main.bus-stops")
         i.fa.fa-close
     .card-body.card-body-scroll.card-body-padded
