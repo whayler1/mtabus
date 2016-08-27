@@ -57,7 +57,7 @@ angular.module('mtabusApp')
     },
     250,
     {
-      maxWait: 1000
+      maxWait: 500
     });
 
     const onZoomChanged = () => {
