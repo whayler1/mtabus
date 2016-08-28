@@ -3,7 +3,7 @@
 
 .btn-user-location {
   position: absolute;
-  bottom: 30px;
+  bottom: 30px + @card-header-height;
   right: 20px;
   width: @btn-user-location-radius;
   height: @btn-user-location-radius;
@@ -36,5 +36,9 @@
     @media(min-width: @bp-tablet) {
       display: block;
     }
+  }
+
+  @media(min-width: @bp-tablet) {
+    bottom: 30px;
   }
 }
