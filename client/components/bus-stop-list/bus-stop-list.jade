@@ -1,12 +1,16 @@
 .left-col
   section.card.bus-stop-list-card
     header.card-header
-      h1.card-header-title(ng-if="isZoomValid")
-        span(ng-bind="stops.length ? stops.length : 'No'")
-        |&nbsp;Bus Stop
+      h1.card-header-title(ng-if="stops.length && isZoomValid")
+        span(ng-bind="stops.length")
+        |&nbsp;bus stop
         span(ng-bind="stops.length !== 1 ? 's ' : ' '")
         |in view
       h1.card-header-title(ng-if="!isZoomValid") Zoom in closer to see bus stops.
+      h1.card-header-title(ng-if="!stops.length && isZoomValid") Use the map to find your bus stop.
+      .card-header-ui
+        a.fa.fa-angle-up.card-header-show-icon
+        a.fa.fa-angle-down.card-header-hide-icon
     .card-body.card-body-scroll
       ul.card-body-stacked-list(ng-if="stops.length")
         li(ng-repeat="stop in stops track by stop.id")
@@ -23,4 +27,3 @@
                 ng-style="{background:'#'+route.color,color:'#'+route.textColor}"
                 ng-bind="route.shortName"
               )
-      .card-body-padded(ng-if="!stops.length && isZoomValid") Use the map to find your bus stop.

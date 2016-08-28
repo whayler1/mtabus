@@ -1,7 +1,7 @@
 @header-height: 49px;
 
 .header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -15,29 +15,6 @@
   @media(min-width: @bp-tablet) {
     padding: 15px 30px;
   }
-
-  a {
-    &:hover,
-    &:focus {
-      color: @font-color-hover;
-    }
-    &:active {
-      color: @font-color-active;
-    }
-  }
-}
-
-.header-map-ui {
-  display: none;
-}
-
-.show-left-col {
-  .header-map-ui {
-    display: block;
-  }
-  .header-list-ui {
-    display: none;
-  }
 }
 
 .header-title {
@@ -45,15 +22,4 @@
   color: @font-color;
   font-size: @font-m;
   font-weight: 400;
-}
-
-.header-toggle-left-nav-ui {
-  position: absolute;
-  display: block;
-  right: 15px;
-  top: 15px;
-
-  @media(min-width: @bp-tablet) {
-    display: none;
-  }
 }
