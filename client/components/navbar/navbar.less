@@ -12,8 +12,16 @@
   z-index: 50;
   transform: translateZ(0);
 
+  .show-left-col & {
+    display: none;
+  }
+
   @media(min-width: @bp-tablet) {
     padding: 15px 30px;
+
+    .show-left-col & {
+      display: block;
+    }
   }
 }
 

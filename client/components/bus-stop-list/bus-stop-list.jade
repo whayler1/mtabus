@@ -6,8 +6,8 @@
         |&nbsp;bus stop
         span(ng-bind="stops.length !== 1 ? 's ' : ' '")
         |in view
-      h1.card-header-title(ng-if="!isZoomValid") Zoom in closer to see bus stops.
-      h1.card-header-title(ng-if="!stops.length && isZoomValid") Use the map to find your bus stop.
+      h1.card-header-title(ng-if="!isZoomValid") Zoom in closer to see bus stops
+      h1.card-header-title(ng-if="!stops.length && isZoomValid") Use the map to find your bus stop
       .card-header-ui
         a.fa.fa-angle-up.card-header-show-icon
         a.fa.fa-angle-down.card-header-hide-icon
