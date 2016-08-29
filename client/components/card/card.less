@@ -12,30 +12,48 @@
 }
 
 .card {
-  border-radius: 3px;
-  border-top: 1px solid @card-border-top;
-  border-left: 1px solid @card-border;
-  border-right: 1px solid @card-border;
-  border-bottom: 2px solid @card-border;
   background: white;
+
+  @media(min-width: @bp-tablet) {
+    border-radius: 3px;
+    border-top: 1px solid @card-border-top;
+    border-left: 1px solid @card-border;
+    border-right: 1px solid @card-border;
+    border-bottom: 2px solid @card-border;
+  }
 
   .left-col & {
     position: absolute;
-    left: 15px;
-    top: 15px;
-    right: 15px;
+    left: 0;
+    top: 0;
+    right: 0;
     bottom: 0;
+    // transform: translateY(100%);
+
+    @media(min-width: @bp-tablet) {
+      left: 15px;
+      top: 15px;
+      right: 15px;
+    }
   }
 }
 
 .card-header {
   position: absolute;
-  top: 0;
+  // top: 0;
+  bottom: 100%;
   left: 0;
   right: 0;
   padding: 15px;
   background: white;
   border-bottom: 1px solid lighten(grey, 45%);
+  border-top: 1px solid @card-border;
+
+  @media(min-width: @bp-tablet) {
+    border-top: 0;
+    bottom: auto;
+    top: 0;
+  }
 }
 
 .card-header-title {
@@ -47,6 +65,29 @@
 
 .card-header-title-icon {
   margin-right: 7px;
+}
+
+.card-header-ui {
+  position: absolute;
+  top: 4px;
+  right: 28px;
+  font-size: @font-l;
+
+  @media(min-width: @bp-tablet) {
+    display: none;
+  }
+}
+
+.card-header-hide-icon {
+  display: none;
+  .show-left-col & {
+    display: inline;
+  }
+}
+.card-header-show-icon {
+  .show-left-col & {
+    display: none;
+  }
 }
 
 .card-header-close {
@@ -67,11 +108,16 @@
 .card-body {
   &.card-body-scroll {
     position: absolute;
-    top: @card-header-height;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    @media(min-width: @bp-tablet) {
+      top: @card-header-height;
+    }
   }
 }
 
