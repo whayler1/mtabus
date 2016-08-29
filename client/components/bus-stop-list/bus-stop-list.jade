@@ -1,6 +1,9 @@
 .left-col
   section.card.bus-stop-list-card
-    header.card-header(ng-click="toggleShowListView()")
+    header.card-header(
+      ng-click="toggleShowListView()"
+      ng-class="{'card-header-warning':!stops.length}"
+    )
       h1.card-header-title(ng-if="stops.length && isZoomValid")
         span(ng-bind="stops.length")
         |&nbsp;bus stop
@@ -8,7 +11,7 @@
         |in view
       h1.card-header-title(ng-if="!isZoomValid") Zoom in closer to see bus stops
       h1.card-header-title(ng-if="!stops.length && isZoomValid") Use the map to find your bus stop
-      .card-header-ui
+      .card-header-ui(ng-show="stops.length")
         a.fa.fa-angle-up.card-header-show-icon
         a.fa.fa-angle-down.card-header-hide-icon
     .card-body.card-body-scroll
