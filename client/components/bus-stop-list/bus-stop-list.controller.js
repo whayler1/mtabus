@@ -13,6 +13,10 @@ angular.module('mtabusApp')
     const zoomInvalidListener = $rootScope.$on('bus-stop-zoom-invalid', () => $scope.isZoomValid = false);
 
     $scope.toggleShowListView = () => {
+      if(!$scope.stops.length) {
+        $rootScope.$emit('toggle-show-list-view', false);
+        return;
+      }
       $rootScope.$emit('toggle-show-list-view');
     }
 
