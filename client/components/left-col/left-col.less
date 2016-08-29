@@ -1,22 +1,22 @@
 @left-col-width: 300px;
 
 .left-col {
-  position: absolute;
+  position: fixed;
   top: @header-height;
   left: 0;
   bottom: 0;
-  // width: @left-col-width;
   right: 0;
-
-  // transform: translateX(-@left-col-width);
   transform: translateY(100%);
+  transition: .25s transform;
+  z-index: 50;
 
   .show-left-col & {
-    transform: translateX(0);
+    transform: translateY(0);
   }
 
   @media(min-width: @bp-tablet) {
-    transform: translateX(0);
+    transform: translateY(0);
     border-right: 1px solid rgba(0,0,0,0.1);
+    width: @left-col-width;
   }
 }

@@ -1,6 +1,6 @@
 .left-col
   section.card.bus-stop-list-card
-    header.card-header
+    header.card-header(ng-click="toggleShowListView()")
       h1.card-header-title(ng-if="stops.length && isZoomValid")
         span(ng-bind="stops.length")
         |&nbsp;bus stop

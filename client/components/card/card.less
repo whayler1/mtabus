@@ -12,12 +12,15 @@
 }
 
 .card {
-  border-radius: 3px;
-  border-top: 1px solid @card-border-top;
-  border-left: 1px solid @card-border;
-  border-right: 1px solid @card-border;
-  border-bottom: 2px solid @card-border;
   background: white;
+
+  @media(min-width: @bp-tablet) {
+    border-radius: 3px;
+    border-top: 1px solid @card-border-top;
+    border-left: 1px solid @card-border;
+    border-right: 1px solid @card-border;
+    border-bottom: 2px solid @card-border;
+  }
 
   .left-col & {
     position: absolute;
@@ -66,9 +69,13 @@
 
 .card-header-ui {
   position: absolute;
-  top: 3px;
+  top: 4px;
   right: 28px;
   font-size: @font-l;
+
+  @media(min-width: @bp-tablet) {
+    display: none;
+  }
 }
 
 .card-header-hide-icon {
@@ -106,6 +113,7 @@
     right: 0;
     bottom: 0;
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 
     @media(min-width: @bp-tablet) {
       top: @card-header-height;

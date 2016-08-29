@@ -1,19 +1,13 @@
 
 .gmap {
-  position: absolute !important;
+  position: fixed !important;
   top: @header-height;
   bottom: @card-header-height;
   left: 0;
   right: 0;
 
-  .show-left-col & {
-    transform: translateX(@left-col-width);
-  }
-
   @media(min-width: @bp-tablet) {
     left: @left-col-width;
-    .show-left-col & {
-      transform: translateX(0);
-    }
+    bottom: 0;
   }
 }
