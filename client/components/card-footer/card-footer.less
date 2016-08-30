@@ -1,0 +1,22 @@
+@card-footer-height: 46px;
+
+.card-footer {
+  // margin-top: 30px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: @font-s;
+  border-top: 1px solid lighten(grey, 45%);
+
+  a {
+    color: @font-color-strong;
+    &:hover,
+    &:focus {
+      color: @font-color-strong-hover;
+    }
+    &:active {
+      color: @font-color-strong-active;
+    }
+  }
+}
