@@ -9,3 +9,15 @@ body, html {
 [ng-click] {
   cursor: pointer;
 }
+
+a {
+  color: @link-color;
+
+  &:hover,
+  &:focus {
+    color: @link-color-hover;
+  }
+  &:active {
+    color: @link-color-active;
+  }
+}
