@@ -50,24 +50,7 @@
       analytics.load("6sRlZvpJWs8cufkpqCT1be5nPLk04dfA");
       }}();
     </script>
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Website",
-  "author": {
-    "@type": "Person",
-    "email": "jstn@jstn.name",
-    "givenName": "Justin",
-    "familyName": "Worsdale",
-    "name": "Justin Dean Worsdale",
-    "image": "http://jstn.name/wp-content/uploads/2013/09/portrait-we.jpg",
-    "sameAs": "http://jstn.name",
-    "jobTitle": "Software Engineer"
-  },
-  "url": "https://www.busfinder.nyc",
-  "description": "Find out how long till the next bus arrives at any MTA bus stop in all of New York City. Servicing Manhattan, Brooklyn, Queens, The Bronx and Staten Island"
-}
-    </script>
+    <script type="application/ld+json" ld-json></script>
   </head>
   <body body-class ng-class="{'show-left-col': shouldShowListView}">
     <!--[if lt IE 7]>
@@ -112,7 +95,7 @@
       <script src="app/app.js"></script>
       <!-- injector:js -->
       <script src="components/util/util.module.js"></script>
-      <script src="components/buses-list/buses-list.service.js"></script>
+      <script src="components/card-footer/card-footer.directive.js"></script>
       <script src="app/main/main.js"></script>
       <script src="components/body-class/body-class.controller.js"></script>
       <script src="components/body-class/body-class.directive.js"></script>
@@ -129,9 +112,10 @@
       <script src="components/bus-time/bus-time.service.js"></script>
       <script src="components/buses-list/buses-list.controller.js"></script>
       <script src="components/buses-list/buses-list.directive.js"></script>
+      <script src="components/buses-list/buses-list.service.js"></script>
       <script src="app/main/main.controller.js"></script>
-      <script src="components/card-footer/card-footer.directive.js"></script>
       <script src="components/direction/direction.filter.js"></script>
+      <script src="components/ld-json/ld-json.directive.js"></script>
       <script src="components/location/location.service.js"></script>
       <script src="components/map-marker-constructor/map-marker-constructor.service.js"></script>
       <script src="components/map/map.controller.js"></script>
