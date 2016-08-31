@@ -30,6 +30,7 @@ export default function(app) {
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser());
+  app.use(require('prerender-node').set('prerenderToken', process.env.PRERENDER_KEY));
 
   // Persist sessions with MongoStore / sequelizeStore
   // We need to enable sessions for passport-twitter because it's an
