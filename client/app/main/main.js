@@ -9,6 +9,24 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     })
     .state('main.bus-stops', {
       url: '',
+      data: {
+        schema: `{
+          "@context": "http://schema.org",
+          "@type": "Website",
+          "author": {
+            "@type": "Person",
+            "email": "jstn@jstn.name",
+            "givenName": "Justin",
+            "familyName": "Worsdale",
+            "name": "Justin Dean Worsdale",
+            "image": "http://jstn.name/wp-content/uploads/2013/09/portrait-we.jpg",
+            "sameAs": "http://jstn.name",
+            "jobTitle": "Software Engineer"
+          },
+          "url": "https://www.busfinder.nyc",
+          "description": "Find out how long till the next bus arrives at any MTA bus stop in all of New York City. Servicing Manhattan, Brooklyn, Queens, The Bronx and Staten Island"
+        }`
+      },
       controller: ($scope, $rootScope, $window, location, map) => {
         const stateChangeSuccessListener = $scope.$on('$stateChangeSuccess', (event, toState, toParams, fromState) => {
           if(!fromState.name) {
@@ -30,7 +48,17 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     .state('main.bus-stop', {
       url: ':id',
       data: {
-        pageTitle: '{{ busStop.nameTitlecase }} Bus Stop'
+        pageTitle: '{{ busStop.nameTitlecase }} Bus Stop',
+        schema: `{
+          "@context": "http://schema.org",
+          "@type": "BusStop",
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "{{ busStop.lat }}",
+            "longitude": "{{ busStop.lon }}"
+          },
+          "name": "{{ busStop.nameTitlecase }} Bus Stop"
+        }`
       },
       resolve: {
         busStop: ($q, $log, $filter, $stateParams, busTime) => busTime.getBusStop($stateParams.id).then(
