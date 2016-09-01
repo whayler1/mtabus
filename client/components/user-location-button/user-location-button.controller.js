@@ -5,7 +5,8 @@ angular.module('mtabusApp')
     $scope,
     $window,
     map,
-    location
+    location,
+    analytics
   ) {
 
     const hasGeoloc = (_.hasIn($window, 'navigator') && _.hasIn($window.navigator, 'geolocation'));
@@ -15,6 +16,7 @@ angular.module('mtabusApp')
     location.getCoords.then(() => $scope.shouldShow = true);
 
     $scope.onClick = () => {
+      analytics.track('user-location-button-click');
       location.getCoords.then(
         coords => gmap.setCenter(new google.maps.LatLng(
           coords.latitude,

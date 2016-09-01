@@ -3,7 +3,8 @@
 angular.module('mtabusApp')
   .factory('map', function (
     $document,
-    $window
+    $window,
+    analytics
   ) {
 
     const map = {};
@@ -15,7 +16,7 @@ angular.module('mtabusApp')
 
     const gmap = new $window.google.maps.Map(gmapEl, {
       center: {lat: 40.7128, lng: -74.0059},
-      zoom: 18,
+      zoom: 17,
       zoomControlOptions: {
         position: google.maps.ControlPosition.LEFT_BOTTOM
       },
@@ -29,6 +30,16 @@ angular.module('mtabusApp')
           ]
         }
       ]
+    });
+
+    const dragstartListener = gmap.addListener('dragstart', () => {
+      google.maps.event.removeListener(dragstartListener);
+      analytics.track('map-dragstart');
+    });
+
+    const zoomChangedListener = gmap.addListener('zoom_changed', () => {
+      google.maps.event.removeListener(zoomChangedListener);
+      analytics.track('map-zoom-changed');
     });
 
     const redraw = () => $window.google.maps.event.trigger(gmap, 'resize');

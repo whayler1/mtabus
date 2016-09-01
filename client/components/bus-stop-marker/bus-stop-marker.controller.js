@@ -9,7 +9,8 @@ angular.module('mtabusApp')
     $log,
     $timeout,
     map,
-    mapMarkerConstructor
+    mapMarkerConstructor,
+    analytics
   ) {
 
     let focusTimeout;
@@ -32,6 +33,7 @@ angular.module('mtabusApp')
     }
     $scope.onClick = e => {
       e.preventDefault();
+      analytics.track('bus-stop-marker-click');
       $state.go('main.bus-stop', {
         id: stop.id
       });

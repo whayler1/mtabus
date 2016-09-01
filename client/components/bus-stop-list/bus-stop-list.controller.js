@@ -4,7 +4,8 @@ angular.module('mtabusApp')
   .controller('BusStopListCtrl', function (
     $scope,
     $rootScope,
-    busStops
+    busStops,
+    analytics
   ) {
     $scope.stops = busStops.stops;
     $scope.isZoomValid = true;
@@ -13,6 +14,7 @@ angular.module('mtabusApp')
     const zoomInvalidListener = $rootScope.$on('bus-stop-zoom-invalid', () => $scope.isZoomValid = false);
 
     $scope.toggleShowListView = () => {
+      analytics.track('toggle-show-list-view');
       if(!$scope.stops.length) {
         $rootScope.$emit('toggle-show-list-view', false);
         return;
