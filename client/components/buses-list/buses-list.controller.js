@@ -4,18 +4,21 @@ angular.module('mtabusApp')
   .controller('BusesListCtrl', function (
     $scope,
     $stateParams,
-    map
+    map,
+    analytics
   ) {
 
-    console.log('route', $stateParams.route);
-    console.log('BusesListCtrl!', $scope.busStop);
-    // console.log('MEWO', _.find($scope.busStop.routes, {shortName:$stateParams.route}));
+    // console.log('route', $stateParams.route);
+    // console.log('BusesListCtrl!', $scope.busStop);
     const gmap = map.gmap;
 
     $scope.route = _.find($scope.busStop.routes, {shortName:$stateParams.route});
 
-    $scope.goToLoc = (lat, lng) => gmap.setCenter({
-      lat: lat,
-      lng: lng
-    });
+    $scope.goToLoc = (lat, lng) => {
+      analytics.track('bus-location-click');
+      gmap.setCenter({
+        lat: lat,
+        lng: lng
+      });
+    };
   });
