@@ -6,7 +6,8 @@ angular.module('mtabusApp', [
   'ngResource',
   'ngSanitize',
   'ngPageTitle',
-  'ui.router'
+  'ui.router',
+  'once'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

@@ -10,6 +10,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     .state('main.bus-stops', {
       url: '',
       data: {
+        description: 'Find out how long till the next bus arrives at any MTA bus stop in all of New York City. Servicing Manhattan, Brooklyn, Queens, The Bronx and Staten Island',
         schema: `{
           "@context": "http://schema.org",
           "@type": "Website",
@@ -49,6 +50,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
       url: ':id',
       data: {
         pageTitle: '{{ busStop.nameTitlecase }} Bus Stop',
+        description: 'Service for {{ busStop.routeNames.join(\', \') }}',
         schema: `{
           "@context": "http://schema.org",
           "@type": "BusStop",
@@ -57,7 +59,8 @@ angular.module('mtabusApp').config(function ($stateProvider) {
             "latitude": "{{ busStop.lat }}",
             "longitude": "{{ busStop.lon }}"
           },
-          "name": "{{ busStop.nameTitlecase }} Bus Stop"
+          "name": "{{ busStop.nameTitlecase }} Bus Stop",
+          "description": "Service for {{ busStop.routeNames.join(', ') }}"
         }`
       },
       resolve: {
@@ -67,6 +70,8 @@ angular.module('mtabusApp').config(function ($stateProvider) {
             if(_.hasIn(data, 'name')) {
               data.nameTitlecase = $filter('titlecase')(data.name.replace('/', ' / '));
             }
+            const routeNames = data.routes.map(route => `${route.shortName} ${route.longName}`);
+            data.routeNames = routeNames;
             $log.log('%csingle bus stop!', 'background:magenta', data);
             return $q.when(data);
           },
@@ -85,7 +90,20 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     .state('main.bus-stop.buses', {
       url: '/:operator/:route',
       data: {
-        pageTitle: '{{ route.shortName }} Bus at {{ busStop.nameTitlecase }}'
+        pageTitle: '{{ route.shortName }} Bus at {{ busStop.nameTitlecase }}',
+        description: 'The {{ route.shortName }} bus stop at {{ busStop.nameTitlecase }}, heading to {{ route.longName }} {{ route.description }}. {{ route.agency.name }}',
+        schema: `{
+          "@context": "http://schema.org",
+          "@type": "BusStop",
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "{{ busStop.lat }}",
+            "longitude": "{{ busStop.lon }}"
+          },
+          "name": "{{ route.shortName }} Bus at {{ busStop.nameTitlecase }}",
+          "description": "The {{ route.shortName }} bus stop at {{ busStop.nameTitlecase }}, heading to {{ route.longName }} {{ route.description }}. {{ route.agency.name }}",
+          "telephone": "{{ route.agency.phone }}"
+        }`
       },
       resolve: {
         buses: ($q, $log, $stateParams, busesList) => busesList.getBuses(

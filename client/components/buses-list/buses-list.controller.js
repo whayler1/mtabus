@@ -9,7 +9,7 @@ angular.module('mtabusApp')
 
     console.log('route', $stateParams.route);
     console.log('BusesListCtrl!', $scope.busStop);
-    console.log('MEWO', _.find($scope.busStop.routes, {shortName:$stateParams.route}));
+    // console.log('MEWO', _.find($scope.busStop.routes, {shortName:$stateParams.route}));
     const gmap = map.gmap;
 
     $scope.route = _.find($scope.busStop.routes, {shortName:$stateParams.route});

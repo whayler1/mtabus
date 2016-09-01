@@ -3,14 +3,16 @@
     header.card-header
       h1.card-header-title
         span.buses-list-card-route-icon(
-          ng-bind="route.shortName"
-          ng-style="{background:'#'+route.color,color:'#'+route.textColor}"
+          once-text="route.shortName"
+          once-style="{background:'#'+route.color,color:'#'+route.textColor}"
         )
+        |&nbsp;at&nbsp;
+        span(once-text="busStop.nameTitlecase")
       a.card-header-close(ui-sref="^")
         i.fa.fa-close
     .card-body.card-body-scroll.card-body-padded
-      h2.buses-list-route-name(ng-bind="route.longName")
-      div.font-s(ng-bind="route.description")
+      h2.buses-list-route-name(once-text="route.longName")
+      div.font-s(once-text="route.description")
       h3.card-body-title Upcoming arrivals
       ul.card-body-stacked-list(ng-if="buses.length")
         li(ng-repeat="bus in buses track by bus.MonitoredVehicleJourney.VehicleRef")
