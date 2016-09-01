@@ -3,7 +3,7 @@
     header.card-header
       h1.card-header-title
         i.fa.fa-bus.card-header-title-icon
-        span.capitalize(ng-bind="busStop.nameTitlecase")
+        span.capitalize(once-text="busStop.nameTitlecase")
       a.card-header-close(ui-sref="main.bus-stops")
         i.fa.fa-close
     .card-body.card-body-scroll.card-body-padded
@@ -13,21 +13,21 @@
           tr
             th
               span Direction
-            td(ng-bind="busStop.direction | direction")
+            td(once-text="busStop.direction | direction")
           tr
             th
               span Wheelchair access
-            td.capitalize(ng-bind="busStop.wheelchairBoarding|lowercase")
+            td.capitalize(once-text="busStop.wheelchairBoarding|lowercase")
       h3.card-body-title Routes
       ul.card-body-stacked-list
         li(ng-repeat="route in busStop.routes").bus-route-list-item
           a(ui-sref="main.bus-stop.buses({operator:route.agency.id,route:route.shortName})")
             .bus-stop-route-icon(
-              ng-style="{background:'#'+route.color,color:'#'+route.textColor}"
-              ng-bind="route.shortName"
+              once-style="{background:'#'+route.color,color:'#'+route.textColor}"
+              once-text="route.shortName"
             )
-            h4.route-title(ng-bind="route.longName")
-            p.route-description(ng-bind="route.description")
+            h4.route-title(once-text="route.longName")
+            p.route-description(once-text="route.description")
             i.bus-route-list-item-action-icon.fa.fa-chevron-right
       footer.card-body-footer
         button.btn.btn-primary(

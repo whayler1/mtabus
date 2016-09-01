@@ -24,10 +24,10 @@
             ui-sref="main.bus-stop({id:stop.id})"
           )
             ul.inline-list.bus-stop-route-list
-              h3.bus-stop-name(ng-bind="stop.name | lowercase")
+              h3.bus-stop-name(once-text="stop.name | lowercase")
               li(
                 ng-repeat="route in stop.routes track by route.id"
-                ng-style="{background:'#'+route.color,color:'#'+route.textColor}"
-                ng-bind="route.shortName"
+                once-style="{background:'#'+route.color,color:'#'+route.textColor}"
+                once-text="route.shortName"
               )
     card-footer
