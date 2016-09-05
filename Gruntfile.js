@@ -381,7 +381,8 @@ module.exports = function (grunt) {
             'bower_components/**/*',
             'assets/images/{,*/}*.{webp}',
             'assets/fonts/**/*',
-            'index.html'
+            'index.html',
+            'sitemap.xml'
           ]
         }, {
           expand: true,
