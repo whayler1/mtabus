@@ -64,7 +64,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
         }`
       },
       resolve: {
-        busStop: ($q, $log, $filter, $stateParams, busTime) => busTime.getBusStop($stateParams.id).then(
+        busStop: ($q, $log, $filter, $stateParams, busTime, busesList) => busTime.getBusStop($stateParams.id).then(
           res => {
             const { data } = res.data;
             if(_.hasIn(data, 'name')) {
@@ -74,6 +74,20 @@ angular.module('mtabusApp').config(function ($stateProvider) {
             data.directionLong = $filter('direction')(data.direction);
             data.routeNames = routeNames;
             $log.log('%csingle bus stop!', 'background:magenta', data);
+
+            const promiseAry = data.routes.map(route => busesList.getBuses(
+              route.agency.id,
+              route.shortName,
+              data.id
+            ));
+
+            $log.log('promiseAry:', promiseAry)
+
+            $q.all(promiseAry).then(
+              res => res.forEach(bus => $log.log('bus:', bus)),
+              res => $log.error('boo route error', res)
+            );
+
             return $q.when(data);
           },
           res => {
