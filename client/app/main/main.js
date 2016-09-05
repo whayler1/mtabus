@@ -49,7 +49,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     .state('main.bus-stop', {
       url: ':id',
       data: {
-        pageTitle: '{{ busStop.nameTitlecase }} Bus Stop',
+        pageTitle: '{{ busStop.nameTitlecase }} Bus Stop headed {{ busStop.directionLong }}',
         description: 'Service for {{ busStop.routeNames.join(\', \') }}',
         schema: `{
           "@context": "http://schema.org",
@@ -71,6 +71,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
               data.nameTitlecase = $filter('titlecase')(data.name.replace('/', ' / '));
             }
             const routeNames = data.routes.map(route => `${route.shortName} ${route.longName}`);
+            data.directionLong = $filter('direction')(data.direction);
             data.routeNames = routeNames;
             $log.log('%csingle bus stop!', 'background:magenta', data);
             return $q.when(data);
@@ -90,7 +91,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     .state('main.bus-stop.buses', {
       url: '/:operator/:route',
       data: {
-        pageTitle: '{{ route.shortName }} Bus at {{ busStop.nameTitlecase }}',
+        pageTitle: '{{ route.shortName }} Bus headed {{ busStop.directionLong }} at {{ busStop.nameTitlecase }}',
         description: 'The {{ route.shortName }} bus stop at {{ busStop.nameTitlecase }}, heading to {{ route.longName }} {{ route.description }}. {{ route.agency.name }}',
         schema: `{
           "@context": "http://schema.org",
