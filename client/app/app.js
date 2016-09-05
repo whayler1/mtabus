@@ -7,11 +7,13 @@ angular.module('mtabusApp', [
   'ngSanitize',
   'ngPageTitle',
   'ui.router',
-  'once'
+  'once',
+  'yaru22.angular-timeago'
 ])
-  .config(function($urlRouterProvider, $locationProvider) {
+  .config(function($urlRouterProvider, $locationProvider, timeAgoSettings) {
     $urlRouterProvider
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
+    timeAgoSettings.allowFuture = true;
   });
