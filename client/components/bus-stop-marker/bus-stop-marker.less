@@ -64,6 +64,15 @@ bus-stop-marker {
       }
     }
   }
+  &.minimized {
+    transform: scale(0.5);
+    &::before {
+      animation: none;
+    }
+    &.active {
+      transform: translateY(-15px);
+    }
+  }
   &::before {
     content: ' ';
     position: absolute;

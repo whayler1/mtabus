@@ -39,7 +39,8 @@ angular.module('mtabusApp')
       });
       return false;
     };
-    $scope.stateParams = $stateParams;
+    $scope.active = () => $stateParams.id === stop.id;
+    $scope.isMinimized = () => $stateParams.id ? true : false;
 
     $scope.$on('$destroy', () => {
       $timeout.cancel(focusTimeout);

@@ -24,10 +24,16 @@
             ui-sref="main.bus-stop({id:stop.id})"
           )
             ul.inline-list.bus-stop-route-list
-              h3.bus-stop-name(once-text="stop.name | lowercase")
               li(
                 ng-repeat="route in stop.routes track by route.id"
                 once-style="{background:'#'+route.color,color:'#'+route.textColor}"
                 once-text="route.shortName"
               )
+            h3.bus-stop-name(once-text="stop.name | lowercase")
+            table.table-icon-details
+              tbody
+                tr
+                  th Direction:
+                  td(once-text="stop.direction | direction")
+            i.bus-route-list-item-action-icon.fa.fa-chevron-right
     card-footer

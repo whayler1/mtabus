@@ -52,6 +52,7 @@ angular.module('mtabusApp')
                 stops.push(stop);
               }
             });
+            $log.log('%c stops:', 'background:pink', stops);
           }
         },
         res => console.log('FAIL!', res)
