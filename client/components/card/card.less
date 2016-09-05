@@ -69,10 +69,12 @@
 }
 
 .card-header-title {
+  position: relative;
   margin: 0;
   color: @font-color;
   font-size: @font-m;
   font-weight: 400;
+  white-space: nowrap;
 
   .card-header-warning & {
     color: @warning-color;
@@ -116,7 +118,7 @@
 
 .card-header-close {
   position: absolute;
-  top: 7px;
+  top: 15px;
   right: 15px;
   color: @link-color;
 
@@ -160,7 +162,7 @@
 }
 
 .card-body-footer {
-  margin-top: 15px;
+  margin-top: 30px;
   text-align: right;
 }
 

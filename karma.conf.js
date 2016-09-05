@@ -27,6 +27,7 @@ module.exports = function(config) {
       'client/bower_components/angular-once/once.js',
       'client/bower_components/js-rich-marker/src/richmarker.js',
       'client/bower_components/ng-page-title/dist/ng-page-title.js',
+      'client/bower_components/angular-timeago/dist/angular-timeago.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',
