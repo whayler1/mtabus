@@ -49,7 +49,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     .state('main.bus-stop', {
       url: ':id',
       data: {
-        pageTitle: '{{ busStop.nameTitlecase }} Bus Stop, headed {{ busStop.directionLong }}',
+        pageTitle: '{{ busStop.nameTitlecase }} Bus Stop headed {{ busStop.directionLong }}',
         description: 'Service for {{ busStop.routeNames.join(\', \') }}',
         schema: `{
           "@context": "http://schema.org",
@@ -91,7 +91,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     .state('main.bus-stop.buses', {
       url: '/:operator/:route',
       data: {
-        pageTitle: '{{ route.shortName }} Bus, headed {{ busStop.directionLong }} at {{ busStop.nameTitlecase }}',
+        pageTitle: '{{ route.shortName }} Bus headed {{ busStop.directionLong }} at {{ busStop.nameTitlecase }}',
         description: 'The {{ route.shortName }} bus stop at {{ busStop.nameTitlecase }}, heading to {{ route.longName }} {{ route.description }}. {{ route.agency.name }}',
         schema: `{
           "@context": "http://schema.org",
