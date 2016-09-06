@@ -17,17 +17,18 @@
             h4.route-title(once-text="route.longName")
             p.route-description(once-text="route.description")
             .route-arrival-info(ng-if="route.MonitoredStopVisit.length")
+              h5 Next arrival
               table.table-icon-details
                 tbody
                   tr(ng-if="route.MonitoredStopVisit[0].MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime")
-                    th Next arrival:
+                    th Time:
                     td(ng-bind="route.MonitoredStopVisit[0].MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime | timeAgo")
                   tr
                     th Distance:
                     td(ng-bind="route.MonitoredStopVisit[0].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.PresentableDistance")
                   tr
                     th Destination:
-                    td(ng-bind="route.MonitoredStopVisit[0].MonitoredVehicleJourney.DestinationName | titlecase")
+                    td(once-text="route.MonitoredStopVisit[0].MonitoredVehicleJourney.DestinationName | titlecase")
             .route-arrival-info.font-s(ng-if="!route.MonitoredStopVisit.length") No upcoming arrivals
             i.bus-route-list-item-action-icon.fa.fa-chevron-right
       footer.card-body-footer
