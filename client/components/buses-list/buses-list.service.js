@@ -18,7 +18,6 @@ angular.module('mtabusApp')
       res => {
         const stopMonitoringDelivery = res.data.Siri.ServiceDelivery.StopMonitoringDelivery;
         const newBuses = stopMonitoringDelivery.length? stopMonitoringDelivery[0].MonitoredStopVisit : [];
-        console.log('%c new buses:', 'background:pink', newBuses);
         _.remove(buses, bus => {
           if('MonitoredVehicleJourney' in bus) {
             const { DatedVehicleJourneyRef } = bus.MonitoredVehicleJourney.FramedVehicleJourneyRef;
