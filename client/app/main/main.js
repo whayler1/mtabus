@@ -74,6 +74,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
             data.directionLong = $filter('direction')(data.direction);
             data.routeNames = routeNames;
             $log.log('%csingle bus stop!', 'background:magenta', data);
+
             return $q.when(data);
           },
           res => {
@@ -82,8 +83,9 @@ angular.module('mtabusApp').config(function ($stateProvider) {
           }
         )
       },
-      controller: ($scope, $rootScope, busStop) => {
+      controller: ($scope, $rootScope, busStop, singleBusStop) => {
         $scope.busStop = busStop;
+        singleBusStop.decorateStopWithRouteData(busStop);
         $rootScope.$emit('toggle-show-list-view', true);
       },
       template: '<single-bus-stop bus-stop="busStop"></single-bus-stop><ui-view></ui-view>'
