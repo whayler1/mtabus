@@ -7,6 +7,7 @@ angular.module('mtabusApp')
 
     const decorateRouteWithMonitoredVehicleJourney = (data, busStop) => {
       const { MonitoredStopVisit } = data.data.Siri.ServiceDelivery.StopMonitoringDelivery[0];
+      $log.log('MonitoredStopVisit', MonitoredStopVisit)
       if(MonitoredStopVisit && MonitoredStopVisit.length) {
         Object.assign(_.find(busStop.routes, {shortName: MonitoredStopVisit[0].MonitoredVehicleJourney.PublishedLineName}), { MonitoredStopVisit });
       }

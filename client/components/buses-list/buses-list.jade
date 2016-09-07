@@ -19,7 +19,7 @@
           a(ng-click="goToLoc(bus.MonitoredVehicleJourney.VehicleLocation.Latitude,bus.MonitoredVehicleJourney.VehicleLocation.Longitude)")
             table.table-icon-details
               tbody
-                tr(ng-if="bus.MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime")
+                tr(ng-if="bus.MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime && bus.MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.PresentableDistance !== 'at stop'")
                   th(title="Expected arrival time")
                     span Time:
                   td

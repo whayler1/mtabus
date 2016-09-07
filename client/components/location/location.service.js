@@ -4,7 +4,8 @@ angular.module('mtabusApp')
   .service('location', function (
     $window,
     $log,
-    $q
+    $q,
+    analytics
   ) {
 
     const location = {};
@@ -24,17 +25,21 @@ angular.module('mtabusApp')
             longitude
           }, coords);
           deferred.resolve(coords)
+          analytics.track('geolocation-allowed');
 
           $log.log('---watchPos:', coords);
         },
         res => {
           $log.warn('watch position fail');
           deferred.reject(res);
+          analytics.track('geolocation-rejected');
         },
         {
           enableHighAccuracy: true
         }
       );
+    } else {
+      analytics.track('geolocation-not-supported');
     }
 
     location.getCoords = deferred.promise;
