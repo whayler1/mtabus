@@ -5,7 +5,8 @@ angular.module('mtabusApp')
     $scope,
     $stateParams,
     map,
-    analytics
+    analytics,
+    busesList
   ) {
 
     // console.log('route', $stateParams.route);
@@ -13,6 +14,8 @@ angular.module('mtabusApp')
     const gmap = map.gmap;
 
     $scope.route = _.find($scope.busStop.routes, {shortName:$stateParams.route});
+
+    $scope.busesList = busesList;
 
     $scope.goToLoc = (lat, lng) => {
       analytics.track('bus-location-click');

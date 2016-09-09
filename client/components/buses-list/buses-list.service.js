@@ -41,12 +41,14 @@ angular.module('mtabusApp')
             }
           });
         }
+        busesList.lastUpdated = new Date();
         return $q.when(buses);
       }
     );
 
     const watch = (operator, route, stop) => {
       $log.log('%cwatch', 'background:pink');
+      busesList.lastUpdated = new Date();
       $timeout.cancel(watchTimeout);
       shouldWatch = true;
       watchTimeout = $timeout(() => getBuses(operator, route, stop).then(() => {
@@ -60,6 +62,7 @@ angular.module('mtabusApp')
       shouldWatch = false;
     };
 
+    busesList.lastUpdated = new Date();
     busesList.getBuses = getBuses;
     busesList.watch = watch;
     busesList.unwatch = unwatch;

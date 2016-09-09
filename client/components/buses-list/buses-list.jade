@@ -13,6 +13,11 @@
     .card-body.card-body-scroll.card-body-padded
       h2.buses-list-route-name(once-text="route.longName")
       div.font-s(once-text="route.description")
+      table.table-icon-details.half-gutter-top
+        tbody
+          tr
+            th Last updated:
+            td(ng-bind="busesList.lastUpdated | date:'h:mm:ss a'")
       h3.card-body-title.arrivals-title Upcoming arrivals
       ul.card-body-stacked-list(ng-if="buses.length")
         li(ng-repeat="bus in buses track by bus.MonitoredVehicleJourney.VehicleRef")
