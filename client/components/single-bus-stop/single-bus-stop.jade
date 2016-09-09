@@ -7,6 +7,11 @@
       a.card-header-close(ui-sref="main.bus-stops")
         i.fa.fa-close
     .card-body.card-body-scroll.card-body-padded
+      table.table-icon-details
+        tbody
+          tr
+            th Last updated:
+            td(ng-bind="singleBusStop.lastUpdated | date:'h:mm:ss a'")
       ul.card-body-stacked-list
         li(ng-repeat="route in busStop.routes").bus-route-list-item
           a(ui-sref="main.bus-stop.buses({operator:route.agency.id,route:route.shortName})")

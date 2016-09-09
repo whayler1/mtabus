@@ -32,6 +32,7 @@ angular.module('mtabusApp')
     ))).then(
       ary => {
         if(shouldPoll && busStop === currentBusStop) {
+          singleBusStop.lastUpdated = new Date();
           ary.forEach((data, index) => decorateRouteWithMonitoredVehicleJourney(data, busStop, index));
           decorateTimeout = $timeout(() => decorateStopWithRouteData(busStop), 7000);
         }
@@ -40,6 +41,7 @@ angular.module('mtabusApp')
     );
 
     const startRouteDataPolling = busStop => {
+      singleBusStop.lastUpdated = new Date();
       currentBusStop = busStop;
       shouldPoll = true;
       decorateStopWithRouteData(busStop);
@@ -51,6 +53,7 @@ angular.module('mtabusApp')
       $timeout.cancel(decorateTimeout);
     };
 
+    singleBusStop.lastUpdated = new Date();
     singleBusStop.startRouteDataPolling = startRouteDataPolling;
     singleBusStop.stopRouteDataPolling = stopRouteDataPolling;
 
