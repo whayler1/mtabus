@@ -1,15 +1,27 @@
 'use strict';
 
 angular.module('mtabusApp')
-  .service('singleBusStop', function ($log, $q, busTime) {
+  .service('singleBusStop', function (
+    $log,
+    $q,
+    $timeout,
+    busTime
+  ) {
 
     const singleBusStop = {};
 
-    const decorateRouteWithMonitoredVehicleJourney = (data, busStop) => {
+    let decorateTimeout;
+    let shouldPoll = false;
+    let currentBusStop;
+
+    const decorateRouteWithMonitoredVehicleJourney = (data, busStop, index) => {
       const { MonitoredStopVisit } = data.data.Siri.ServiceDelivery.StopMonitoringDelivery[0];
-      $log.log('MonitoredStopVisit', MonitoredStopVisit)
+      const route = busStop.routes[index];
+      $log.log('MonitoredStopVisit', MonitoredStopVisit);
       if(MonitoredStopVisit && MonitoredStopVisit.length) {
-        Object.assign(_.find(busStop.routes, {shortName: MonitoredStopVisit[0].MonitoredVehicleJourney.PublishedLineName}), { MonitoredStopVisit });
+        Object.assign(route, { MonitoredStopVisit });
+      }else {
+        route.MonitoredStopVisit = {};
       }
     };
 
@@ -18,10 +30,29 @@ angular.module('mtabusApp')
       route.shortName,
       busStop.id
     ))).then(
-      ary => ary.forEach(data => decorateRouteWithMonitoredVehicleJourney(data, busStop))
+      ary => {
+        if(shouldPoll && busStop === currentBusStop) {
+          ary.forEach((data, index) => decorateRouteWithMonitoredVehicleJourney(data, busStop, index));
+          decorateTimeout = $timeout(() => decorateStopWithRouteData(busStop), 7000);
+        }
+      },
+      err => $log.error('decorateStopWithRouteData error') // bubble error to ui here
     );
 
-    singleBusStop.decorateStopWithRouteData = decorateStopWithRouteData;
+    const startRouteDataPolling = busStop => {
+      currentBusStop = busStop;
+      shouldPoll = true;
+      decorateStopWithRouteData(busStop);
+    };
+
+    const stopRouteDataPolling = () => {
+      currentBusStop = undefined;
+      shouldPoll = false;
+      $timeout.cancel(decorateTimeout);
+    };
+
+    singleBusStop.startRouteDataPolling = startRouteDataPolling;
+    singleBusStop.stopRouteDataPolling = stopRouteDataPolling;
 
     return singleBusStop;
   });

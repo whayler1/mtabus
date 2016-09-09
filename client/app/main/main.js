@@ -64,7 +64,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
         }`
       },
       resolve: {
-        busStop: ($q, $log, $filter, $stateParams, busTime) => busTime.getBusStop($stateParams.id).then(
+        busStop: ($q, $log, $filter, $stateParams, busTime, singleBusStop) => busTime.getBusStop($stateParams.id).then(
           res => {
             const { data } = res.data;
             if(_.hasIn(data, 'name')) {
@@ -85,8 +85,15 @@ angular.module('mtabusApp').config(function ($stateProvider) {
       },
       controller: ($scope, $rootScope, busStop, singleBusStop) => {
         $scope.busStop = busStop;
-        singleBusStop.decorateStopWithRouteData(busStop);
         $rootScope.$emit('toggle-show-list-view', true);
+        $scope.$on('$stateChangeSuccess', (e, toState) => {
+          if(toState.name === 'main.bus-stop') {
+            singleBusStop.startRouteDataPolling(busStop);
+          }else {
+            singleBusStop.stopRouteDataPolling();
+          }
+        });
+        $scope.$on('$destroy', () => singleBusStop.stopRouteDataPolling());
       },
       template: '<single-bus-stop bus-stop="busStop"></single-bus-stop><ui-view></ui-view>'
     })
@@ -142,7 +149,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     });
 })
 
-.run(function($rootScope, $window, $location) {
+.run(function($rootScope, $window, $location, analytics) {
   $rootScope.$on('$stateChangeSuccess', (e, toState, toParams, fromState, fromParams) => {
     const path = $location.path();
     let search = '';
@@ -154,14 +161,12 @@ angular.module('mtabusApp').config(function ($stateProvider) {
     if(fromState.name) {
       referrer = `${$location.protocol()}://${$location.host()}${fromState.url}`;
     }
-    if('analytics' in $window) {
-      $window.analytics.page({
-        path,
-        referrer,
-        search,
-        name: toState.name,
-        url: $location.absUrl()
-      });
-    }
+    analytics.page({
+      path,
+      referrer,
+      search,
+      name: toState.name,
+      url: $location.absUrl()
+    });
   });
 });

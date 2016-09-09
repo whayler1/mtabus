@@ -3,6 +3,7 @@
 angular.module('mtabusApp')
   .factory('busesList', function (
     $q,
+    $log,
     $timeout,
     busTime
   ) {
@@ -45,12 +46,12 @@ angular.module('mtabusApp')
     );
 
     const watch = (operator, route, stop) => {
-      // console.log('%cwatch', 'background:purple');
+      $log.log('%cwatch', 'background:pink');
       $timeout.cancel(watchTimeout);
       shouldWatch = true;
       watchTimeout = $timeout(() => getBuses(operator, route, stop).then(() => {
         if(shouldWatch) watch(operator, route, stop);
-      }), 3000);
+      }), 7000);
     };
 
     const unwatch = () => {

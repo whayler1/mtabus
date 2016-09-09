@@ -13,7 +13,6 @@ angular.module('mtabusApp')
     const { VehicleLocation } = bus;
 
     $scope.bus = bus;
-    console.log('bus:', bus.Bearing);
     let rotationStr = `rotate(${bus.Bearing - 25}deg)`;
     $scope.style = {
       'transform': rotationStr,
