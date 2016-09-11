@@ -47,7 +47,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
       template: '<bus-stop-list></bus-stop-list><ui-view></ui-view>'
     })
     .state('main.bus-stop', {
-      url: '{id:.*_.*}',
+      url: '{id:MTA_[0-9]*}',
       data: {
         pageTitle: '{{ busStop.nameTitlecase }} Bus Stop headed {{ busStop.directionLong }}',
         description: 'Service for {{ busStop.routeNames.join(\', \') }}',
@@ -148,26 +148,4 @@ angular.module('mtabusApp').config(function ($stateProvider) {
       },
       template: '<buses-list buses="buses" bus-stop="busStop"></buses-list><div ng-if="buses.length"><bus-marker ng-repeat="bus in buses" bus="bus" route="route"></bus-marker></div>'
     });
-})
-
-.run(function($rootScope, $window, $location, analytics) {
-  $rootScope.$on('$stateChangeSuccess', (e, toState, toParams, fromState, fromParams) => {
-    const path = $location.path();
-    let search = '';
-    let referrer = '';
-    const searchIndex = path.indexOf('?');
-    if(searchIndex !== -1) {
-      search = path.substring(searchIndex, path.length);
-    }
-    if(fromState.name) {
-      referrer = `${$location.protocol()}://${$location.host()}${fromState.url}`;
-    }
-    analytics.page({
-      path,
-      referrer,
-      search,
-      name: toState.name,
-      url: $location.absUrl()
-    });
-  });
 });
