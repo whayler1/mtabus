@@ -22,6 +22,10 @@
 .card {
   background: white;
 
+  p {
+    margin: 15px 0;
+  }
+
   @media(min-width: @bp-tablet) {
     border-radius: 3px;
     border-top: 1px solid @card-border-top;
@@ -30,7 +34,8 @@
     border-bottom: 2px solid @card-border;
   }
 
-  .left-col & {
+  .left-col &,
+  .centered-card-page & {
     position: absolute;
     left: 0;
     top: 0;
@@ -207,4 +212,46 @@
       }
     }
   }
+}
+
+.card-hero-figure {
+  position: relative;
+  margin: 0;
+}
+
+.card-hero-figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-align: center;
+  padding: 7px 15px 30px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.31+0,0+100 */
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0.31) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0.31) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(0,0,0,0.31) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+
+}
+
+.card-hero-img {
+  max-width: 100%;
+}
+
+.centered-card-page {
+  // padding-top: @header-height;
+  position: absolute;
+  top: @header-height;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.card-body-header {
+  color: @primary;
+  font-size: @font-m;
+  margin: 0 0 15px;
 }

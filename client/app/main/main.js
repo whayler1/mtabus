@@ -47,7 +47,7 @@ angular.module('mtabusApp').config(function ($stateProvider) {
       template: '<bus-stop-list></bus-stop-list><ui-view></ui-view>'
     })
     .state('main.bus-stop', {
-      url: ':id',
+      url: '{id:.*_.*}',
       data: {
         pageTitle: '{{ busStop.nameTitlecase }} Bus Stop headed {{ busStop.directionLong }}',
         description: 'Service for {{ busStop.routeNames.join(\', \') }}',
@@ -70,11 +70,12 @@ angular.module('mtabusApp').config(function ($stateProvider) {
             if(_.hasIn(data, 'name')) {
               data.nameTitlecase = $filter('titlecase')(data.name.replace('/', ' / '));
             }
-            const routeNames = data.routes.map(route => `${route.shortName} ${route.longName}`);
-            data.directionLong = $filter('direction')(data.direction);
-            data.routeNames = routeNames;
-            $log.log('%csingle bus stop!', 'background:magenta', data);
-
+            if(data) {
+              const routeNames = data.routes.map(route => `${route.shortName} ${route.longName}`);
+              data.directionLong = $filter('direction')(data.direction);
+              data.routeNames = routeNames;
+              $log.log('%csingle bus stop!', 'background:magenta', data);
+            }
             return $q.when(data);
           },
           res => {

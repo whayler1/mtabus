@@ -17,7 +17,7 @@
         tbody
           tr
             th Last updated:
-            td(ng-bind="busesList.lastUpdated | date:'h:mm:ss a'")
+            td.lowercase(ng-bind="busesList.lastUpdated | date:'h:mm:ss a'")
       h3.card-body-title.arrivals-title Upcoming arrivals
       ul.card-body-stacked-list(ng-if="buses.length")
         li(ng-repeat="bus in buses track by bus.MonitoredVehicleJourney.VehicleRef")
