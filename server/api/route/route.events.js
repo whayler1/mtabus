@@ -1,0 +1,33 @@
+/**
+ * Route model events
+ */
+
+'use strict';
+
+import {EventEmitter} from 'events';
+import Route from './route.model';
+var RouteEvents = new EventEmitter();
+
+// Set max event listeners (0 == unlimited)
+RouteEvents.setMaxListeners(0);
+
+// Model events
+var events = {
+  'save': 'save',
+  'remove': 'remove'
+};
+
+// Register the event emitter to the model events
+for (var e in events) {
+  var event = events[e];
+  Route.schema.post(e, emitEvent(event));
+}
+
+function emitEvent(event) {
+  return function(doc) {
+    RouteEvents.emit(event + ':' + doc._id, doc);
+    RouteEvents.emit(event, doc);
+  }
+}
+
+export default RouteEvents;

@@ -52,3 +52,16 @@
   display: inline-block;
   float: right;
 }
+
+.header-app-nav-collapsed-ui {
+  .show-menu & {
+    display: none;
+  }
+}
+
+.header-app-nav-expanded-ui {
+  display: none;
+  .show-menu & {
+    display: block;
+  }
+}

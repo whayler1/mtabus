@@ -2,4 +2,6 @@ header.header
   h1.header-title
     a(ui-sref="main.bus-stops") NYC Bus Time Finder
   .header-app-nav
-    a(ui-sref="about") About
+    a(ng-click="onToggleShowMenu()")
+      i.fa.fa-bars.header-app-nav-collapsed-ui
+      i.fa.fa-times.header-app-nav-expanded-ui

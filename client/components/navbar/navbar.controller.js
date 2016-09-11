@@ -8,4 +8,5 @@ angular.module('mtabusApp')
   ) {
 
     $scope.onToggleListView = () => $rootScope.$emit('toggle-show-list-view');
+    $scope.onToggleShowMenu = () => $rootScope.$emit('toggle-show-menu');
   });
