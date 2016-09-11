@@ -1,6 +1,6 @@
 @header-height: 48px;
 
-.header {
+.header-content {
   position: fixed;
   top: 0;
   left: 0;
@@ -64,4 +64,56 @@
   .show-menu & {
     display: block;
   }
+}
+
+.header-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: @header-height 0 15px;
+  background: white;
+  z-index: 40;
+  transform: translateX(100%);
+  transition: transform .25s;
+
+  .show-menu & {
+    transform: translateX(0%);
+  }
+}
+
+.header-nav-list {
+  margin: 0;
+  padding: 15px 15px 30px;
+
+  li {
+    list-style: none;
+    border-top: 1px dotted @font-color-light;
+    &:last-child,
+    &:first-child {
+      border-top: none;
+    }
+  }
+  a {
+    display: block;
+    color: @font-color;
+    text-decoration: none;
+    padding: 15px 0;
+
+    &:hover,
+    &:focus {
+      color: @font-color-hover;
+    }
+    &:active {
+      color: @font-color-active;
+    }
+  }
+  i {
+    float: right;
+  }
+}
+
+.header-nav-close-btn {
+  margin-top: 15px;
 }
