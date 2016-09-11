@@ -16,9 +16,27 @@
   @media(min-width: @bp-tablet) {
     padding: 15px 30px;
   }
+
+  a {
+    color: mix(white, @primary-dark, 90%);
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: white;
+
+      @media(min-width: @bp-tablet) {
+        text-decoration: underline;
+      }
+    }
+    &:active {
+      color: mix(white, @primary-dark, 80%);
+    }
+  }
 }
 
 .header-title {
+  display: inline-block;
   margin: 0;
   color: white;
   font-size: @font-m;
@@ -28,4 +46,9 @@
     color: white;
     text-decoration: none;
   }
+}
+
+.header-app-nav {
+  display: inline-block;
+  float: right;
 }
