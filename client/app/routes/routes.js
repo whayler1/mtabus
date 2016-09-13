@@ -12,13 +12,17 @@ angular.module('mtabusApp')
         resolve: {
           routes: ($q, $log, busTime) => busTime.getRoutes().then(
             res => {
-              $log.log('%c routes!', 'backgriund:yellowgreen', res);
+              $log.log('%c routes!', 'backgriund:yellowgreen', res.data);
 
-              return $q.when(res);
+              return $q.when(res.data);
             },
             err => $log.error('routes errer!')
           )
         },
-        template: '<navbar></navbar><routes></routes>'
+        controller: ($scope, routes) => {
+          $scope.routes = routes.data.list;
+          console.log('routes:', $scope.routes);
+        },
+        template: '<navbar></navbar><routes-list routes="routes"></routes-list>'
       });
   });

@@ -5,7 +5,9 @@ angular.module('mtabusApp')
     return {
       templateUrl: 'components/routes-list/routes-list.html',
       restrict: 'EA',
-      link: function (scope, element, attrs) {
-      }
+      scope: {
+        routes: '='
+      },
+      controller: 'RoutesListCtrl'
     };
   });

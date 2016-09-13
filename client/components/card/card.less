@@ -67,6 +67,29 @@
     top: 0;
   }
 
+  .show-left-col & {
+    background: @primary;
+    color: white;
+
+    .card-header-title,
+    .card-header-ui,
+    .card-header-title-icon,
+    .card-header-close {
+      color: white;
+      a {
+        color: rgba(0,0,0,0.5);
+
+        &:hover,
+        &:focus {
+          color: rgba(0,0,0,0.6);
+        }
+        &:active {
+          color: rgba(0,0,0,0.7);
+        }
+      }
+    }
+  }
+
   &.card-header-warning {
     background: @warning-background;
     animation: 1s warning-flicker;
@@ -97,11 +120,12 @@
 .card-header-ui {
   position: absolute;
   top: 4px;
-  right: 28px;
+  right: 15px;
   font-size: @font-l;
 
   @media(min-width: @bp-tablet) {
     display: none;
+    right: 30px;
   }
 
   .card-header-warning & {

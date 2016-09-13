@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mtabusApp')
-  .controller('BodyClassCtrl', function ($scope, $rootScope, $log) {
+  .controller('BodyClassCtrl', function ($scope, $rootScope, $log, analytics) {
 
     $scope.shouldShowListView = false;
     $scope.shouldShowMenu = false;
@@ -17,8 +17,14 @@ angular.module('mtabusApp')
     $rootScope.$on('toggle-show-menu', (e, shouldShowMenu) => {
       if(typeof shouldShowMenu === 'boolean') {
         $scope.shouldShowMenu = shouldShowMenu;
+        analytics.track('show-menu');
       }else {
         $scope.shouldShowMenu = !$scope.shouldShowMenu;
+        analytics.track('hide-menu');
       }
-    })
+    });
+
+    $rootScope.$on('$stateChangeSuccess', () => {
+      $scope.shouldShowMenu = false;
+    });
   });

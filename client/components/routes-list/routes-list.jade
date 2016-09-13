@@ -1,1 +1,3 @@
-div this is the routesList directive
+ul
+  li(ng-repeat="route in ::routes")
+    a(once-text="route.shortName")
