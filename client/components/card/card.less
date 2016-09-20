@@ -71,7 +71,20 @@
     background: @primary;
     color: white;
 
-    .card-header-title,
+    .card-header-title {
+      color: white;
+      a {
+        color: white;
+        text-decoration: none;
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+        &:active {
+          color: mix(@primary, white, 10%);
+        }
+      }
+    }
     .card-header-ui,
     .card-header-title-icon,
     .card-header-close {

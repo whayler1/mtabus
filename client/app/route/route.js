@@ -18,10 +18,11 @@ angular.module('mtabusApp')
         data: {
           pageTitle: '{{ shortName }} Bus Route'
         },
-        controller: ($scope, route) => {
+        controller: ($scope, $rootScope, route) => {
           console.log('route', route);
           $scope.route = route;
+          $rootScope.$emit('toggle-show-list-view', true);
         },
-        template: '<navbar></navbar>'
+        template: '<navbar></navbar><single-route route="route"></single-route>'
       });
   });
