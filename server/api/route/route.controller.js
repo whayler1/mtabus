@@ -61,7 +61,6 @@ function handleError(res, statusCode) {
 }
 
 // Gets a list of Routes
-// http://bustime.mta.info/api/where/routes-for-agency/MTA%20NYCT.json?key=
 export function index(req, res) {
   return http.get('http://bustime.mta.info/api/where/routes-for-agency/MTA%20NYCT.json?key=' + process.env.MTABUS_APIKEY,
 
@@ -81,10 +80,19 @@ export function index(req, res) {
 
 // Gets a single Route from the DB
 export function show(req, res) {
-  return Route.findById(req.params.id).exec()
-    .then(handleEntityNotFound(res))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+  return http.get('http://bustime.mta.info/api/where/stops-for-route/' + req.params.id + '.json?key=' + process.env.MTABUS_APIKEY + '&includePolylines=false&version=2',
+    function(response) {
+      var body = '';
+      response.on('data', function(d) {
+          body += d;
+      });
+      response.on('end', function() {
+
+          var parsed = JSON.parse(body);
+          res.status(200).json(parsed);
+      });
+    }
+  );
 }
 
 // Creates a new Route in the DB

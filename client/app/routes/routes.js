@@ -7,7 +7,7 @@ angular.module('mtabusApp')
         url: '/routes',
         data: {
           pageTitle: 'All Bus Routes',
-          descriptions: 'A list of all MTA bus routes serving NYC. Click a route to find bus stop locations and arrival times.'
+          description: 'A list of all MTA bus routes serving NYC. Click a route to find bus stop locations and arrival times.'
         },
         resolve: {
           routes: ($q, $log, busTime) => busTime.getRoutes().then(

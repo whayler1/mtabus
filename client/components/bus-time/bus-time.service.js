@@ -10,6 +10,8 @@ angular.module('mtabusApp')
 
     const getRoutes = () => $http.get('/api/routes');
 
+    const getRoute = routeId => $http.get(`/api/routes/${routeId}`);
+
     const getBusStops = (lat, lng, span) => {
 
       let path = `/api/bus-stops?lat=${lat}&lng=${lng}`;
@@ -25,6 +27,7 @@ angular.module('mtabusApp')
     };
 
     busTime.getRoutes = getRoutes;
+    busTime.getRoute = getRoute;
     busTime.getBusStops = getBusStops;
     busTime.getBusStop = getBusStop;
     busTime.getBuses = getBuses;
