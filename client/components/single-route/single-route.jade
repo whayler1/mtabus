@@ -1,5 +1,5 @@
 .left-col
-  section.card.single-route-card
+  section.card.single-route-card(ng-init="stopGroups = route.entry.stopGroupings[0].stopGroups")
     header.card-header
       .card-header-title
         ul.inline-list
@@ -8,4 +8,18 @@
           li
             i.fa.fa-chevron-right
           li
-            span(once-text="routeDetails.shortName")
+            span(once-text="route.route.shortName")
+    .card-body.card-body-scroll.card-body-padded
+      .inline-block.buses-list-card-route-icon(
+        once-text="route.route.shortName"
+        once-style="{background:'#'+route.route.color,color:'#'+route.route.textColor}"
+      )
+      h2.buses-list-route-name(once-text="route.route.longName")
+      .font-s(once-text="route.route.description")
+      h3.card-body-title Choose a destination
+      ul.card-body-stacked-list
+        li(ng-repeat="group in ::stopGroups")
+          a(ui-sref="route.group({stopGroupId: group.id})")
+            span Towards
+            span(once-text="group.name.name | titlecase")
+            i.bus-route-list-item-action-icon.fa.fa-chevron-right

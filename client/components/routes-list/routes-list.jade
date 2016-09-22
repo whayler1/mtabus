@@ -5,7 +5,7 @@
     .card-body.card-body-scroll
       ul.card-body-stacked-list
         li(ng-repeat="route in ::routes | orderBy:'shortName'")
-          a(ui-sref="route({routeId: route.id, shortName: route.shortName})")
+          a(ui-sref="route({routeId: route.id})")
             .bus-stop-route-icon(
               once-text="route.shortName"
               once-style="{background:'#'+route.color,color:'#'+route.textColor}"
