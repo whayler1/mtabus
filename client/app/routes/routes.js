@@ -21,7 +21,6 @@ angular.module('mtabusApp')
         },
         controller: ($scope, $rootScope, routes) => {
           $scope.routes = routes.data.list;
-          console.log('routes:', $scope.routes);
           $rootScope.$emit('toggle-show-list-view', true);
         },
         template: '<navbar></navbar><routes-list routes="routes"></routes-list>'

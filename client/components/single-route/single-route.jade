@@ -16,10 +16,10 @@
       )
       h2.buses-list-route-name(once-text="route.route.longName")
       .font-s(once-text="route.route.description")
-      h3.card-body-title Choose a destination
+      h3.card-body-title Choose a direction
       ul.card-body-stacked-list
         li(ng-repeat="group in ::stopGroups")
           a(ui-sref="route.group({stopGroupId: group.id})")
-            span Towards
             span(once-text="group.name.name | titlecase")
             i.bus-route-list-item-action-icon.fa.fa-chevron-right
+    card-footer

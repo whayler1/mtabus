@@ -80,7 +80,7 @@ export function index(req, res) {
 
 // Gets a single Route from the DB
 export function show(req, res) {
-  return http.get('http://bustime.mta.info/api/where/stops-for-route/' + req.params.id + '.json?key=' + process.env.MTABUS_APIKEY + '&includePolylines=false&version=2',
+  return http.get('http://bustime.mta.info/api/where/stops-for-route/' + req.params.id + '.json?key=' + process.env.MTABUS_APIKEY + '&includePolylines=true&version=2',
     function(response) {
       var body = '';
       response.on('data', function(d) {
