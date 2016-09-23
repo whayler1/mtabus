@@ -60,47 +60,27 @@
   background: white;
   border-bottom: 1px solid lighten(grey, 45%);
   border-top: 1px solid @card-border;
+  overflow: hidden;
+
+  &::after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 50px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+99&0+0,1+35 */
+background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,1) 99%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 35%,rgba(255,255,255,1) 99%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 35%,rgba(255,255,255,1) 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
+
+  }
 
   @media(min-width: @bp-tablet) {
     border-top: 0;
     bottom: auto;
     top: 0;
-  }
-
-  .show-left-col & {
-    background: @primary;
-    color: white;
-
-    .card-header-title {
-      color: white;
-      a {
-        color: white;
-        text-decoration: none;
-        &:hover,
-        &:focus {
-          text-decoration: underline;
-        }
-        &:active {
-          color: mix(@primary, white, 10%);
-        }
-      }
-    }
-    .card-header-ui,
-    .card-header-title-icon,
-    .card-header-close {
-      color: white;
-      a {
-        color: rgba(0,0,0,0.5);
-
-        &:hover,
-        &:focus {
-          color: rgba(0,0,0,0.6);
-        }
-        &:active {
-          color: rgba(0,0,0,0.7);
-        }
-      }
-    }
   }
 
   &.card-header-warning {
@@ -163,6 +143,7 @@
   top: 15px;
   right: 15px;
   color: @link-color;
+  z-index: 5;
 
   &:hover,
   &:focus {
