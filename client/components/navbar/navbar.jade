@@ -10,15 +10,15 @@ header.header
   nav.header-nav
     ul.header-nav-list
       li
-        a(ui-sref="main.bus-stops")
+        a(ui-sref="main.bus-stops" ng-click="onToggleShowMenu(false)")
           | Map
           i.fa.fa-chevron-right
       li
-        a(ui-sref="routes") 
+        a(ui-sref="routes" ng-click="onToggleShowMenu(false)") 
           | Routes
           i.fa.fa-chevron-right
       li
-        a(ui-sref="about")
+        a(ui-sref="about" ng-click="onToggleShowMenu(false)")
           | About
           i.fa.fa-chevron-right
       li

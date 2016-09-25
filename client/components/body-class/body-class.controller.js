@@ -23,8 +23,4 @@ angular.module('mtabusApp')
         analytics.track('hide-menu');
       }
     });
-
-    $rootScope.$on('$stateChangeSuccess', () => {
-      $scope.shouldShowMenu = false;
-    });
   });
