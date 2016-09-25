@@ -9,7 +9,6 @@ angular.module('mtabusApp')
     $scope.stops = busStops.stops;
 
     const zoomInvalidListener = $rootScope.$on('bus-stop-zoom-invalid', () => {
-      console.log('bus-stop-zoom-invalid!');
       $scope.$digest()
     });
 

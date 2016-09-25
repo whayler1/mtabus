@@ -40,7 +40,6 @@ angular.module('mtabusApp')
           }`
         },
         controller: ($scope, $rootScope, route) => {
-          console.log('route', route);
           $scope.route = route;
           $rootScope.$emit('toggle-show-list-view', true);
         },

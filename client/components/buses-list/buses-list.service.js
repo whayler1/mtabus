@@ -23,7 +23,6 @@ angular.module('mtabusApp')
           if('MonitoredVehicleJourney' in bus) {
             const { DatedVehicleJourneyRef } = bus.MonitoredVehicleJourney.FramedVehicleJourneyRef;
             const shouldRemove = !_.find(newBuses, {MonitoredVehicleJourney:{FramedVehicleJourneyRef:{DatedVehicleJourneyRef:DatedVehicleJourneyRef}}});
-            // console.log('%c shouldRemove:', 'background:yellow', shouldRemove);
             return shouldRemove;
           }
           return true;
@@ -33,10 +32,8 @@ angular.module('mtabusApp')
             const { DatedVehicleJourneyRef } = bus.MonitoredVehicleJourney.FramedVehicleJourneyRef;
             const existingBus = _.find(buses, {MonitoredVehicleJourney:{FramedVehicleJourneyRef:{DatedVehicleJourneyRef:DatedVehicleJourneyRef}}});
             if(existingBus) {
-              // console.log('%c existingBus', 'background:aqua');
               angular.copy(bus.MonitoredVehicleJourney, existingBus.MonitoredVehicleJourney);
             }else {
-              console.log('%c new bus', 'background:lightblue');
               buses.push(bus);
             }
           });
