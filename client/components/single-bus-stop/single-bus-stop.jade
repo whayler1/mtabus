@@ -4,8 +4,6 @@
       h1.card-header-title
         i.fa.fa-bus.card-header-title-icon
         span.capitalize(once-text="busStop.nameTitlecase")
-      a.card-header-close(ui-sref="main.bus-stops")
-        i.fa.fa-close
     .card-body.card-body-scroll.card-body-padded
       table.table-icon-details
         tbody
@@ -36,9 +34,4 @@
                     td(once-text="route.MonitoredStopVisit[0].MonitoredVehicleJourney.DestinationName | titlecase")
             .route-arrival-info.font-s(ng-if="!route.MonitoredStopVisit.length") No upcoming arrivals
             i.bus-route-list-item-action-icon.fa.fa-chevron-right
-      footer.card-body-footer
-        button.btn.btn-primary.btn-block-mobile.font-m(
-          type="button"
-          ui-sref="main.bus-stops"
-        ) Close
     card-footer

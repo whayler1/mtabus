@@ -52,7 +52,7 @@
     </script>
     <script type="application/ld+json" ld-json></script>
   </head>
-  <body body-class ng-class="{'show-left-col': shouldShowListView}">
+  <body body-class ng-class="{'show-left-col': shouldShowListView, 'show-menu': shouldShowMenu}">
     <!--[if lt IE 7]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -96,10 +96,13 @@
       <script src="app/app.js"></script>
       <!-- injector:js -->
       <script src="components/util/util.module.js"></script>
-      <script src="components/buses-list/buses-list.service.js"></script>
+      <script src="components/card-footer/card-footer.directive.js"></script>
       <script src="app/app.constant.js"></script>
       <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
+      <script src="app/route/route.js"></script>
+      <script src="app/routes/routes.controller.js"></script>
+      <script src="app/routes/routes.js"></script>
       <script src="components/analytics/analytics.service.js"></script>
       <script src="components/body-class/body-class.controller.js"></script>
       <script src="components/body-class/body-class.directive.js"></script>
@@ -116,8 +119,8 @@
       <script src="components/bus-time/bus-time.service.js"></script>
       <script src="components/buses-list/buses-list.controller.js"></script>
       <script src="components/buses-list/buses-list.directive.js"></script>
+      <script src="components/buses-list/buses-list.service.js"></script>
       <script src="app/about/about.js"></script>
-      <script src="components/card-footer/card-footer.directive.js"></script>
       <script src="components/content-attrib/content-attrib.directive.js"></script>
       <script src="components/direction/direction.filter.js"></script>
       <script src="components/ld-json/ld-json.directive.js"></script>
@@ -128,9 +131,13 @@
       <script src="components/map/map.service.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>
       <script src="components/navbar/navbar.directive.js"></script>
+      <script src="components/routes-list/routes-list.controller.js"></script>
+      <script src="components/routes-list/routes-list.directive.js"></script>
       <script src="components/single-bus-stop/single-bus-stop.controller.js"></script>
       <script src="components/single-bus-stop/single-bus-stop.directive.js"></script>
       <script src="components/single-bus-stop/single-bus-stop.service.js"></script>
+      <script src="components/single-route/single-route.controller.js"></script>
+      <script src="components/single-route/single-route.directive.js"></script>
       <script src="components/titlecase/titlecase.filter.js"></script>
       <script src="components/user-location-button/user-location-button.controller.js"></script>
       <script src="components/user-location-button/user-location-button.directive.js"></script>

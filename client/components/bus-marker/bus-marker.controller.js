@@ -42,7 +42,6 @@ angular.module('mtabusApp')
     });
 
     $scope.$on('$destroy', () => {
-      // console.log('%cdestroy bus marker!', 'background:red');
       vehicleLocationWatcher();
       marker.onRemove();
     });

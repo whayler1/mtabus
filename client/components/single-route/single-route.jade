@@ -1,0 +1,21 @@
+.centered-card-page
+  section.card.single-route-card
+    header.card-header
+      h1.card-header-title
+        span.buses-list-card-route-icon(
+          once-text="route.route.shortName"
+          once-style="{background:'#'+route.route.color,color:'#'+route.route.textColor}"
+        )
+        |&nbsp; Bus Route
+    .card-body.card-body-scroll.card-body-padded
+      h2.buses-list-route-name(once-text="route.route.longName")
+      .font-s(once-text="route.route.description")
+      div.single-route-stops(ng-repeat="stopGroup in ::stopGroups")
+        h3.card-body-title To&nbsp;
+          span(once-text="stopGroup.name | titlecase")
+        ul.card-body-stacked-list
+          li(ng-repeat="stop in ::stopGroup.stops")
+            a(ui-sref="main.bus-stop.buses({id: stop.id, operator: route.route.agencyId, route: route.route.shortName})")
+              span(once-text="stop.name | titlecase")
+              i.bus-route-list-item-action-icon.fa.fa-chevron-right
+    card-footer

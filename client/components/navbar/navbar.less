@@ -1,6 +1,6 @@
 @header-height: 48px;
 
-.header {
+.header-content {
   position: fixed;
   top: 0;
   left: 0;
@@ -50,5 +50,104 @@
 
 .header-app-nav {
   display: inline-block;
-  float: right;
+  width: 14px;
+  margin-right: 15px;
+  a {
+    color: rgba(0,0,0,0.5);
+
+    &:hover,
+    &:focus {
+      color: rgba(0,0,0,0.6);
+    }
+    &:active {
+      color: rgba(0,0,0,0.7);
+    }
+  }
+}
+
+.header-app-nav-collapsed-ui {
+  .show-menu & {
+    display: none;
+  }
+}
+
+.header-app-nav-expanded-ui {
+  display: none;
+  .show-menu & {
+    display: block;
+  }
+}
+
+.header-nav-scrim {
+  display: none;
+  position: fixed;
+  top: @header-height;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255,255,255,0.8);
+  z-index: 35;
+
+  @media(min-width: @bp-tablet) {
+    .show-menu & {
+      display: block;
+    }
+  }
+}
+
+.header-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: @header-height 0 15px;
+  background: white;
+  z-index: 40;
+  transform: translateX(-100%);
+  transition: transform .25s;
+
+  .show-menu & {
+    transform: translateX(0%);
+  }
+
+  @media(min-width: @bp-tablet) {
+    max-width: @left-col-width;
+    box-shadow: 0 2px 2px 1px rgba(0,0,0,0.07);
+  }
+}
+
+.header-nav-list {
+  margin: 0;
+  padding: 15px 15px 30px;
+
+  li {
+    list-style: none;
+    border-top: 1px dotted @font-color-light;
+    &:last-child,
+    &:first-child {
+      border-top: none;
+    }
+  }
+  a {
+    display: block;
+    color: @font-color;
+    text-decoration: none;
+    padding: 15px 0;
+
+    &:hover,
+    &:focus {
+      color: @font-color-hover;
+    }
+    &:active {
+      color: @font-color-active;
+    }
+  }
+  i {
+    float: right;
+  }
+}
+
+.header-nav-close-btn {
+  margin-top: 15px;
 }

@@ -8,8 +8,6 @@ angular.module('mtabusApp')
       scope: {
         buses: '='
       },
-      controller: ($scope) => {
-        console.log('BUS MARKERS', $scope.buses);
-      }
+      controller: ($scope) => {}
     };
   });

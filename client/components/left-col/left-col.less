@@ -2,13 +2,13 @@
 
 .left-col {
   position: fixed;
-  top: @header-height;
+  top: @header-height + 49;
   left: 0;
   bottom: 0;
   right: 0;
   transform: translateY(100%);
   transition: .25s transform;
-  z-index: 50;
+  z-index: 30;
 
   .show-left-col & {
     transform: translateY(0);
@@ -18,5 +18,6 @@
     transform: translateY(0);
     border-right: 1px solid rgba(0,0,0,0.1);
     width: @left-col-width;
+    top: @header-height;
   }
 }

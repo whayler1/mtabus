@@ -1,0 +1,17 @@
+.centered-card-page
+  section.card.routes-list-card
+    header.card-header
+      h1.card-header-title Routes
+    .card-body.card-body-scroll
+      ul.card-body-stacked-list
+        li(ng-repeat="route in ::routes | orderBy:'shortName'")
+          a(ui-sref="route({routeId: route.id})")
+            .bus-stop-route-icon(
+              once-text="route.shortName"
+              once-style="{background:'#'+route.color,color:'#'+route.textColor}"
+            )
+            |&nbsp;
+            h4.route-title(once-text="route.longName")
+            .route-description(once-text="route.description")
+            i.bus-route-list-item-action-icon.fa.fa-chevron-right
+    card-footer
