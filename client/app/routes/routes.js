@@ -12,8 +12,6 @@ angular.module('mtabusApp')
         resolve: {
           routes: ($q, $log, busTime) => busTime.getRoutes().then(
             res => {
-              $log.log('%c routes!', 'backgriund:yellowgreen', res.data);
-
               return $q.when(res.data);
             },
             err => $log.error('routes errer!')
