@@ -8,8 +8,6 @@
         )
         |&nbsp;at&nbsp;
         span(once-text="busStop.nameTitlecase")
-      a.card-header-close(ui-sref="^")
-        i.fa.fa-close
     .card-body.card-body-scroll.card-body-padded
       h2.buses-list-route-name(once-text="route.longName")
       div.font-s(once-text="route.description")
@@ -41,9 +39,4 @@
       div.font-s(ng-if="!buses.length") There are no upcoming arrivals for the&nbsp;
         b(ng-bind="route.shortName")
         |&nbsp;bus at this time.
-      footer.card-body-footer
-        button.btn.btn-primary.btn-block-mobile.font-m(
-          type="button"
-          ui-sref="^"
-        ) Close
     card-footer

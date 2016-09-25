@@ -44,6 +44,6 @@ angular.module('mtabusApp')
           $scope.route = route;
           $rootScope.$emit('toggle-show-list-view', true);
         },
-        template: '<navbar></navbar><single-route route="route"></single-route><ui-view></ui-view>'
+        template: '<navbar></navbar><single-route route="route"></single-route>'
       });
   });

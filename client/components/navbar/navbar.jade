@@ -1,11 +1,12 @@
 header.header
   .header-content
-    h1.header-title
-      a(ui-sref="main.bus-stops") NYC Bus Time Finder
     .header-app-nav
       a(ng-click="onToggleShowMenu()")
         i.fa.fa-bars.header-app-nav-collapsed-ui
         i.fa.fa-times.header-app-nav-expanded-ui
+    h1.header-title
+      a(ui-sref="main.bus-stops") NYC Bus Time Finder
+  .header-nav-scrim
   nav.header-nav
     ul.header-nav-list
       li
@@ -14,7 +15,7 @@ header.header
           i.fa.fa-chevron-right
       li
         a(ui-sref="routes") 
-          | Bus routes
+          | Routes
           i.fa.fa-chevron-right
       li
         a(ui-sref="about")
