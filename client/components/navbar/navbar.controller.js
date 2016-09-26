@@ -4,7 +4,7 @@ angular.module('mtabusApp')
   .controller('NavbarController', function(
     $scope,
     $rootScope,
-    $document
+    $element
   ) {
 
     $scope.onToggleListView = () => $rootScope.$emit('toggle-show-list-view');

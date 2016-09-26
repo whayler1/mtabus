@@ -151,3 +151,53 @@
 .header-nav-close-btn {
   margin-top: 15px;
 }
+
+.header-search-nav {
+  float: right;
+
+  a {
+    color: rgba(0,0,0,0.5);
+
+    &:hover,
+    &:focus {
+      color: rgba(0,0,0,0.6);
+    }
+    &:active {
+      color: rgba(0,0,0,0.7);
+    }
+  }
+}
+
+.header-search-form {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  right: 50px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid white;
+}
+
+.header-search-label {
+  color: white;
+}
+
+.header-search-input {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  border: none;
+  color: white;
+  background: transparent;
+  border-radius: 0;
+  width: 100%;
+  font-size: @font-m;
+  outline: none;
+  text-overflow: ellipsis;
+  padding: 0;
+  line-height: 1em;
+  -webkit-text-fill-color: white;
+
+  &::placeholder {
+    color: rgba(255,255,255,0.7);
+  }
+}
