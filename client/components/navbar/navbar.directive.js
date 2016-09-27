@@ -5,6 +5,7 @@ angular.module('mtabusApp')
     templateUrl: 'components/navbar/navbar.html',
     restrict: 'E',
     scope: {
+      search: '=',
       isSearchExpanded: '='
     },
     controller: 'NavbarController'

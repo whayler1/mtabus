@@ -10,7 +10,7 @@ header.header
       a(ui-sref="routes.search({search:''})")
         i.fa.fa-search
   .header-content(ng-if="isSearchExpanded")
-    form.header-search-form
+    form.header-search-form(name="header-search-form")
       label.header-search-label(for="search")
         i.fa.fa-search
       input.header-search-input(
@@ -18,7 +18,9 @@ header.header
         name="search"
         type="text"
         placeholder="Search bus routes"
-        )
+        ng-model="inputs.search"
+        ng-change="onSearchChange()"
+      )
     .header-search-nav(ng-if="isSearchExpanded")
       a(ui-sref="routes.default")
         i.fa.fa-times

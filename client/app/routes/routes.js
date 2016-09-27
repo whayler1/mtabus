@@ -37,11 +37,17 @@ angular.module('mtabusApp')
         },
         resolve: {
           searchResults: ($q, $stateParams, routes) => {
-            console.log('routeSearch resolve', $stateParams, '\n routes');
+            console.log('routeSearch resolve', $stateParams, '\n routes', routes);
             const { search } = $stateParams;
-            return $q.when([]);
+            const regex = new RegExp(search, 'i');
+            return $q.when(routes.data.list.filter(route => regex.test(route.shortName)));
           }
         },
-        template: '<navbar is-search-expanded="true"></navbar><routes-list routes="searchResults"></routes-list>'
+        controller: ($scope, $stateParams, searchResults) => {
+          console.log('%c searchResults:', 'background:aqua', searchResults);
+          $scope.search = $stateParams.search;
+          $scope.searchResults = searchResults;
+        },
+        template: '<navbar is-search-expanded="true" search="search"></navbar><routes-list routes="searchResults"></routes-list>'
       });
   });
