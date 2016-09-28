@@ -1,18 +1,18 @@
 header.header
-  .header-content(ng-if="!navbar.isSearchExpanded")
+  .header-content(ng-class="{'search-expanded': navbar.isSearchExpanded}")
     .header-app-nav
       a(ng-click="onToggleShowMenu()")
         i.fa.fa-bars.header-app-nav-collapsed-ui
         i.fa.fa-times.header-app-nav-expanded-ui
     h1.header-title
       a(ui-sref="main.bus-stops") NYC Bus Time Finder
-    .header-search-nav
-      a(ui-sref="routes.search({search:''})")
+    .header-search-nav(ng-if="!navbar.isSearchExpanded")
+      a(ui-sref="routes.search({search:''})" ng-click="onSearchClick()")
         i.fa.fa-search
-  .header-content(ng-if="navbar.isSearchExpanded")
     form.header-search-form(
       name="header-search-form"
       ng-submit="searchSubmit()"
+      ng-if="navbar.isSearchExpanded"
     )
       label.header-search-label(for="search")
         i.fa.fa-search
@@ -26,7 +26,7 @@ header.header
           ng-change="searchSubmit()"
           focus
         )
-    .header-search-nav
+    .header-search-nav(ng-if="navbar.isSearchExpanded")
       a(ui-sref="routes.default")
         i.fa.fa-times
   .header-nav-scrim

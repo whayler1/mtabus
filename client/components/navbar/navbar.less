@@ -46,6 +46,13 @@
     color: white;
     text-decoration: none;
   }
+
+  .search-expanded & {
+    display: none;
+    @media(min-width: @bp-tablet) {
+      display: inline-block;
+    }
+  }
 }
 
 .header-app-nav {
@@ -61,6 +68,13 @@
     }
     &:active {
       color: rgba(0,0,0,0.7);
+    }
+  }
+
+  .search-expanded & {
+    display: none;
+    @media(min-width: @bp-tablet) {
+      display: inline-block;
     }
   }
 }
@@ -175,6 +189,12 @@
   right: 40px;
   padding-bottom: 2px;
   border-bottom: 1px solid white;
+
+  @media(min-width: @bp-tablet) {
+    left: auto;
+    right: 55px;
+    width: 240px;
+  }
 }
 
 .header-search-label {

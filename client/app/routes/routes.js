@@ -25,7 +25,7 @@ angular.module('mtabusApp')
           pageTitle: 'All Bus Routes',
           description: 'A list of all MTA bus routes serving NYC. Click a route to find bus stop locations and arrival times.'
         },
-        controller: ($scope, $rootScope, routes) => {
+        controller: ($scope, $rootScope, routes, navbar) => {
           $rootScope.$emit('toggle-show-list-view', true);
         },
         template: '<routes-list routes="routes"></routes-list>'
