@@ -3,7 +3,7 @@
     header.card-header
       h1.card-header-title Routes
     .card-body.card-body-scroll
-      ul.card-body-stacked-list
+      ul.card-body-stacked-list(once-if="routes.length")
         li(ng-repeat="route in ::routes | orderBy:'shortName'")
           a(ui-sref="route({routeId: route.id})")
             .bus-stop-route-icon(
@@ -14,4 +14,15 @@
             h4.route-title(once-text="route.longName")
             .route-description(once-text="route.description")
             i.bus-route-list-item-action-icon.fa.fa-chevron-right
+      .card-body-padded(once-if="!routes.length")
+        span(ng-if="search && search.length > 0") There are no bus route names that match&nbsp;
+          b(once-text="search")
+          |.&nbsp;
+          a(ui-sref="routes.default") Click&nbsp;here
+          |&nbsp;to view a list of available routes.
+        span(ng-if="!search || search.trim() === ''") Use the&nbsp
+          b above search bar
+          |&nbsp;to find your bus route, or&nbsp;
+          a(ui-sref="routes.default") click&nbsp;here
+          |&nbsp;to view a list of available routes.
     card-footer

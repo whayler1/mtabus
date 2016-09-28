@@ -4,7 +4,7 @@ angular.module('mtabusApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('route', {
-        url: '/routes/:routeId',
+        url: '/routes/{routeId:MTA.*}',
         resolve: {
           route: ($q, $log, $stateParams, busTime) => busTime.getRoute($stateParams.routeId).then(
             res => {

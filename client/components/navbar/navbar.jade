@@ -1,11 +1,34 @@
 header.header
-  .header-content
+  .header-content(ng-class="{'search-expanded': navbar.isSearchExpanded}")
     .header-app-nav
       a(ng-click="onToggleShowMenu()")
         i.fa.fa-bars.header-app-nav-collapsed-ui
         i.fa.fa-times.header-app-nav-expanded-ui
     h1.header-title
       a(ui-sref="main.bus-stops") NYC Bus Time Finder
+    .header-search-nav(ng-if="!navbar.isSearchExpanded")
+      a(ui-sref="routes.search({search:''})" ng-click="onSearchClick()")
+        i.fa.fa-search
+    form.header-search-form(
+      name="header-search-form"
+      ng-submit="searchSubmit()"
+      ng-if="navbar.isSearchExpanded"
+    )
+      label.header-search-label(for="search")
+        i.fa.fa-search
+      .header-search-input-container
+        input.header-search-input(
+          id="search"
+          name="search"
+          type="text"
+          placeholder="Search bus routes"
+          ng-model="navbar.inputs.search"
+          ng-change="searchSubmit()"
+          focus
+        )
+    .header-search-nav(ng-if="navbar.isSearchExpanded")
+      a(ui-sref="routes.default")
+        i.fa.fa-times
   .header-nav-scrim
   nav.header-nav
     ul.header-nav-list
@@ -14,7 +37,7 @@ header.header
           | Map
           i.fa.fa-chevron-right
       li
-        a(ui-sref="routes" ng-click="onToggleShowMenu(false)") 
+        a(ui-sref="routes.default" ng-click="onToggleShowMenu(false)") 
           | Routes
           i.fa.fa-chevron-right
       li
