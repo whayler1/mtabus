@@ -2,5 +2,5 @@
 
 angular.module('mtabusApp')
   .controller('RoutesListCtrl', function ($log, $scope) {
-    $log.log('%c $scope.routes', 'background:aqua', $scope.routes);
+    $log.log('%c $scope.search', 'background:aqua', $scope.search);
   });

@@ -6,6 +6,7 @@ angular.module('mtabusApp')
       templateUrl: 'components/routes-list/routes-list.html',
       restrict: 'EA',
       scope: {
+        search: '=',
         routes: '='
       },
       controller: 'RoutesListCtrl'

@@ -181,21 +181,25 @@
   color: white;
 }
 
-.header-search-input {
+.header-search-input-container {
   position: absolute;
   top: 0;
   left: 20px;
+  right: 0;
+}
+
+.header-search-input {
   border: none;
   color: white;
   background: transparent;
   border-radius: 0;
-  width: 100%;
   font-size: @font-m;
   outline: none;
   text-overflow: ellipsis;
   padding: 0;
   line-height: 1em;
   -webkit-text-fill-color: white;
+  width: 100%;
 
   &::placeholder {
     color: rgba(255,255,255,0.7);

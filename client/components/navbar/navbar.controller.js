@@ -4,18 +4,16 @@ angular.module('mtabusApp')
   .controller('NavbarController', function(
     $scope,
     $rootScope,
-    $state
+    $state,
+    navbar
   ) {
 
-    $scope.inputs = {
-      search: $scope.search ? $scope.search : ''
-    };
+    $scope.navbar = navbar;
 
     $scope.onToggleListView = () => $rootScope.$emit('toggle-show-list-view');
     $scope.onToggleShowMenu = () => $rootScope.$emit('toggle-show-menu');
 
-    $scope.onSearchChange = _.debounce(() => {
-      console.log('change', $scope.inputs.search);
-      $state.go('routes.search', { search: $scope.inputs.search });
+    $scope.searchSubmit = _.debounce(() => {
+      $state.go('routes.search', { search: navbar.inputs.search });
     }, 750);
   });

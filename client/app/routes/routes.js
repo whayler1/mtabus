@@ -17,7 +17,7 @@ angular.module('mtabusApp')
         controller: ($scope, routes) => {
           $scope.routes = routes.data.list;
         },
-        template: '<ui-view></ui-view>'
+        template: '<navbar></navbar><ui-view></ui-view>'
       })
       .state('routes.default', {
         url: '',
@@ -28,7 +28,7 @@ angular.module('mtabusApp')
         controller: ($scope, $rootScope, routes) => {
           $rootScope.$emit('toggle-show-list-view', true);
         },
-        template: '<navbar></navbar><routes-list routes="routes"></routes-list>'
+        template: '<routes-list routes="routes"></routes-list>'
       })
       .state('routes.search', {
         url: '/search?search',
@@ -37,17 +37,26 @@ angular.module('mtabusApp')
         },
         resolve: {
           searchResults: ($q, $stateParams, routes) => {
-            console.log('routeSearch resolve', $stateParams, '\n routes', routes);
+            // console.log('routeSearch resolve', $stateParams, '\n routes', routes);
             const { search } = $stateParams;
-            const regex = new RegExp(search, 'i');
+            if(!search || (search && search.trim() === '')) {
+              return $q.when([]);
+            }
+            const regex = new RegExp(search.trim(), 'i');
             return $q.when(routes.data.list.filter(route => regex.test(route.shortName)));
           }
         },
-        controller: ($scope, $stateParams, searchResults) => {
+        controller: ($scope, $stateParams, searchResults, navbar) => {
           console.log('%c searchResults:', 'background:aqua', searchResults);
-          $scope.search = $stateParams.search;
           $scope.searchResults = searchResults;
+          $scope.search = $stateParams.search;
+
+          navbar.isSearchExpanded = true;
+
+          $scope.$on('$destroy', () => {
+            navbar.isSearchExpanded = false;
+          });
         },
-        template: '<navbar is-search-expanded="true" search="search"></navbar><routes-list routes="searchResults"></routes-list>'
+        template: '<routes-list routes="searchResults" search="search"></routes-list>'
       });
   });

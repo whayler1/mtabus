@@ -1,5 +1,5 @@
 header.header
-  .header-content(ng-if="!isSearchExpanded")
+  .header-content(ng-if="!navbar.isSearchExpanded")
     .header-app-nav
       a(ng-click="onToggleShowMenu()")
         i.fa.fa-bars.header-app-nav-collapsed-ui
@@ -9,19 +9,24 @@ header.header
     .header-search-nav
       a(ui-sref="routes.search({search:''})")
         i.fa.fa-search
-  .header-content(ng-if="isSearchExpanded")
-    form.header-search-form(name="header-search-form")
+  .header-content(ng-if="navbar.isSearchExpanded")
+    form.header-search-form(
+      name="header-search-form"
+      ng-submit="searchSubmit()"
+    )
       label.header-search-label(for="search")
         i.fa.fa-search
-      input.header-search-input(
-        id="search"
-        name="search"
-        type="text"
-        placeholder="Search bus routes"
-        ng-model="inputs.search"
-        ng-change="onSearchChange()"
-      )
-    .header-search-nav(ng-if="isSearchExpanded")
+      .header-search-input-container
+        input.header-search-input(
+          id="search"
+          name="search"
+          type="text"
+          placeholder="Search bus routes"
+          ng-model="navbar.inputs.search"
+          ng-change="searchSubmit()"
+          focus
+        )
+    .header-search-nav
       a(ui-sref="routes.default")
         i.fa.fa-times
   .header-nav-scrim
