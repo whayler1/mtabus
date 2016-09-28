@@ -25,7 +25,12 @@ angular.module('mtabusApp').config(function ($stateProvider) {
             "jobTitle": "Software Engineer"
           },
           "url": "https://www.busfinder.nyc",
-          "description": "Find out how long till the next bus arrives at any MTA bus stop in all of New York City. Servicing Manhattan, Brooklyn, Queens, The Bronx and Staten Island"
+          "description": "Find out how long till the next bus arrives at any MTA bus stop in all of New York City. Servicing Manhattan, Brooklyn, Queens, The Bronx and Staten Island",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.busfinder.nyc/routes/search?search={srch_str}",
+            "query-input": "required name=srch_str"
+          }
         }`
       },
       controller: ($scope, $rootScope, $window, location, map) => {
