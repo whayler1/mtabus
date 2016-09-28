@@ -19,7 +19,6 @@ angular.module('mtabusApp')
     let overlayView;
 
     let hasPositionBeenSetOnce = false;
-    console.log('getCoords:', location.getCoords);
     location.getCoords.then(coords => {
       overlayView = new mapMarkerConstructor.GoogleOverlayView($element[0], new google.maps.LatLng(
         coords.latitude,

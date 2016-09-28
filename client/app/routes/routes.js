@@ -37,7 +37,6 @@ angular.module('mtabusApp')
         },
         resolve: {
           searchResults: ($q, $stateParams, routes) => {
-            // console.log('routeSearch resolve', $stateParams, '\n routes', routes);
             const { search } = $stateParams;
             if(!search || (search && search.trim() === '')) {
               return $q.when([]);
@@ -47,7 +46,6 @@ angular.module('mtabusApp')
           }
         },
         controller: ($scope, $stateParams, searchResults, navbar) => {
-          console.log('%c searchResults:', 'background:aqua', searchResults);
           $scope.searchResults = searchResults;
           $scope.search = $stateParams.search;
 
