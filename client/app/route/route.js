@@ -10,7 +10,6 @@ angular.module('mtabusApp')
             res => {
               const { data } = res.data;
               data.route = _.find(data.references.routes, {id: data.entry.routeId});
-              // data.polylines = data.entry.polylines.map(line => line.points).join(' ');
               return $q.when(data);
             },
             err => {
