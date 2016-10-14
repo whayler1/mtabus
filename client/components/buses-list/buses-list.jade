@@ -10,8 +10,8 @@
         span(once-text="busStop.nameTitlecase")
     .card-body.card-body-scroll.card-body-padded
       h2.buses-list-route-name(once-text="route.longName")
-      div.font-s(once-text="route.description")
-      table.table-icon-details.half-gutter-top
+      div.font-m(once-text="route.description")
+      table.table-icon-details.gutter-top
         tbody
           tr
             th Last updated:
@@ -39,4 +39,4 @@
       div.font-s(ng-if="!buses.length") There are no upcoming arrivals for the&nbsp;
         b(ng-bind="route.shortName")
         |&nbsp;bus at this time.
-    card-footer
+      card-footer

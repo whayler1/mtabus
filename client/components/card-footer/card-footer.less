@@ -1,23 +1,25 @@
 @card-footer-height: 45px;
 
 .card-footer {
-  // margin-top: 30px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  margin: 30px -15px 0;
   font-size: @font-s;
   border-top: 1px solid lighten(grey, 45%);
   background: white;
+  color: lighten(@font-color, 10%);
+
+  .routes-list-card & {
+    margin-left: 0;
+    margin-right: 0;
+  }
 
   a {
-    color: @font-color-strong;
+    color: @font-color;
     &:hover,
     &:focus {
-      color: @font-color-strong-hover;
+      color: @font-color-hover;
     }
     &:active {
-      color: @font-color-strong-active;
+      color: @font-color-active;
     }
   }
 }

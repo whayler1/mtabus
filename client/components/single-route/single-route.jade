@@ -9,7 +9,7 @@
         |&nbsp; Bus Route
     .card-body.card-body-scroll.card-body-padded
       h2.buses-list-route-name(once-text="route.route.longName")
-      .font-s(once-text="route.route.description")
+      .font-m(once-text="route.route.description")
       div.single-route-stops(ng-repeat="stopGroup in ::stopGroups")
         h3.card-body-title To&nbsp;
           span(once-text="stopGroup.name | titlecase")
@@ -21,4 +21,4 @@
             )
               span(once-text="stop.name | titlecase")
               i.bus-route-list-item-action-icon.fa.fa-chevron-right
-    card-footer
+      card-footer

@@ -14,6 +14,7 @@ angular.module('mtabusApp')
     $scope.onToggleShowMenu = () => $rootScope.$emit('toggle-show-menu');
 
     $scope.onSearchClick = () => {
+      $rootScope.$emit('toggle-show-menu', false);
       navbar.inputs.search = '';
     };
 

@@ -34,7 +34,7 @@
 }
 
 .route-title {
-  font-size: @font-s;
+  font-size: @font-m;
   font-weight: 400;
   color: @font-color-strong;
   margin: 0;
@@ -97,8 +97,12 @@
 }
 
 .route-description {
-  font-size: @font-s;
+  font-size: @font-m;
   margin: 7px 0 0;
+
+  .card & {
+    margin: 7px 0 0;
+  }
 
   a:hover &,
   a:focus & {
