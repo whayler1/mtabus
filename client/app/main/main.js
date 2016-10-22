@@ -89,17 +89,26 @@ angular.module('mtabusApp').config(function ($stateProvider) {
           }
         )
       },
-      controller: ($scope, $rootScope, busStop, singleBusStop) => {
+      controller: ($scope, $rootScope, busStop, singleBusStop, map) => {
         $scope.busStop = busStop;
         $rootScope.$emit('toggle-show-list-view', true);
-        $scope.$on('$stateChangeSuccess', (e, toState) => {
+        $scope.$on('$stateChangeSuccess', (e, toState, toParams, fromState) => {
           if(toState.name === 'main.bus-stop') {
             singleBusStop.startRouteDataPolling(busStop);
           }else {
             singleBusStop.stopRouteDataPolling();
           }
+          if (!fromState.name) {
+            /**
+             * If this is the landing page then set map center on the bus stop.
+             */
+            map.gmap.setCenter({
+              lat: busStop.lat,
+              lng: busStop.lon
+            });
+          }
         });
-        $scope.$on('$destroy', () => singleBusStop.stopRouteDataPolling());
+        $scope.$on('$destroy', singleBusStop.stopRouteDataPolling);
       },
       template: '<single-bus-stop bus-stop="busStop"></single-bus-stop><ui-view></ui-view>'
     })
