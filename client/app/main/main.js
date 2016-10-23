@@ -65,7 +65,8 @@ angular.module('mtabusApp').config(function ($stateProvider) {
             "longitude": "{{ busStop.lon }}"
           },
           "name": "{{ busStop.nameTitlecase }} Bus Stop",
-          "description": "Service for {{ busStop.routeNames.join(', ') }} headed {{ busStop.directionLong }}"
+          "description": "Service for {{ busStop.routeNames.join(', ') }} headed {{ busStop.directionLong }}",
+          "hasMap": "https://www.google.com/maps/@{{ busStop.lat }},{{ busStop.lon }},17z"
         }`
       },
       resolve: {
@@ -127,7 +128,8 @@ angular.module('mtabusApp').config(function ($stateProvider) {
           },
           "name": "{{ route.shortName }} Bus at {{ busStop.nameTitlecase }}",
           "description": "The {{ route.shortName }} bus stop at {{ busStop.nameTitlecase }}, heading to {{ route.longName }} {{ route.description }}. {{ route.agency.name }}",
-          "telephone": "{{ route.agency.phone }}"
+          "telephone": "{{ route.agency.phone }}",
+          "hasMap": "https://www.google.com/maps/@{{ busStop.lat }},{{ busStop.lon }},17z"
         }`
       },
       resolve: {
