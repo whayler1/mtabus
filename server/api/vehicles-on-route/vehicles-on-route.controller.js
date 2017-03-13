@@ -67,7 +67,7 @@ export function index(req, res) {
 
   // http://bustime.mta.info/api/siri/stop-monitoring.json?key=71f7d3b8-d9d5-4791-aeec-f95564ff0bb4&OperatorRef=MTA%20NYCT&LineRef=B43&MonitoringRef=MTA_305175
 
-  return http.get('http://bustime.mta.info/api/siri/stop-monitoring=.json' +
+  return http.get('http://bustime.mta.info/api/siri/stop-monitoring.json' +
       '?OperatorRef=' + req.query.operator +
       '&LineRef=' + req.query.route +
       '&MonitoringRef=' + req.query.stop +
