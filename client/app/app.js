@@ -13,7 +13,6 @@ angular.module('mtabusApp', [
   .config(function($urlRouterProvider, $locationProvider, timeAgoSettings) {
     $urlRouterProvider
       .otherwise('/');
-
     $locationProvider.html5Mode(true);
     timeAgoSettings.allowFuture = true;
   })
